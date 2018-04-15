@@ -1,7 +1,7 @@
 <?php session_start();?>
 <?php
 if(!isset($_SESSION['user']))  header( "location:signin.html");
-if($_SESSION['level']==1) header("location:index-m.php");
+
 ?>
 <!DOCTYPE html>
 
@@ -94,86 +94,55 @@ if($_SESSION['level']==1) header("location:index-m.php");
                 </div>
                 <a href="index.php">
                     <i class="icon-home"></i>
-                    <span>Home</span>
+                    <span>首页</span>
                 </a>
             </li>            
+
+
+
+
             <li>
+                <a href="cage-local.php">
+                    <i class="icon-th-large"></i>
+                    <span>本地仓库管理</span>
+                </a>
+            </li>
+            <li>
+                <a  href="new-user.php">
+                    <i class="icon-edit"></i>
+                    <span>新进配件</span>
+                </a>
+
+            </li>
+            <li>
+                <a  href="transfer.php">
+                    <i class="icon-share-alt"></i>
+                    <span>配件调度</span>
+                </a>
+
+            </li>
+
+            <li class="onlevel" style="display: none">
+                <a href="cage-center.php">
+                    <i class="icon-code-fork" style="margin-left: 5px;"></i>
+                    <span>仓库管理中心</span>
+                </a>
+
+            </li>
+            <li class="onlevel" style="display: none">
                 <a href="chart-showcase.html">
                     <i class="icon-signal"></i>
-                    <span>Charts</span>
+                    <span>数据统计中心</span>
                 </a>
             </li>
-            <li>
-                <a class="dropdown-toggle" href="#">
-                    <i class="icon-group"></i>
-                    <span>Users</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="user-list.html">User list</a></li>
-                    <li><a href="new-user.html">New user form</a></li>
-                    <li><a href="user-profile.html">User profile</a></li>
-                </ul>
-            </li>
-            <li>
-                <a class="dropdown-toggle" href="#">
-                    <i class="icon-edit"></i>
-                    <span>Forms</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="form-showcase.html">Form showcase</a></li>
-                    <li><a href="form-wizard.html">Form wizard</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="gallery.html">
-                    <i class="icon-picture"></i>
-                    <span>Gallery</span>
-                </a>
-            </li>
-            <li>
-                <a href="calendar.html">
-                    <i class="icon-calendar-empty"></i>
-                    <span>Calendar</span>
-                </a>
-            </li>
-            <li>
-                <a href="tables.html">
-                    <i class="icon-th-large"></i>
-                    <span>Tables</span>
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-toggle ui-elements" href="#">
-                    <i class="icon-code-fork"></i>
-                    <span>UI Elements</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="ui-elements.html">UI Elements</a></li>
-                    <li><a href="icons.html">Icons</a></li>
-                </ul>
-            </li>
+
             <li>
                 <a href="personal-info.html">
                     <i class="icon-cog"></i>
-                    <span>My Info</span>
+                    <span>设置</span>
                 </a>
             </li>
-            <li>
-                <a class="dropdown-toggle" href="#">
-                    <i class="icon-share-alt"></i>
-                    <span>Extras</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="code-editor.html">Code editor</a></li>
-                    <li><a href="grids.html">Grids</a></li>
-                    <li><a href="signin.html">Sign in</a></li>
-                    <li><a href="signup.html">Sign up</a></li>
-                </ul>
-            </li>
+
         </ul>
     </div>
     <!-- end sidebar -->
@@ -455,7 +424,6 @@ if($_SESSION['level']==1) header("location:index-m.php");
                         <li><a href="#">&#8250;</a></li>
                       </ul>
                     </div>
-                    <div>More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></div>
                 </div>
                 <!-- end table sample -->
             </div>
@@ -587,6 +555,21 @@ if($_SESSION['level']==1) header("location:index-m.php");
                 }
             });
         });
+
+        <?php
+        if($_SESSION['level'] == 1) {
+        ?>
+
+        var doc = document.getElementsByClassName("onlevel");
+        /*用for循环遍历所有doc标签*/
+        for(var i=0;i<doc.length;i++){
+            doc[i].style.display="";
+        }
+
+        <?php
+        }
+        ?>
+
     </script>
 
 </body>

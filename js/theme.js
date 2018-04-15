@@ -96,7 +96,7 @@ $(function () {
 	});
 
 
-  // custom uiDropdown element, example can be seen in user-list.html on the 'Filter users' button
+  // custom uiDropdown element, example can be seen in cage-local.php on the 'Filter users' button
 	var uiDropdown = new function() {
   	var self;
   	self = this;

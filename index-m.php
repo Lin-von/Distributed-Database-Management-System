@@ -109,9 +109,9 @@ if(!isset($_SESSION['user']))  header( "location:signin.html");
                 <i class="icon-chevron-down"></i>
             </a>
             <ul class="submenu">
-                <li><a href="user-list.html">User list</a></li>
-                <li><a href="new-user.html">New user form</a></li>
-                <li><a href="user-profile.html">User profile</a></li>
+                <li><a href="cage-local.php">User list</a></li>
+                <li><a href="new-user.php">New user form</a></li>
+                <li><a href="user-profile.php">User profile</a></li>
             </ul>
         </li>
         <li>
