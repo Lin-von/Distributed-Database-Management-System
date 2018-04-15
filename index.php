@@ -7,7 +7,7 @@ if(!isset($_SESSION['user']))  header( "location:signin.html");
 
 <html>
 <head>
-	<title>Detail Admin - Home</title>
+	<title>售后配件库管理系统</title>
     
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
@@ -49,32 +49,21 @@ if(!isset($_SESSION['user']))  header( "location:signin.html");
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            
-            <a class="brand" href="index.php"></a>
+            <ul class="nav pull-right" style="float: right">
 
-            <ul class="nav pull-right">                
-                <li class="hidden-phone">
-                    <input class="search" type="text" />
-                </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">
-                        Your account
-                        <b class="caret"></b>
+                    <a href="#" class="dropdown-toggle " data-toggle="dropdown">
+                        欢迎您，<?php  echo $_SESSION['user']; ?>
+
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="personal-info.html">Personal info</a></li>
-                        <li><a href="#">Account settings</a></li>
-                        <li><a href="#">Billing</a></li>
-                        <li><a href="#">Export your data</a></li>
-                        <li><a href="#">Send feedback</a></li>
-                    </ul>
+
                 </li>
-                <li class="settings hidden-phone">
+                <li class="settings ">
                     <a href="personal-info.html" role="button">
                         <i class="icon-cog"></i>
                     </a>
                 </li>
-                <li class="settings hidden-phone">
+                <li class="settings ">
                     <a href="signin.html" role="button">
                         <i class="icon-share-alt"></i>
                     </a>
@@ -108,13 +97,13 @@ if(!isset($_SESSION['user']))  header( "location:signin.html");
                 </a>
             </li>
             <li>
-                <a  href="new-user.php">
+                <a  href="new-acc.php">
                     <i class="icon-edit"></i>
                     <span>新进配件</span>
                 </a>
 
             </li>
-            <li>
+            <li class="onlevel" style="display: none">
                 <a  href="transfer.php">
                     <i class="icon-share-alt"></i>
                     <span>配件调度</span>
@@ -162,7 +151,94 @@ if(!isset($_SESSION['user']))  header( "location:signin.html");
         ?>
     </script>
 
+    <?php
+    header("Content-Type: text/html;charset=utf-8");
+    $servername = "localhost:3306";
+    $username = "root";
+    $password = "123";
+    $dbname = "db";
+    // 创建连接
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // 检测连接
+    if ($conn->connect_error) {
+        die("连接失败: " . $conn->connect_error);
+    }
+    mysqli_set_charset ($conn,utf8);
 
+    $sql = "SELECT * FROM accessory WHERE status = '周转备用新件'";
+    $result = $conn->query($sql);
+    $count1 = $result->num_rows;
+    $sql = "SELECT * FROM accessory WHERE status = '周转备用旧件'";
+    $result = $conn->query($sql);
+    $count2 = $result->num_rows;
+    $sql = "SELECT * FROM accessory WHERE status = '返修配件'";
+    $result = $conn->query($sql);
+    $count3 = $result->num_rows;
+    $sql = "SELECT * FROM accessory WHERE status = '报损件'";
+    $result = $conn->query($sql);
+    $count4 = $result->num_rows;
+
+    $sql = "select dateduan,count(*)
+from 
+(select  
+        operation,
+        case    
+            when   (opedate>='2018-12-01 00:00:00')              then   '12' 
+            when   (opedate>='2018-11-01 00:00:00' and opedate<'2018-12-01 00:00:00')   then   '11'
+            when   (opedate>='2018-10-01 00:00:00' and opedate<'2018-11-01 00:00:00')    then    '10' 
+            when   (opedate>='2018-09-01 00:00:00' and opedate<'2018-10-01 00:00:00')    then    '09' 
+            when   (opedate>='2018-08-01 00:00:00' and opedate<'2018-09-01 00:00:00')    then    '08' 
+            when   (opedate>='2018-07-01 00:00:00' and opedate<'2018-08-01 00:00:00')    then    '7' 
+            when   (opedate>='2018-06-01 00:00:00' and opedate<'2018-07-01 00:00:00')    then    '6' 
+            when   (opedate>='2018-05-01 00:00:00' and opedate<'2018-06-01 00:00:00')    then    '5' 
+            when   (opedate>='2018-04-01 00:00:00' and opedate<'2018-05-01 00:00:00')    then    '4' 
+            when   (opedate>='2018-03-01 00:00:00' and opedate<'2018-04-01 00:00:00')     then    '3'  
+            when   (opedate>='2018-02-01 00:00:00' and opedate<'2018-03-01 00:00:00')     then    '2'  
+            when   (opedate>='2018-01-01 00:00:00' and opedate<'2018-02-01 00:00:00')     then    '1'  
+            else     'opedate unknow'
+        end     as dateduan from 
+
+         record
+)  as t where operation = 1 or operation = 3 group by dateduan";
+    $result = $conn->query($sql);
+    $incage = array(0,0,0,0,0,0,0,0,0,0,0,0,0);
+    while($row = $result->fetch_assoc()){
+        $incage[$row['dateduan']] = $row['count(*)'];
+    }
+    //print_r($incage);
+
+    $sql = "select dateduan,count(*)
+from 
+(select  
+        operation,
+        case    
+            when   (opedate>='2018-12-01 00:00:00')              then   '12' 
+            when   (opedate>='2018-11-01 00:00:00' and opedate<'2018-12-01 00:00:00')   then   '11'
+            when   (opedate>='2018-10-01 00:00:00' and opedate<'2018-11-01 00:00:00')    then    '10' 
+            when   (opedate>='2018-09-01 00:00:00' and opedate<'2018-10-01 00:00:00')    then    '09' 
+            when   (opedate>='2018-08-01 00:00:00' and opedate<'2018-09-01 00:00:00')    then    '08' 
+            when   (opedate>='2018-07-01 00:00:00' and opedate<'2018-08-01 00:00:00')    then    '7' 
+            when   (opedate>='2018-06-01 00:00:00' and opedate<'2018-07-01 00:00:00')    then    '6' 
+            when   (opedate>='2018-05-01 00:00:00' and opedate<'2018-06-01 00:00:00')    then    '5' 
+            when   (opedate>='2018-04-01 00:00:00' and opedate<'2018-05-01 00:00:00')    then    '4' 
+            when   (opedate>='2018-03-01 00:00:00' and opedate<'2018-04-01 00:00:00')     then    '3'  
+            when   (opedate>='2018-02-01 00:00:00' and opedate<'2018-03-01 00:00:00')     then    '2'  
+            when   (opedate>='2018-01-01 00:00:00' and opedate<'2018-02-01 00:00:00')     then    '1'  
+            else     'opedate unknow'
+        end     as dateduan from 
+
+         record
+)  as t where operation = 4 group by dateduan";
+    $result = $conn->query($sql);
+    $outcage = array(0,0,0,0,0,0,0,0,0,0,0,0,0);
+    while($row = $result->fetch_assoc()){
+        $outcage[$row['dateduan']] = $row['count(*)'];
+    }
+
+
+
+    $conn->close();
+    ?>
 	<!-- main container -->
     <div class="content">
 
@@ -175,31 +251,31 @@ if(!isset($_SESSION['user']))  header( "location:signin.html");
                 <div class="row-fluid stats-row">
                     <div class="span3 stat">
                         <div class="data">
-                            <span class="number">2457</span>
-                            visits
+                            <span class="number"><?php echo $count1?></span>
+                            条记录
                         </div>
-                        <span class="date">Today</span>
+                        <span class="date">周转备用新件</span>
                     </div>
                     <div class="span3 stat">
                         <div class="data">
-                            <span class="number">3240</span>
-                            users
+                            <span class="number"><?php echo $count2?></span>
+                            条记录
                         </div>
-                        <span class="date">February 2014</span>
+                        <span class="date">周转备用旧件</span>
                     </div>
                     <div class="span3 stat">
                         <div class="data">
-                            <span class="number">322</span>
-                            orders
+                            <span class="number"><?php echo $count3?></span>
+                            条记录
                         </div>
-                        <span class="date">This week</span>
+                        <span class="date">返修配件</span>
                     </div>
                     <div class="span3 stat last">
                         <div class="data">
-                            <span class="number">$2,340</span>
-                            sales
+                            <span class="number"><?php echo $count4?></span>
+                            条记录
                         </div>
-                        <span class="date">last 30 days</span>
+                        <span class="date">报损件</span>
                     </div>
                 </div>
             </div>
@@ -210,7 +286,7 @@ if(!isset($_SESSION['user']))  header( "location:signin.html");
                 <!-- statistics chart built with jQuery Flot -->
                 <div class="row-fluid chart">
                     <h4>
-                        Statistics
+                        进出库变化统计
                     </h4>
                     <div class="span12">
                         <div id="statsChart"></div>
@@ -488,8 +564,32 @@ if(!isset($_SESSION['user']))  header( "location:signin.html");
             
 
             // jQuery Flot Chart
-            var visits = [[1, 50], [2, 40], [3, 45], [4, 23],[5, 55],[6, 65],[7, 61],[8, 70],[9, 65],[10, 75],[11, 12],[12, 0]];
-            var visitors = [[1, 25], [2, 50], [3, 23], [4, 48],[5, 27],[6, 40],[7, 47],[8, 55],[9, 43],[10,50],[11,33],[12, 39]];
+            var visits = [[1, <?php echo $outcage[1];?>],
+                [2, <?php echo $outcage[2];?>],
+                [3, <?php echo $outcage[3];?>],
+                [4, <?php echo $outcage[4];?>],
+                [5, <?php echo $outcage[5];?>],
+                [6, <?php echo $outcage[6];?>],
+                [7, <?php echo $outcage[7];?>],
+                [8, <?php echo $outcage[8];?>],
+                [9, <?php echo $outcage[9];?>],
+                [10, <?php echo $outcage[10];?>],
+                [11, <?php echo $outcage[11];?>],
+                [12, <?php echo $outcage[12];?>]];
+
+
+            var visitors = [[1, <?php echo $incage[1]-$outcage[1];?>],
+                [2, <?php echo $incage[2]-$outcage[2];?>],
+                [3, <?php echo $incage[3]-$outcage[3];?>],
+                [4, <?php echo $incage[4]-$outcage[4];?>],
+                [5, <?php echo $incage[5]-$outcage[5];?>],
+                [6, <?php echo $incage[6]-$outcage[6];?>],
+                [7, <?php echo $incage[7]-$outcage[7];?>],
+                [8, <?php echo $incage[8]-$outcage[8];?>],
+                [9, <?php echo $incage[9]-$outcage[9];?>],
+                [10,<?php echo $incage[10]-$outcage[10];?>],
+                [11,<?php echo $incage[11]-$outcage[11];?>],
+                [12,<?php echo $incage[12]-$outcage[12];?>]];
 
             var plot = $.plot($("#statsChart"),
                 [ { data: visits, label: "出库"},

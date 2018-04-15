@@ -22,8 +22,6 @@
     <!-- this page specific styles -->
     <link rel="stylesheet" href="css/compiled/tables.css" type="text/css" media="screen" />
 
-    <!-- open sans font -->
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
 
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -39,32 +37,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
+        <ul class="nav pull-right" style="float: right">
 
-        <a class="brand" href="index.php"></a>
-
-        <ul class="nav pull-right">
-            <li class="hidden-phone">
-                <input class="search" type="text" />
-            </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">
-                    Your account
-                    <b class="caret"></b>
+                <a href="#" class="dropdown-toggle " data-toggle="dropdown">
+                    欢迎您，<?php  echo $_SESSION['user']; ?>
+
                 </a>
-                <ul class="dropdown-menu">
-                    <li><a href="personal-info.html">Personal info</a></li>
-                    <li><a href="#">Account settings</a></li>
-                    <li><a href="#">Billing</a></li>
-                    <li><a href="#">Export your data</a></li>
-                    <li><a href="#">Send feedback</a></li>
-                </ul>
+
             </li>
-            <li class="settings hidden-phone">
+            <li class="settings ">
                 <a href="personal-info.html" role="button">
                     <i class="icon-cog"></i>
                 </a>
             </li>
-            <li class="settings hidden-phone">
+            <li class="settings ">
                 <a href="signin.html" role="button">
                     <i class="icon-share-alt"></i>
                 </a>
@@ -98,13 +85,13 @@
             </a>
         </li>
         <li>
-            <a  href="new-user.php">
+            <a  href="new-acc.php">
                 <i class="icon-edit"></i>
                 <span>新进配件</span>
             </a>
 
         </li>
-        <li class="active">
+        <li  class="onlevel active" style="display: none">
             <a  href="transfer.php">
                 <i class="icon-share-alt"></i>
                 <span>配件调度</span>
