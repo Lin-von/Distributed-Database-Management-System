@@ -130,7 +130,7 @@ if(!isset($_SESSION['user']))  header( "location:signin.html");
 
             </li>
             <li class="onlevel" style="display: none">
-                <a href="chart-showcase.html">
+                <a href="chart-showcase.php">
                     <i class="icon-signal"></i>
                     <span>数据统计中心</span>
                 </a>
@@ -146,6 +146,21 @@ if(!isset($_SESSION['user']))  header( "location:signin.html");
         </ul>
     </div>
     <!-- end sidebar -->
+    <script type="text/javascript">
+        <?php
+        if($_SESSION['level'] == 1) {
+        ?>
+
+        var doc = document.getElementsByClassName("onlevel");
+        /*用for循环遍历所有doc标签*/
+        for(var i=0;i<doc.length;i++){
+            doc[i].style.display="";
+        }
+
+        <?php
+        }
+        ?>
+    </script>
 
 
 	<!-- main container -->
@@ -556,19 +571,6 @@ if(!isset($_SESSION['user']))  header( "location:signin.html");
             });
         });
 
-        <?php
-        if($_SESSION['level'] == 1) {
-        ?>
-
-        var doc = document.getElementsByClassName("onlevel");
-        /*用for循环遍历所有doc标签*/
-        for(var i=0;i<doc.length;i++){
-            doc[i].style.display="";
-        }
-
-        <?php
-        }
-        ?>
 
     </script>
 

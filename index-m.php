@@ -97,7 +97,7 @@ if(!isset($_SESSION['user']))  header( "location:signin.html");
             </a>
         </li>
         <li>
-            <a href="chart-showcase.html">
+            <a href="chart-showcase.php">
                 <i class="icon-signal"></i>
                 <span>Charts</span>
             </a>

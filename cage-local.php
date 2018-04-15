@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Detail Admin - User list</title>
+	<title>售后配件库管理系统</title>
     
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
@@ -77,7 +77,7 @@
 <!-- sidebar -->
 <div id="sidebar-nav">
     <ul id="dashboard-menu">
-        <li class="active">
+        <li >
             <div class="pointer">
                 <div class="arrow"></div>
                 <div class="arrow_border"></div>
@@ -91,7 +91,7 @@
 
 
 
-        <li>
+        <li class="active">
             <a href="cage-local.php">
                 <i class="icon-th-large"></i>
                 <span>本地仓库管理</span>
@@ -120,7 +120,7 @@
 
         </li>
         <li class="onlevel" style="display: none">
-            <a href="chart-showcase.html">
+            <a href="chart-showcase.php">
                 <i class="icon-signal"></i>
                 <span>数据统计中心</span>
             </a>
@@ -142,31 +142,28 @@
     <div class="content">
         
         <!-- settings changer -->
-        <div class="skins-nav">
-            <a href="#" class="skin first_nav selected">
-                <span class="icon"></span><span class="text">Default</span>
-            </a>
-            <a href="#" class="skin second_nav" data-file="css/skins/dark.css">
-                <span class="icon"></span><span class="text">Dark skin</span>
-            </a>
-        </div>
+
         
         <div class="container-fluid">
             <div id="pad-wrapper" class="users-list">
-                <div class="row-fluid header">
-                    <h3>Users</h3>
+                <div style="margin-bottom: 30px;" class="row-fluid header">
+                    <h3 style="margin-bottom: 20px;">本地仓库管理</h3>
                     <div class="span10 pull-right">
-                        <input type="text" class="span5 search" placeholder="Type a user's name..." />
-                        
+                        <input id="searchname" style="margin-bottom: 0; max-width: 80%;" type="text" class="span5 " placeholder="输入配件名称" />
+                        <div class="btn-glow" onclick="window.location.href = 'cage-local.php?name='+document.getElementById('searchname').value;"><i class="icon-search" ></i></div>
                         <!-- custom popup filter -->
                         <!-- styles are located in css/elements.css -->
                         <!-- script that enables this dropdown is located in js/theme.js -->
                         <div class="ui-dropdown">
-                            <div class="head" data-toggle="tooltip" title="Click me!">
-                                Filter users
-                                <i class="arrow-down"></i>
-                            </div>  
-                            <div class="dialog">
+                            <select style="min-height: 30px;" onchange="window.location.href = 'cage-local.php?status='+this.value;">
+                                <option disabled="disabled" selected/>按状态查看
+                                <option value=""/>所有状态
+                                <option />周转备用新件
+                                <option />周转备用旧件
+                                <option />返修配件
+                                <option />报损件
+                            </select>
+<!--                            <div class="dialog">
                                 <div class="pointer">
                                     <div class="arrow"></div>
                                     <div class="arrow_border"></div>
@@ -195,188 +192,124 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+-->                        </div>
 
-                        <a href="new-user.php" class="btn-flat success pull-right">
+                        <a style="margin-top: 40px;" href="new-user.php" class="btn-flat success pull-right">
                             <span>&#43;</span>
-                            NEW USER
+                            新进配件
                         </a>
                     </div>
                 </div>
+                <?php
+                header("Content-Type: text/html;charset=utf-8");
+                $servername = "localhost:3306";
+                $username = "root";
+                $password = "123";
+                $dbname = "db";
+                // 创建连接
+                $conn = new mysqli($servername, $username, $password, $dbname);
+                // 检测连接
+                if ($conn->connect_error) {
+                    die("连接失败: " . $conn->connect_error);
+                }
+                mysqli_set_charset ($conn,utf8);
 
+                $status = $_GET['status'];
+                $name = $_GET['name'];
+                if($status!="")
+                {
+                    $sql = "SELECT * FROM accessory WHERE status = '$status' ";
+                }
+                else if($name!="")
+                {
+                    $sql = "SELECT * FROM accessory WHERE name = '$name' ";
+                }
+                else
+                {
+                    $sql = "SELECT * FROM accessory";
+                }
+                $result = $conn->query($sql);
+                //$row = $result->fetch_assoc();
+                $conn->close();
+                ?>
                 <!-- Users table -->
                 <div class="row-fluid table">
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th class="span4 sortable">
-                                    Name
+                                <th class="span5 sortable">
+                                    名称及描述
                                 </th>
-                                <th class="span3 sortable">
-                                    <span class="line"></span>Signed up
-                                </th>
-                                <th class="span2 sortable">
-                                    <span class="line"></span>Total spent
+
+                                <th class="span1 sortable">
+                                    <span class="line"></span>状态
                                 </th>
                                 <th class="span3 sortable align-right">
-                                    <span class="line"></span>Email
+                                    <span class="line"></span>操作
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                         <!-- row -->
-                        <tr class="first">
-                            <td>
-                                <img src="img/contact-img.png" class="img-circle avatar hidden-phone" />
-                                <a href="user-profile.php" class="name">Alejandra Galvan Castillo</a>
-                                <span class="subtext">Graphic Design</span>
-                            </td>
-                            <td>
-                                Mar 13, 2012
-                            </td>
-                            <td>
-                                $ 4,500.00
-                            </td>
-                            <td class="align-right">
-                                <a href="#">alejandra@canvas.com</a>
-                            </td>
-                        </tr>
+                        <?php
+                        if ($result->num_rows > 0) {
+                            // 输出每行数据
+                            while($row = $result->fetch_assoc()) { ?>
+                                <tr class="first">
+                                    <td>
+                                        <a href="#" class="name"><?php echo $row["name"];?></a>
+                                        <span class="subtext"><?php echo $row["describe"];?></span>
+<!--                                        <span style="display: none" id="accid<?php /*echo $row["id"];*/?>"><?php /*echo $row["id"];*/?></span>
+-->                                    </td>
+
+                                    <td>
+                                        <span id="status<?php echo $row["id"];?>" class="label " style="background-color: <?php
+                                        switch ($row["status"]){
+                                            case  "周转备用新件": echo "rgb(129, 189, 130);"; break;
+                                            case  "周转备用旧件": echo "rgb(104, 163, 213);"; break;
+                                            case  "返修配件": echo "#f1c359"; break;
+                                            case  "报损件": echo "#d5393e"; break;
+
+                                        } ;?>">
+                                            <?php echo $row["status"];?>
+                                        </span>
+                                    </td>
+                                    <td class="align-right">
+                                        <div class="btn-group">
+
+                                            <button id="changeStatus<?php echo $row["id"];?>" class="btn glow" onclick="changeCommit(this,<?php echo $row["id"];?>)">更改配件状态</button>
+                                            <button class="btn glow dropdown-toggle" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" style="text-align: left;">
+                                                <li><a href="#" onclick=selectStatus(this,<?php echo $row["id"];?>)>周转备用新件</a></li>
+                                                <li><a href="#" onclick=selectStatus(this,<?php echo $row["id"];?>)>周转备用旧件</a></li>
+                                                <li><a href="#" onclick=selectStatus(this,<?php echo $row["id"];?>)>返修配件</a></li>
+                                                <li><a href="#" onclick=selectStatus(this,<?php echo $row["id"];?>)>报损件</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="btn-glow" onclick="destroyCommit(<?php echo $row["id"];?>)" style="margin-left: 20px;"><i class="icon-remove-sign" ></i> 销毁</div>
+
+                                        <!--                                <a href="#">alejandra@canvas.com</a>
+                                        -->
+                                    </td>
+                                </tr>
+
+
+
+                                </div>
+
+                            <?php     }
+                        } else { ?>
+                                <tr class="first"><td>没有记录</td></tr>
+                        <?php
+
+                        }
+                        ?>
+
                         <!-- row -->
-                        <tr>
-                            <td>
-                                <img src="img/contact-img2.png" class="img-circle avatar hidden-phone" />
-                                <a href="user-profile.php" class="name">Alejandra Galvan Castillo</a>
-                                <span class="subtext">Graphic Design</span>
-                            </td>
-                            <td>
-                                Jun 03, 2012
-                            </td>
-                            <td>
-                                $ 549.99
-                            </td>
-                            <td class="align-right">
-                                <a href="#">alejandra@canvas.com</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                            <td>
-                                <img src="img/contact-img.png" class="img-circle avatar hidden-phone" />
-                                <a href="user-profile.php" class="name">Alejandra Galvan Castillo</a>
-                                <span class="subtext">Graphic Design</span>
-                            </td>
-                            <td>
-                                Mar 01, 2014
-                            </td>
-                            <td>
-                                $ 30.00
-                            </td>
-                            <td class="align-right">
-                                <a href="#">alejandra@canvas.com</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                            <td>
-                                <img src="img/contact-img2.png" class="img-circle avatar hidden-phone" />
-                                <a href="user-profile.php" class="name">Alejandra Galvan Castillo</a>
-                                <span class="subtext">Graphic Design</span>
-                            </td>
-                            <td>
-                                Jan 28, 2012
-                            </td>
-                            <td>
-                                $ 1,320.00
-                            </td>
-                            <td class="align-right">
-                                <a href="#">alejandra@canvas.com</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                            <td>
-                                <img src="img/contact-img.png" class="img-circle avatar hidden-phone" />
-                                <a href="user-profile.php" class="name">Alejandra Galvan Castillo</a>
-                                <span class="subtext">Graphic Design</span>
-                            </td>
-                            <td>
-                                May 16, 2012
-                            </td>
-                            <td>
-                                $ 89.99
-                            </td>
-                            <td class="align-right">
-                                <a href="#">alejandra@canvas.com</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                            <td>
-                                <img src="img/contact-img2.png" class="img-circle avatar hidden-phone" />
-                                <a href="user-profile.php" class="name">Alejandra Galvan Castillo</a>
-                                <span class="subtext">Graphic Design</span>
-                            </td>
-                            <td>
-                                Sep 06, 2012
-                            </td>
-                            <td>
-                                $ 344.00
-                            </td>
-                            <td class="align-right">
-                                <a href="#">alejandra@canvas.com</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                            <td>
-                                <img src="img/contact-img.png" class="img-circle avatar hidden-phone" />
-                                <a href="user-profile.php" class="name">Alejandra Galvan Castillo</a>
-                                <span class="subtext">Graphic Design</span>
-                            </td>
-                            <td>
-                                Jul 13, 2012
-                            </td>
-                            <td>
-                                $ 800.00
-                            </td>
-                            <td class="align-right">
-                                <a href="#">alejandra@canvas.com</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                            <td>
-                                <img src="img/contact-img2.png" class="img-circle avatar hidden-phone" />
-                                <a href="user-profile.php" class="name">Alejandra Galvan Castillo</a>
-                                <span class="subtext">Graphic Design</span>
-                            </td>
-                            <td>
-                                Feb 13, 2014
-                            </td>
-                            <td>
-                                $ 250.00
-                            </td>
-                            <td class="align-right">
-                                <a href="#">alejandra@canvas.com</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                            <td>
-                                <img src="img/contact-img.png" class="img-circle avatar hidden-phone" />
-                                <a href="user-profile.php" class="name">Alejandra Galvan Castillo</a>
-                                <span class="subtext">Graphic Design</span>
-                            </td>
-                            <td>
-                                Feb 27, 2014
-                            </td>
-                            <td>
-                                $ 1,300.00
-                            </td>
-                            <td class="align-right">
-                                <a href="#">alejandra@canvas.com</a>
-                            </td>
-                        </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -417,6 +350,27 @@
     }
     ?>
 </script>
+    <script type="text/javascript">
+        function selectStatus(obj,id) {
+            var text = obj.innerText;
+
+            document.getElementById("changeStatus"+id).innerText = text;
+
+        }
+        
+        function changeCommit(obj,id) {
+            var text = obj.innerText;
+            if(text == "更改配件状态") alert("请先选择一个配件状态");
+            else if (text == document.getElementById("status"+id).innerText) alert("配件正处于该状态");
+            else if(confirm("确定要更改配件状态吗？")) window.location.href="accOperation.php?method=1&status="+text+"&id="+id;
+            else return false;
+        }
+        
+        function destroyCommit(id) {
+            if(confirm("确定要销毁该配件吗？")) window.location.href="accOperation.php?method=2&id="+id;
+            else return false;
+        }
+    </script>
 
 </body>
 </html>

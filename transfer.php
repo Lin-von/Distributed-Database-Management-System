@@ -77,7 +77,7 @@
 <!-- sidebar -->
 <div id="sidebar-nav">
     <ul id="dashboard-menu">
-        <li class="active">
+        <li>
             <div class="pointer">
                 <div class="arrow"></div>
                 <div class="arrow_border"></div>
@@ -104,7 +104,7 @@
             </a>
 
         </li>
-        <li>
+        <li class="active">
             <a  href="transfer.php">
                 <i class="icon-share-alt"></i>
                 <span>配件调度</span>
@@ -120,7 +120,7 @@
 
         </li>
         <li class="onlevel" style="display: none">
-            <a href="chart-showcase.html">
+            <a href="chart-showcase.php">
                 <i class="icon-signal"></i>
                 <span>数据统计中心</span>
             </a>
@@ -142,14 +142,7 @@
     <div class="content">
         
         <!-- settings changer -->
-        <div class="skins-nav">
-            <a href="#" class="skin first_nav selected">
-                <span class="icon"></span><span class="text">Default</span>
-            </a>
-            <a href="#" class="skin second_nav" data-file="css/skins/dark.css">
-                <span class="icon"></span><span class="text">Dark skin</span>
-            </a>
-        </div>
+
         
         <div class="container-fluid">
             <div id="pad-wrapper">

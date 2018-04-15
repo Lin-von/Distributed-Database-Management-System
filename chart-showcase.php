@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,7 +79,7 @@
 <!-- sidebar -->
 <div id="sidebar-nav">
     <ul id="dashboard-menu">
-        <li class="active">
+        <li >
             <div class="pointer">
                 <div class="arrow"></div>
                 <div class="arrow_border"></div>
@@ -112,16 +113,22 @@
             </a>
 
         </li>
-        <li>
-            <a  href="cage-center.php">                 <i class="icon-code-fork" style="margin-left: 5px;"></i>                 <span>仓库管理中心</span>             </a>
+
+        <li class="onlevel" style="display: none">
+            <a href="cage-center.php">
+                <i class="icon-code-fork" style="margin-left: 5px;"></i>
+                <span>仓库管理中心</span>
+            </a>
 
         </li>
-        <li>
-            <a href="chart-showcase.html">
+
+        <li class="active onlevel" style="display: none">
+            <a href="chart-showcase.php">
                 <i class="icon-signal"></i>
                 <span>数据统计中心</span>
             </a>
         </li>
+
         <li>
             <a href="personal-info.html">
                 <i class="icon-cog"></i>
@@ -132,20 +139,28 @@
     </ul>
 </div>
 <!-- end sidebar -->
+<script type="text/javascript">
+    <?php
+    if($_SESSION['level'] == 1) {
+    ?>
+
+    var doc = document.getElementsByClassName("onlevel");
+    /*用for循环遍历所有doc标签*/
+    for(var i=0;i<doc.length;i++){
+        doc[i].style.display="";
+    }
+
+    <?php
+    }
+    ?>
+</script>
 
 
 	<!-- main container -->
     <div class="content">
 
         <!-- settings changer -->
-        <div class="skins-nav">
-            <a href="#" class="skin first_nav selected">
-                <span class="icon"></span><span class="text">Default</span>
-            </a>
-            <a href="#" class="skin second_nav" data-file="css/skins/dark.css">
-                <span class="icon"></span><span class="text">Dark skin</span>
-            </a>
-        </div>
+
 
         <div class="container-fluid">
             <div id="pad-wrapper">
