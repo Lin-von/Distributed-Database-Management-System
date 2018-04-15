@@ -1,4 +1,10 @@
+<?php session_start();?>
+<?php
+if(!isset($_SESSION['user']))  header( "location:signin.html");
+if($_SESSION['level']==1) header("location:index-m.php");
+?>
 <!DOCTYPE html>
+
 <html>
 <head>
 	<title>Detail Admin - Home</title>
@@ -23,15 +29,16 @@
     <link rel="stylesheet" href="css/compiled/index.css" type="text/css" media="screen" />    
 
     <!-- open sans font -->
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
+    <!--<link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
 
-    <!-- lato font -->
+    &lt;!&ndash; lato font &ndash;&gt;
     <link href='http://fonts.useso.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css' />
-
+-->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+
 <body>
 
     <!-- navbar -->
@@ -43,96 +50,11 @@
                 <span class="icon-bar"></span>
             </button>
             
-            <a class="brand" href="index.html"><img src="img/logo.png" /></a>
+            <a class="brand" href="index.php"></a>
 
             <ul class="nav pull-right">                
                 <li class="hidden-phone">
                     <input class="search" type="text" />
-                </li>
-                <li class="notification-dropdown hidden-phone">
-                    <a href="#" class="trigger">
-                        <i class="icon-warning-sign"></i>
-                        <span class="count">8</span>
-                    </a>
-                    <div class="pop-dialog">
-                        <div class="pointer right">
-                            <div class="arrow"></div>
-                            <div class="arrow_border"></div>
-                        </div>
-                        <div class="body">
-                            <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
-                            <div class="notifications">
-                                <h3>You have 6 new notifications</h3>
-                                <a href="#" class="item">
-                                    <i class="icon-signin"></i> New user registration
-                                    <span class="time"><i class="icon-time"></i> 13 min.</span>
-                                </a>
-                                <a href="#" class="item">
-                                    <i class="icon-signin"></i> New user registration
-                                    <span class="time"><i class="icon-time"></i> 18 min.</span>
-                                </a>
-                                <a href="#" class="item">
-                                    <i class="icon-envelope-alt"></i> New message from Alejandra
-                                    <span class="time"><i class="icon-time"></i> 28 min.</span>
-                                </a>
-                                <a href="#" class="item">
-                                    <i class="icon-signin"></i> New user registration
-                                    <span class="time"><i class="icon-time"></i> 49 min.</span>
-                                </a>
-                                <a href="#" class="item">
-                                    <i class="icon-download-alt"></i> New order placed
-                                    <span class="time"><i class="icon-time"></i> 1 day.</span>
-                                </a>
-                                <div class="footer">
-                                    <a href="#" class="logout">View all notifications</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <div class="copyrights">Collect from <a href="http://www.cssmoban.com/"  title="网站模板">网站模板</a></div>
-                <li class="notification-dropdown hidden-phone">
-                    <a href="#" class="trigger">
-                        <i class="icon-envelope-alt"></i>
-                    </a>
-                    <div class="pop-dialog">
-                        <div class="pointer right">
-                            <div class="arrow"></div>
-                            <div class="arrow_border"></div>
-                        </div>
-                        <div class="body">
-                            <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
-                            <div class="messages">
-                                <a href="#" class="item">
-                                    <img src="img/contact-img.png" class="display" />
-                                    <div class="name">Alejandra Galván</div>
-                                    <div class="msg">
-                                        There are many variations of available, but the majority have suffered alterations.
-                                    </div>
-                                    <span class="time"><i class="icon-time"></i> 13 min.</span>
-                                </a>
-                                <a href="#" class="item">
-                                    <img src="img/contact-img2.png" class="display" />
-                                    <div class="name">Alejandra Galván</div>
-                                    <div class="msg">
-                                        There are many variations of available, have suffered alterations.
-                                    </div>
-                                    <span class="time"><i class="icon-time"></i> 26 min.</span>
-                                </a>
-                                <a href="#" class="item last">
-                                    <img src="img/contact-img.png" class="display" />
-                                    <div class="name">Alejandra Galván</div>
-                                    <div class="msg">
-                                        There are many variations of available, but the majority have suffered alterations.
-                                    </div>
-                                    <span class="time"><i class="icon-time"></i> 48 min.</span>
-                                </a>
-                                <div class="footer">
-                                    <a href="#" class="logout">View all messages</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">
@@ -170,7 +92,7 @@
                     <div class="arrow"></div>
                     <div class="arrow_border"></div>
                 </div>
-                <a href="index.html">
+                <a href="index.php">
                     <i class="icon-home"></i>
                     <span>Home</span>
                 </a>
@@ -261,14 +183,6 @@
     <div class="content">
 
         <!-- settings changer -->
-        <div class="skins-nav">
-            <a href="#" class="skin first_nav selected">
-                <span class="icon"></span><span class="text">Default skin</span>
-            </a>
-            <a href="#" class="skin second_nav" data-file="css/skins/dark.css">
-                <span class="icon"></span><span class="text">Dark skin</span>
-            </a>
-        </div>
 
         <div class="container-fluid">
 
@@ -313,11 +227,6 @@
                 <div class="row-fluid chart">
                     <h4>
                         Statistics
-                         <div class="btn-group pull-right">
-                            <button class="glow left">DAY</button>
-                            <button class="glow middle active">MONTH</button>
-                            <button class="glow right">YEAR</button>
-                        </div>
                     </h4>
                     <div class="span12">
                         <div id="statsChart"></div>
@@ -596,12 +505,12 @@
             
 
             // jQuery Flot Chart
-            var visits = [[1, 50], [2, 40], [3, 45], [4, 23],[5, 55],[6, 65],[7, 61],[8, 70],[9, 65],[10, 75],[11, 57],[12, 59]];
-            var visitors = [[1, 25], [2, 50], [3, 23], [4, 48],[5, 38],[6, 40],[7, 47],[8, 55],[9, 43],[10,50],[11,47],[12, 39]];
+            var visits = [[1, 50], [2, 40], [3, 45], [4, 23],[5, 55],[6, 65],[7, 61],[8, 70],[9, 65],[10, 75],[11, 12],[12, 0]];
+            var visitors = [[1, 25], [2, 50], [3, 23], [4, 48],[5, 27],[6, 40],[7, 47],[8, 55],[9, 43],[10,50],[11,33],[12, 39]];
 
             var plot = $.plot($("#statsChart"),
-                [ { data: visits, label: "Signups"},
-                 { data: visitors, label: "Visits" }], {
+                [ { data: visits, label: "出库"},
+                 { data: visitors, label: "入库" }], {
                     series: {
                         lines: { show: true,
                                 lineWidth: 1,

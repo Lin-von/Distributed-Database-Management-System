@@ -212,8 +212,8 @@ textarea::-webkit-input-placeholder {
 }
 .navbar-inverse .nav > li > a {
 	padding: 13px 15px 8px;
-	border-left: 1px solid #101417;
-	color: rgb(214, 214, 214);
+	/*border-left: 1px solid #101417;
+	*/color: rgb(214, 214, 214);
 	outline: 0px;
 	height: 25px;
 	transition: background .1s linear;
