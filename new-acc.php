@@ -47,12 +47,12 @@
 
             </li>
             <li class="settings ">
-                <a href="personal-info.html" role="button">
+                <a href="personal-info.php" role="button">
                     <i class="icon-cog"></i>
                 </a>
             </li>
             <li class="settings ">
-                <a href="signin.html" role="button">
+                <a href="signout.php" role="button">
                     <i class="icon-share-alt"></i>
                 </a>
             </li>
@@ -115,7 +115,7 @@
         </li>
 
         <li>
-            <a href="personal-info.html">
+            <a href="personal-info.php">
                 <i class="icon-cog"></i>
                 <span>设置</span>
             </a>
