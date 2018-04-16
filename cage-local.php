@@ -66,10 +66,7 @@
 <div id="sidebar-nav">
     <ul id="dashboard-menu">
         <li >
-            <div class="pointer">
-                <div class="arrow"></div>
-                <div class="arrow_border"></div>
-            </div>
+
             <a href="index.php">
                 <i class="icon-home"></i>
                 <span>首页</span>
@@ -80,6 +77,10 @@
 
 
         <li class="active">
+            <div class="pointer">
+                <div class="arrow"></div>
+                <div class="arrow_border"></div>
+            </div>
             <a href="cage-local.php">
                 <i class="icon-th-large"></i>
                 <span>本地仓库管理</span>

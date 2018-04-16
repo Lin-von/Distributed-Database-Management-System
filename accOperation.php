@@ -35,7 +35,7 @@ switch ($method){
         $row = $result->fetch_row();
         $maxid=$row[0]+1;
         $opedate = date("Y-m-d H:i:s",time());
-        $sql = "INSERT INTO record (id, accid, operation, opedate , oldstatus , newstatus) VALUES ($maxid, $id, 2,'$opedate','$oldstatus','$status')";
+        $sql = "INSERT INTO record (id, accid, operation, opedate , oldstatus , newstatus ,province) VALUES ($maxid, $id, 2,'$opedate','$oldstatus','$status','shanghai')";
         $result = $conn->query($sql);
 
         header( "Location: cage-local.php" );
@@ -51,7 +51,7 @@ switch ($method){
         $row = $result->fetch_row();
         $maxid=$row[0]+1;
         $opedate = date("Y-m-d H:i:s",time());
-        $sql = "INSERT INTO record (id, accid, operation, opedate) VALUES ($maxid, $id, 4,'$opedate')";
+        $sql = "INSERT INTO record (id, accid, operation, opedate , province) VALUES ($maxid, $id, 4,'$opedate','shanghai')";
         $result = $conn->query($sql);
 
         header( "Location: cage-local.php" );
@@ -78,7 +78,7 @@ switch ($method){
             $id=$row[0];
 
             $opedate = date("Y-m-d H:i:s",time());
-            $sql = "INSERT INTO record (id, accid, operation, opedate , accto) VALUES ($maxid, $id, 1,'$opedate' , 'shanghai')";
+            $sql = "INSERT INTO record (id, accid, operation, opedate , accto , province) VALUES ($maxid, $id, 1,'$opedate' , 'shanghai' , 'shanghai')";
             $result = $conn->query($sql);
 
 

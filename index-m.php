@@ -72,7 +72,7 @@ if(!isset($_SESSION['user']))  header( "location:signin.html");
             <ul class="submenu">
                 <li><a href="cage-local.php">User list</a></li>
                 <li><a href="new-acc.php">New user form</a></li>
-                <li><a href="user-profile.php">User profile</a></li>
+                <li><a href="detail.php">User profile</a></li>
             </ul>
         </li>
         <li>

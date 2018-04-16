@@ -68,10 +68,7 @@
 <div id="sidebar-nav">
     <ul id="dashboard-menu">
         <li >
-            <div class="pointer">
-                <div class="arrow"></div>
-                <div class="arrow_border"></div>
-            </div>
+
             <a href="index.php">
                 <i class="icon-home"></i>
                 <span>首页</span>
@@ -111,6 +108,10 @@
         </li>
 
         <li class="active onlevel" style="display: none">
+            <div class="pointer">
+                <div class="arrow"></div>
+                <div class="arrow_border"></div>
+            </div>
             <a href="chart-showcase.php">
                 <i class="icon-signal"></i>
                 <span>数据统计中心</span>
@@ -144,6 +145,184 @@
 </script>
 
 
+<?php
+header("Content-Type: text/html;charset=utf-8");
+$servername = "localhost:8066";
+$username = "root";
+$password = "123";
+$dbname = "TESTDB";
+// 创建连接
+$conn = new mysqli($servername, $username, $password, $dbname);
+// 检测连接
+if ($conn->connect_error) {
+    die("连接失败: " . $conn->connect_error);
+}
+mysqli_set_charset ($conn,utf8);
+
+$sql = "SELECT * FROM accessory WHERE status = '周转备用新件'";
+$result = $conn->query($sql);
+$count1 = $result->num_rows;
+$sql = "SELECT * FROM accessory WHERE status = '周转备用旧件'";
+$result = $conn->query($sql);
+$count2 = $result->num_rows;
+$sql = "SELECT * FROM accessory WHERE status = '返修配件'";
+$result = $conn->query($sql);
+$count3 = $result->num_rows;
+$sql = "SELECT * FROM accessory WHERE status = '报损件'";
+$result = $conn->query($sql);
+$count4 = $result->num_rows;
+
+$sum = $count1+$count2+$count3+$count4;
+$num1 = $count1*100/$sum;
+$num2 = $count2*100/$sum;
+$num3 = $count3*100/$sum;
+$num4 = 100-$num1-$num2-$num3;
+
+$sql = "select dateduan,count(*)
+from 
+(select  
+        operation,
+        case    
+            when   (opedate>='2018-12-01 00:00:00')              then   '12' 
+            when   (opedate>='2018-11-01 00:00:00' and opedate<'2018-12-01 00:00:00')   then   '11'
+            when   (opedate>='2018-10-01 00:00:00' and opedate<'2018-11-01 00:00:00')    then    '10' 
+            when   (opedate>='2018-09-01 00:00:00' and opedate<'2018-10-01 00:00:00')    then    '09' 
+            when   (opedate>='2018-08-01 00:00:00' and opedate<'2018-09-01 00:00:00')    then    '08' 
+            when   (opedate>='2018-07-01 00:00:00' and opedate<'2018-08-01 00:00:00')    then    '7' 
+            when   (opedate>='2018-06-01 00:00:00' and opedate<'2018-07-01 00:00:00')    then    '6' 
+            when   (opedate>='2018-05-01 00:00:00' and opedate<'2018-06-01 00:00:00')    then    '5' 
+            when   (opedate>='2018-04-01 00:00:00' and opedate<'2018-05-01 00:00:00')    then    '4' 
+            when   (opedate>='2018-03-01 00:00:00' and opedate<'2018-04-01 00:00:00')     then    '3'  
+            when   (opedate>='2018-02-01 00:00:00' and opedate<'2018-03-01 00:00:00')     then    '2'  
+            when   (opedate>='2018-01-01 00:00:00' and opedate<'2018-02-01 00:00:00')     then    '1'  
+            else     'opedate unknow'
+        end     as dateduan from 
+
+         record
+)  as t where operation = 1 or operation = 3 group by dateduan";
+$result = $conn->query($sql);
+$incage = array(0,0,0,0,0,0,0,0,0,0,0,0,0);
+while($row = $result->fetch_assoc()){
+    $incage[$row['dateduan']] = $row['COUNT1'];
+}
+//print_r($incage);
+
+$sql = "select dateduan,count(*)
+from 
+(select  
+        operation,
+        case    
+            when   (opedate>='2018-12-01 00:00:00')              then   '12' 
+            when   (opedate>='2018-11-01 00:00:00' and opedate<'2018-12-01 00:00:00')   then   '11'
+            when   (opedate>='2018-10-01 00:00:00' and opedate<'2018-11-01 00:00:00')    then    '10' 
+            when   (opedate>='2018-09-01 00:00:00' and opedate<'2018-10-01 00:00:00')    then    '09' 
+            when   (opedate>='2018-08-01 00:00:00' and opedate<'2018-09-01 00:00:00')    then    '08' 
+            when   (opedate>='2018-07-01 00:00:00' and opedate<'2018-08-01 00:00:00')    then    '7' 
+            when   (opedate>='2018-06-01 00:00:00' and opedate<'2018-07-01 00:00:00')    then    '6' 
+            when   (opedate>='2018-05-01 00:00:00' and opedate<'2018-06-01 00:00:00')    then    '5' 
+            when   (opedate>='2018-04-01 00:00:00' and opedate<'2018-05-01 00:00:00')    then    '4' 
+            when   (opedate>='2018-03-01 00:00:00' and opedate<'2018-04-01 00:00:00')     then    '3'  
+            when   (opedate>='2018-02-01 00:00:00' and opedate<'2018-03-01 00:00:00')     then    '2'  
+            when   (opedate>='2018-01-01 00:00:00' and opedate<'2018-02-01 00:00:00')     then    '1'  
+            else     'opedate unknow'
+        end     as dateduan from 
+
+         record
+)  as t where operation = 4 group by dateduan";
+$result = $conn->query($sql);
+$outcage = array(0,0,0,0,0,0,0,0,0,0,0,0,0);
+while($row = $result->fetch_assoc()){
+    $outcage[$row['dateduan']] = $row['COUNT1'];
+}
+
+$sql = "select dateduan,count(*)
+from 
+(select  
+        province,
+        case    
+            when   (opedate>='2018-12-01 00:00:00')              then   '12' 
+            when   (opedate>='2018-11-01 00:00:00' and opedate<'2018-12-01 00:00:00')   then   '11'
+            when   (opedate>='2018-10-01 00:00:00' and opedate<'2018-11-01 00:00:00')    then    '10' 
+            when   (opedate>='2018-09-01 00:00:00' and opedate<'2018-10-01 00:00:00')    then    '09' 
+            when   (opedate>='2018-08-01 00:00:00' and opedate<'2018-09-01 00:00:00')    then    '08' 
+            when   (opedate>='2018-07-01 00:00:00' and opedate<'2018-08-01 00:00:00')    then    '7' 
+            when   (opedate>='2018-06-01 00:00:00' and opedate<'2018-07-01 00:00:00')    then    '6' 
+            when   (opedate>='2018-05-01 00:00:00' and opedate<'2018-06-01 00:00:00')    then    '5' 
+            when   (opedate>='2018-04-01 00:00:00' and opedate<'2018-05-01 00:00:00')    then    '4' 
+            when   (opedate>='2018-03-01 00:00:00' and opedate<'2018-04-01 00:00:00')     then    '3'  
+            when   (opedate>='2018-02-01 00:00:00' and opedate<'2018-03-01 00:00:00')     then    '2'  
+            when   (opedate>='2018-01-01 00:00:00' and opedate<'2018-02-01 00:00:00')     then    '1'  
+            else     'opedate unknow'
+        end     as dateduan from 
+
+         record
+)  as t where province = 'shanghai' group by dateduan";
+$result = $conn->query($sql);
+$shanghaic = array(0,0,0,0,0,0,0,0,0,0,0,0,0);
+while($row = $result->fetch_assoc()){
+    $shanghaic[$row['dateduan']] = $row['COUNT1'];
+}
+
+$sql = "select dateduan,count(*)
+from 
+(select  
+        province,
+        case    
+            when   (opedate>='2018-12-01 00:00:00')              then   '12' 
+            when   (opedate>='2018-11-01 00:00:00' and opedate<'2018-12-01 00:00:00')   then   '11'
+            when   (opedate>='2018-10-01 00:00:00' and opedate<'2018-11-01 00:00:00')    then    '10' 
+            when   (opedate>='2018-09-01 00:00:00' and opedate<'2018-10-01 00:00:00')    then    '09' 
+            when   (opedate>='2018-08-01 00:00:00' and opedate<'2018-09-01 00:00:00')    then    '08' 
+            when   (opedate>='2018-07-01 00:00:00' and opedate<'2018-08-01 00:00:00')    then    '7' 
+            when   (opedate>='2018-06-01 00:00:00' and opedate<'2018-07-01 00:00:00')    then    '6' 
+            when   (opedate>='2018-05-01 00:00:00' and opedate<'2018-06-01 00:00:00')    then    '5' 
+            when   (opedate>='2018-04-01 00:00:00' and opedate<'2018-05-01 00:00:00')    then    '4' 
+            when   (opedate>='2018-03-01 00:00:00' and opedate<'2018-04-01 00:00:00')     then    '3'  
+            when   (opedate>='2018-02-01 00:00:00' and opedate<'2018-03-01 00:00:00')     then    '2'  
+            when   (opedate>='2018-01-01 00:00:00' and opedate<'2018-02-01 00:00:00')     then    '1'  
+            else     'opedate unknow'
+        end     as dateduan from 
+
+         record
+)  as t where province = 'shenzhen' group by dateduan";
+$result = $conn->query($sql);
+$shenzhenc = array(0,0,0,0,0,0,0,0,0,0,0,0,0);
+while($row = $result->fetch_assoc()){
+    $shenzhenc[$row['dateduan']] = $row['COUNT1'];
+}
+
+
+$sql = "select dateduan,count(*)
+from 
+(select  
+        province,
+        case    
+            when   (opedate>='2018-12-01 00:00:00')              then   '12' 
+            when   (opedate>='2018-11-01 00:00:00' and opedate<'2018-12-01 00:00:00')   then   '11'
+            when   (opedate>='2018-10-01 00:00:00' and opedate<'2018-11-01 00:00:00')    then    '10' 
+            when   (opedate>='2018-09-01 00:00:00' and opedate<'2018-10-01 00:00:00')    then    '09' 
+            when   (opedate>='2018-08-01 00:00:00' and opedate<'2018-09-01 00:00:00')    then    '08' 
+            when   (opedate>='2018-07-01 00:00:00' and opedate<'2018-08-01 00:00:00')    then    '7' 
+            when   (opedate>='2018-06-01 00:00:00' and opedate<'2018-07-01 00:00:00')    then    '6' 
+            when   (opedate>='2018-05-01 00:00:00' and opedate<'2018-06-01 00:00:00')    then    '5' 
+            when   (opedate>='2018-04-01 00:00:00' and opedate<'2018-05-01 00:00:00')    then    '4' 
+            when   (opedate>='2018-03-01 00:00:00' and opedate<'2018-04-01 00:00:00')     then    '3'  
+            when   (opedate>='2018-02-01 00:00:00' and opedate<'2018-03-01 00:00:00')     then    '2'  
+            when   (opedate>='2018-01-01 00:00:00' and opedate<'2018-02-01 00:00:00')     then    '1'  
+            else     'opedate unknow'
+        end     as dateduan from 
+
+         record
+)  as t where province = 'chengdu' group by dateduan";
+$result = $conn->query($sql);
+$chengduc = array(0,0,0,0,0,0,0,0,0,0,0,0,0);
+while($row = $result->fetch_assoc()){
+    $chengduc[$row['dateduan']] = $row['COUNT1'];
+}
+
+$conn->close();
+?>
+
 	<!-- main container -->
     <div class="content">
 
@@ -154,18 +333,18 @@
             <div id="pad-wrapper">
                 <!-- morris stacked chart -->
                 <div class="row-fluid">
-                    <h4 class="title">Morris.js stacked</h4>
+                    <h4 class="title">配件操作量变化图</h4>
                     <div class="span12">
-                        <h5>Quarterly Apple iOS device unit sales</h5>
+                        <h5>配件操作包括进库、更改配件状态、销毁</h5>
                         <br />
                         <div id="hero-area" style="height: 250px;"></div>
                     </div>
                 </div>
 
                 <!-- morris graph chart -->
-                <div class="row-fluid section">
+                <div class="row-fluid section" style="display: none">
                     <h4 class="title">Morris.js <small>Monthly growth</small></h4>
-                    <div class="span12 chart">                        
+                    <div class="span12 chart">
                         <div id="hero-graph" style="height: 230px;"></div>
                     </div>
                 </div>
@@ -173,12 +352,8 @@
                 <!-- jQuery flot chart -->
                 <div class="row-fluid section">
                     <h4 class="title">
-                        jQuery Flot <small>Monthly growth</small>
-                        <div class="btn-group pull-right">
-                            <button class="glow left">DAY</button>
-                            <button class="glow middle active">MONTH</button>
-                            <button class="glow right">YEAR</button>
-                        </div>
+                        进出库变化统计 <small>全局统计</small>
+
                     </h4>
                     <div class="span12">
                         <div id="statsChart"></div>
@@ -188,36 +363,18 @@
                 <!-- morris bar & donut charts -->
                 <div class="row-fluid section">
                     <h4 class="title">
-                        Morris.js
+                        配件状态统计
                     </h4>
                     <div class="span6 chart">
-                        <h5>Devices sold</h5>
+                        <h5>各状态配件数量统计</h5>
                         <div id="hero-bar" style="height: 250px;"></div>
                     </div>
                     <div class="span5 chart">
-                        <h5>Month traffic</h5>
+                        <h5>各状态配件占比</h5>
                         <div id="hero-donut" style="height: 250px;"></div>    
                     </div>
                 </div>
 
-                <!-- jQuery knobs -->
-                <div class="row-fluid section">
-                    <h4 class="title">jQuery Knob</h4>
-                    <div class="row-fluid">
-                        <div class="span3">     
-                            <input type="text" value="50" class="knob second" data-thickness=".3" data-inputcolor="#333" data-fgcolor="#30a1ec" data-bgcolor="#d4ecfd" data-width="140" />
-                        </div>
-                        <div class="span3">
-                            <input type="text" value="75" class="knob second" data-thickness=".3" data-inputcolor="#333" data-fgcolor="#8ac368" data-bgcolor="#c4e9aa" data-width="140" />
-                        </div>
-                        <div class="span3">
-                            <input type="text" value="35" class="knob second" data-thickness=".3" data-inputcolor="#333" data-fgcolor="#5ba0a3" data-bgcolor="#cef3f5" data-width="140" />
-                        </div>
-                        <div class="span3">
-                            <input type="text" value="85" class="knob second" data-thickness=".3" data-inputcolor="#333" data-fgcolor="#b85e80" data-bgcolor="#f8d2e0" data-width="140" />
-                        </div>
-                    </div>
-                </div>
 
             </div>
         </div>
@@ -248,12 +405,10 @@
         Morris.Bar({
             element: 'hero-bar',
             data: [
-                {device: '1', sells: 136},
-                {device: '3G', sells: 1037},
-                {device: '3GS', sells: 275},
-                {device: '4', sells: 380},
-                {device: '4S', sells: 655},
-                {device: '5', sells: 1571}
+                {device: '周转备用新件', sells: <?php echo $count1;?>},
+                {device: '周转备用旧件', sells: <?php echo $count2;?>},
+                {device: '返修配件', sells: <?php echo $count3;?>},
+                {device: '报损件', sells: <?php echo $count4;?>}
             ],
             xkey: 'device',
             ykeys: ['sells'],
@@ -269,12 +424,12 @@
         Morris.Donut({
             element: 'hero-donut',
             data: [
-                {label: 'Direct', value: 25 },
-                {label: 'Referrals', value: 40 },
-                {label: 'Search engines', value: 25 },
-                {label: 'Unique visitors', value: 10 }
+                {label: '周转备用新件', value: <?php echo $num1;?>},
+                {label: '周转备用旧件', value: <?php echo $num2;?> },
+                {label: '返修配件', value: <?php echo $num3;?> },
+                {label: '报损件', value: <?php echo $num4;?> }
             ],
-            colors: ["#30a1ec", "#76bdee", "#c4dafe"],
+            colors: ["rgb(129, 189, 130)", "rgb(104, 163, 213)", "#f1c359","#d5393e"],
             formatter: function (y) { return y + "%" }
         });
 
@@ -305,20 +460,22 @@
         Morris.Area({
             element: 'hero-area',
             data: [
-                {period: '2010 Q1', iphone: 2666, ipad: null, itouch: 2647},
-                {period: '2010 Q2', iphone: 2778, ipad: 2294, itouch: 2441},
-                {period: '2010 Q3', iphone: 4912, ipad: 1969, itouch: 2501},
-                {period: '2010 Q4', iphone: 3767, ipad: 3597, itouch: 5689},
-                {period: '2011 Q1', iphone: 6810, ipad: 1914, itouch: 2293},
-                {period: '2011 Q2', iphone: 5670, ipad: 4293, itouch: 1881},
-                {period: '2011 Q3', iphone: 4820, ipad: 3795, itouch: 1588},
-                {period: '2011 Q4', iphone: 15073, ipad: 5967, itouch: 5175},
-                {period: '2012 Q1', iphone: 10687, ipad: 4460, itouch: 2028},
-                {period: '2012 Q2', iphone: 8432, ipad: 5713, itouch: 1791}
+                {period: '2018-01', chengdu: <?php echo $chengduc[1];?>, shanghai: <?php echo $shanghaic[1];?>, shenzhen: <?php echo $shenzhenc[1];?>},
+                {period: '2018-02', chengdu: <?php echo $chengduc[2];?>, shanghai: <?php echo $shanghaic[2];?>, shenzhen: <?php echo $shenzhenc[2];?>},
+                {period: '2018-03', chengdu: <?php echo $chengduc[3];?>, shanghai: <?php echo $shanghaic[3];?>, shenzhen: <?php echo $shenzhenc[3];?>},
+                {period: '2018-04', chengdu: <?php echo $chengduc[4];?>, shanghai: <?php echo $shanghaic[4];?>, shenzhen: <?php echo $shenzhenc[4];?>},
+                {period: '2018-05', chengdu: <?php echo $chengduc[5];?>, shanghai: <?php echo $shanghaic[5];?>, shenzhen: <?php echo $shenzhenc[5];?>},
+                {period: '2018-06', chengdu: <?php echo $chengduc[6];?>, shanghai: <?php echo $shanghaic[6];?>, shenzhen: <?php echo $shenzhenc[6];?>},
+                {period: '2018-07', chengdu: <?php echo $chengduc[7];?>, shanghai: <?php echo $shanghaic[7];?>, shenzhen: <?php echo $shenzhenc[7];?>},
+                {period: '2018-08', chengdu: <?php echo $chengduc[8];?>, shanghai: <?php echo $shanghaic[8];?>, shenzhen: <?php echo $shenzhenc[8];?>},
+                {period: '2018-09', chengdu: <?php echo $chengduc[9];?>, shanghai: <?php echo $shanghaic[9];?>, shenzhen: <?php echo $shenzhenc[9];?>},
+                {period: '2018-10', chengdu: <?php echo $chengduc[10];?>, shanghai: <?php echo $shanghaic[10];?>, shenzhen: <?php echo $shenzhenc[10];?>},
+                {period: '2018-11', chengdu: <?php echo $chengduc[11];?>, shanghai: <?php echo $shanghaic[11];?>, shenzhen: <?php echo $shenzhenc[11];?>},
+                {period: '2018-12', chengdu: <?php echo $chengduc[12];?>, shanghai: <?php echo $shanghaic[12];?>, shenzhen: <?php echo $shenzhenc[12];?>}
             ],
             xkey: 'period',
-            ykeys: ['iphone', 'ipad', 'itouch'],
-            labels: ['iPhone', 'iPad', 'iPod Touch'],
+            ykeys: ['chengdu', 'shanghai', 'shenzhen'],
+            labels: ['成都', '上海', '深圳'],
             lineWidth: 2,
             hideHover: 'auto',
             lineColors: ["#81d5d9", "#a6e182", "#67bdf8"]
@@ -332,12 +489,36 @@
 
 
         //  jQuery Flot Chart
-        var visits = [[1, 50], [2, 40], [3, 45], [4, 23],[5, 55],[6, 65],[7, 61],[8, 70],[9, 65],[10, 75],[11, 57],[12, 59]];
-        var visitors = [[1, 25], [2, 50], [3, 23], [4, 48],[5, 38],[6, 40],[7, 47],[8, 55],[9, 43],[10,50],[11,47],[12, 39]];
+        var visits = [[1, <?php echo $outcage[1];?>],
+            [2, <?php echo $outcage[2];?>],
+            [3, <?php echo $outcage[3];?>],
+            [4, <?php echo $outcage[4];?>],
+            [5, <?php echo $outcage[5];?>],
+            [6, <?php echo $outcage[6];?>],
+            [7, <?php echo $outcage[7];?>],
+            [8, <?php echo $outcage[8];?>],
+            [9, <?php echo $outcage[9];?>],
+            [10, <?php echo $outcage[10];?>],
+            [11, <?php echo $outcage[11];?>],
+            [12, <?php echo $outcage[12];?>]];
+
+
+        var visitors = [[1, <?php echo $incage[1]-$outcage[1];?>],
+            [2, <?php echo $incage[2]-$outcage[2];?>],
+            [3, <?php echo $incage[3]-$outcage[3];?>],
+            [4, <?php echo $incage[4]-$outcage[4];?>],
+            [5, <?php echo $incage[5]-$outcage[5];?>],
+            [6, <?php echo $incage[6]-$outcage[6];?>],
+            [7, <?php echo $incage[7]-$outcage[7];?>],
+            [8, <?php echo $incage[8]-$outcage[8];?>],
+            [9, <?php echo $incage[9]-$outcage[9];?>],
+            [10,<?php echo $incage[10]-$outcage[10];?>],
+            [11,<?php echo $incage[11]-$outcage[11];?>],
+            [12,<?php echo $incage[12]-$outcage[12];?>]];
 
         var plot = $.plot($("#statsChart"),
-            [ { data: visits, label: "Signups"},
-             { data: visitors, label: "Visits" }], {
+            [ { data: visits, label: "出库"},
+             { data: visitors, label: "入库" }], {
                 series: {
                     lines: { show: true,
                             lineWidth: 1,

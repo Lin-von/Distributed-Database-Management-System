@@ -64,11 +64,8 @@
 <!-- sidebar -->
 <div id="sidebar-nav">
     <ul id="dashboard-menu">
-        <li class="active">
-            <div class="pointer">
-                <div class="arrow"></div>
-                <div class="arrow_border"></div>
-            </div>
+        <li>
+
             <a href="index.php">
                 <i class="icon-home"></i>
                 <span>首页</span>
@@ -99,7 +96,11 @@
 
         </li>
 
-        <li class="onlevel" style="display: none">
+        <li class="onlevel active" style="display: none">
+            <div class="pointer">
+                <div class="arrow"></div>
+                <div class="arrow_border"></div>
+            </div>
             <a href="cage-center.php">
                 <i class="icon-code-fork" style="margin-left: 5px;"></i>
                 <span>仓库管理中心</span>
@@ -124,7 +125,37 @@
 </div>
 <!-- end sidebar -->
 
+<?php
+header("Content-Type: text/html;charset=utf-8");
+$servername = "localhost:8066";
+$username = "root";
+$password = "123";
+$dbname = "TESTDB";
+// 创建连接
+$conn = new mysqli($servername, $username, $password, $dbname);
+// 检测连接
+if ($conn->connect_error) {
+    die("连接失败: " . $conn->connect_error);
+}
+mysqli_set_charset ($conn,utf8);
 
+$id = $_GET['id'];
+
+if($id!="")
+{
+    $sql = "SELECT * FROM accessory WHERE id = '$id' ";
+}
+else
+{
+    header("location:cage-center.php");
+}
+$result = $conn->query($sql);
+$acc = $result->fetch_assoc();
+
+$sql = "SELECT * FROM record WHERE accid = '$id'  ORDER BY opedate ASC";
+$result = $conn->query($sql);
+$conn->close();
+?>
 	<!-- main container -->
     <div class="content">
         
@@ -136,16 +167,10 @@
                 <!-- header -->
                 <div class="row-fluid header">
                     <div class="span8">
-                        <img src="img/contact-profile.png" class="avatar img-circle" />
-                        <h3 class="name">Alejandra Galván Castillo</h3>
-                        <span class="area">Graphic Designer</span>
+                        <h3 class="name"><?php echo $acc['accname'];?></h3>
+                        <span class="area"><?php echo $acc['accdescribe'];?></span>
                     </div>
-                    <a class="btn-flat icon pull-right delete-user" data-toggle="tooltip" title="Delete user" data-placement="top">
-                        <i class="icon-trash"></i>
-                    </a>
-                     <a class="btn-flat icon large pull-right edit">
-                        Edit this person
-                    </a>
+
                 </div>
 
                 <div class="row-fluid profile">
@@ -154,113 +179,109 @@
                         <div class="profile-box">
                             <!-- biography -->
                             <div class="span12 section">
-                                <h6>Biography</h6>
-                                <p>There are many variations of passages of Lorem Ipsum available but the majority have humour suffered alteration in believable some formhumour , by injected humour, or randomised words which don't look even slightly believable. </p>
+                                <h6>状态</h6>
+                                <p> <?php echo $acc['status'];?> </p>
                             </div>
 
-                            <h6>Recent orders</h6>
+                            <h6>活动轨迹</h6>
                             <br />
                             <!-- recent orders table -->
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th class="span2">
-                                            Order ID
+                                            操作
                                         </th>
                                         <th class="span3">
                                             <span class="line"></span>
-                                            Date
+                                            时间
                                         </th>
                                         <th class="span3">
                                             <span class="line"></span>
-                                            Items
+                                            旧状态/来自于分库
                                         </th>
                                         <th class="span3">
                                             <span class="line"></span>
-                                            Total amount
+                                            新状态/去往分库
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <!-- row -->
+                                    <?php
+                                    if ($result->num_rows > 0) {
+                                    // 输出每行数据
+                                    while($row = $result->fetch_assoc()) { ?>
                                     <tr class="first">
                                         <td>
-                                            <a href="#">#459</a>
+                                            <?php
+                                                switch ($row['operation']){
+                                                    case 1: echo "进库"; break;
+                                                    case 2: echo "更改状态"; break;
+                                                    case 3: echo "库间调动"; break;
+
+                                                }
+                                            ?>
                                         </td>
                                         <td>
-                                            Jan 03, 2014
+                                            <?php echo $row['opedate'];?>
                                         </td>
                                         <td>
-                                            3
+                                            <?php
+                                            switch ($row['operation']){
+                                                case 1: echo "/"; break;
+                                                case 2: echo $row['oldstatus']; break;
+                                                case 3: echo $row['accfrom']; break;
+
+                                            }
+                                            ?>
                                         </td>
                                         <td>
-                                            $ 3,500.00
+                                            <?php
+                                            switch ($row['operation']){
+                                                case 1: echo $row['province']; break;
+                                                case 2: echo $row['newstatus']; break;
+                                                case 3: echo $row['accto']; break;
+
+                                            }
+                                            ?>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="#">#510</a>
-                                        </td>
-                                        <td>
-                                            Feb 22, 2014
-                                        </td>
-                                        <td>
-                                            5
-                                        </td>
-                                        <td>
-                                            $ 800.00
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="#">#618</a>
-                                        </td>
-                                        <td>
-                                            Jan 03, 2014
-                                        </td>
-                                        <td>
-                                            8
-                                        </td>
-                                        <td>
-                                            $ 3,499.99
-                                        </td>
-                                    </tr>
+
+
+
+                        </div>
+
+                        <?php     }
+                        } else { ?>
+                            <tr class="first"><td>没有记录</td></tr>
+                            <?php
+
+                        }
+                        ?>
+
+
                                 </tbody>
                             </table>
 
                             <!-- new comment form -->
                             <div class="span12 section comment">
-                                <h6>Add a quick note</h6>
-                                <p>Add a note about this user to keep a history of your interactions.</p>
-                                <textarea></textarea>
-                                <a href="#">Attach files</a>
+                                <h6>修改描述</h6>
+                                <p>你可以在此修改该配件的描述</p>
+                                <form action="accCenter.php">
+                                    <input name="method" value="2" style="display: none">
+                                    <input name="id" value="<?echo $id;?>" style="display: none">
+                                <textarea name="describe"></textarea>
                                 <div class="span12 submit-box pull-right">
-                                    <input type="submit" class="btn-glow primary" value="Add Note" />
-                                    <span>OR</span>
-                                    <input type="reset" value="Cancel" class="reset" />
+                                    <input type="submit" class="btn-glow primary" value="提交" />
+
                                 </div>
+                                </form>
                             </div>
                         </div>
                     </div>
 
                     <!-- side address column -->
-                    <div class="span3 address pull-right">
-                        <h6>Address</h6>
-                        <iframe width="300" height="133" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com.mx/?ie=UTF8&amp;t=m&amp;ll=19.715081,-155.071421&amp;spn=0.010746,0.025749&amp;z=14&amp;output=embed"></iframe>
-                        <ul>
-                            <li>2301 East Lamar Blvd. Suite 140. </li>
-                            <li>City, Arlington. United States,</li>
-                            <li>Zip Code, TX 76006.</li>
-                            <li class="ico-li">
-                                <i class="ico-phone"></i>
-                                1817 274 2933
-                            </li>
-                             <li class="ico-li">
-                                <i class="ico-mail"></i>
-                                <a href="#">alejandra@detailcanvas.com</a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>

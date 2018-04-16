@@ -26,7 +26,17 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <style type="text/css">
+        .selbtn{
+            width: 130px;
+            height: 130px;
+            margin: 20px 20px 20px 20px;
+            position: relative;
+        }
+    </style>
+</head>
 <body>
 
 <!-- navbar -->
@@ -65,10 +75,7 @@
 <div id="sidebar-nav">
     <ul id="dashboard-menu">
         <li>
-            <div class="pointer">
-                <div class="arrow"></div>
-                <div class="arrow_border"></div>
-            </div>
+
             <a href="index.php">
                 <i class="icon-home"></i>
                 <span>首页</span>
@@ -92,6 +99,10 @@
 
         </li>
         <li  class="onlevel active" style="display: none">
+            <div class="pointer">
+                <div class="arrow"></div>
+                <div class="arrow_border"></div>
+            </div>
             <a  href="transfer.php">
                 <i class="icon-share-alt"></i>
                 <span>配件调度</span>
@@ -139,141 +150,15 @@
                 <div class="table-wrapper products-table section">
                     <div class="row-fluid head">
                         <div class="span12">
-                            <h4>Products</h4>
+                            <h3>请选择将配件调往的分库</h3>
                         </div>
                     </div>
-
-                    <div class="row-fluid filter-block">
-                        <div class="pull-right">
-                            <div class="ui-select">
-                                <select>
-                                  <option />Filter users
-                                  <option />Signed last 30 days
-                                  <option />Active users
-                                </select>
-                            </div>
-                            <input type="text" class="search" />
-                            <a class="btn-flat success new-product">+ Add product</a>
-                        </div>
+                    <div style="text-align:center;margin-top: 100px">
+                        <div class="btn-glow selbtn" onclick="window.location.href='trans.php?select=chengdu'"><i class="icon-cloud" style="position: absolute;  top:50%"> 成 都</i> 分配中心</div>
+                        <div class="btn-glow selbtn" onclick="window.location.href='trans.php?select=shanghai'"><i class="icon-cloud"style="position: absolute;  top:50%"> 上 海</i> 地方分库</div>
+                        <div class="btn-glow selbtn" onclick="window.location.href='trans.php?select=shenzhen'"><i class="icon-cloud"style="position: absolute;  top:50%"> 深 圳</i> 地方分库</div>
                     </div>
 
-                    <div class="row-fluid">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th class="span3">
-                                        <input type="checkbox" />
-                                        Product
-                                    </th>
-                                    <th class="span3">
-                                        <span class="line"></span>Description
-                                    </th>
-                                    <th class="span3">
-                                        <span class="line"></span>Status
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- row -->
-                                <tr class="first">
-                                    <td>
-                                        <input type="checkbox" />
-                                        <div class="img">
-                                            <img src="img/table-img.png" />
-                                        </div>
-                                        <a href="#" class="name">Generate Lorem </a>
-                                    </td>
-                                    <td class="description">
-                                        if you are going to use a passage of Lorem Ipsum.
-                                    </td>
-                                    <td>
-                                        <span class="label label-success">Active</span>
-                                        <ul class="actions">
-                                            <li><a href="#">Edit</a></li>
-                                            <li class="last"><a href="#">Delete</a></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <!-- row -->
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" />
-                                        <div class="img">
-                                            <img src="img/table-img.png" />
-                                        </div>
-                                        <a href="#" class="name">Internet tend</a>
-                                    </td>
-                                    <td class="description">
-                                        There are many variations of passages.
-                                    </td>
-                                    <td>
-                                        <ul class="actions">
-                                            <li><a href="#">Edit</a></li>
-                                            <li class="last"><a href="#">Delete</a></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <!-- row -->
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" />
-                                        <div class="img">
-                                            <img src="img/table-img.png" />
-                                        </div>
-                                        <a href="#" class="name">Generate Lorem </a>
-                                    </td>
-                                    <td class="description">
-                                        if you are going to use a passage of Lorem Ipsum.
-                                    </td>
-                                    <td>
-                                        <ul class="actions">
-                                            <li><a href="#">Edit</a></li>
-                                            <li class="last"><a href="#">Delete</a></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <!-- row -->
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" />
-                                        <div class="img">
-                                            <img src="img/table-img.png" />
-                                        </div>
-                                        <a href="#" class="name">Internet tend</a>
-                                    </td>
-                                    <td class="description">
-                                        There are many variations of passages.
-                                    </td>
-                                    <td>
-                                        <span class="label label-info">Standby</span>
-                                        <ul class="actions">
-                                            <li><a href="#">Edit</a></li>
-                                            <li class="last"><a href="#">Delete</a></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" />
-                                        <div class="img">
-                                            <img src="img/table-img.png" />
-                                        </div>
-                                        <a href="#" class="name">Generate Lorem </a>
-                                    </td>
-                                    <td class="description">
-                                        if you are going to use a passage of Lorem Ipsum.
-                                    </td>
-                                    <td>
-                                        <span class="label label-success">Active</span>
-                                        <ul class="actions">
-                                            <li><a href="#">Edit</a></li>
-                                            <li class="last"><a href="#">Delete</a></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
                 <!-- end products table -->
 

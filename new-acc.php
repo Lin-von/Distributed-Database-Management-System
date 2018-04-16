@@ -65,10 +65,7 @@
 <div id="sidebar-nav">
     <ul id="dashboard-menu">
         <li>
-            <div class="pointer">
-                <div class="arrow"></div>
-                <div class="arrow_border"></div>
-            </div>
+
             <a href="index.php">
                 <i class="icon-home"></i>
                 <span>首页</span>
@@ -85,6 +82,10 @@
             </a>
         </li>
         <li class="active">
+            <div class="pointer">
+                <div class="arrow"></div>
+                <div class="arrow_border"></div>
+            </div>
             <a  href="new-acc.php">
                 <i class="icon-edit"></i>
                 <span>新进配件</span>

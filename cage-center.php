@@ -65,10 +65,7 @@
 <div id="sidebar-nav">
     <ul id="dashboard-menu">
         <li >
-            <div class="pointer">
-                <div class="arrow"></div>
-                <div class="arrow_border"></div>
-            </div>
+
             <a href="index.php">
                 <i class="icon-home"></i>
                 <span>首页</span>
@@ -100,6 +97,10 @@
         </li>
 
         <li class="active onlevel" style="display: none">
+            <div class="pointer">
+                <div class="arrow"></div>
+                <div class="arrow_border"></div>
+            </div>
             <a href="cage-center.php">
                 <i class="icon-code-fork" style="margin-left: 5px;"></i>
                 <span>仓库管理中心</span>
@@ -136,12 +137,12 @@
                 <h3 style="margin-bottom: 20px;">仓库管理中心</h3>
                 <div class="span10 pull-right">
                     <input id="searchname" style="margin-bottom: 0; max-width: 80%;" type="text" class="span5 " placeholder="输入配件名称" />
-                    <div class="btn-glow" onclick="window.location.href = 'cage-local.php?name='+document.getElementById('searchname').value;"><i class="icon-search" ></i></div>
+                    <div class="btn-glow" onclick="window.location.href = 'cage-center.php?name='+document.getElementById('searchname').value;"><i class="icon-search" ></i></div>
                     <!-- custom popup filter -->
                     <!-- styles are located in css/elements.css -->
                     <!-- script that enables this dropdown is located in js/theme.js -->
                     <div class="ui-dropdown">
-                        <select style="min-height: 30px;" onchange="window.location.href = 'cage-local.php?status='+this.value;">
+                        <select style="min-height: 30px;" onchange="window.location.href = 'cage-center.php?status='+this.value;">
                             <option disabled="disabled" selected/>按状态查看
                             <option value=""/>所有状态
                             <option />周转备用新件
@@ -156,10 +157,10 @@
             </div>
             <?php
             header("Content-Type: text/html;charset=utf-8");
-            $servername = "localhost:3306";
+            $servername = "localhost:8066";
             $username = "root";
             $password = "123";
-            $dbname = "db";
+            $dbname = "TESTDB";
             // 创建连接
             $conn = new mysqli($servername, $username, $password, $dbname);
             // 检测连接
@@ -211,7 +212,7 @@
                     while($row = $result->fetch_assoc()) { ?>
                     <tr class="first">
                         <td>
-                            <a href="#" class="name"><?php echo $row["accname"];?></a>
+                            <a href="detail.php?id=<?php echo $row["id"];?>" class="name"><?php echo $row["accname"];?></a>
                             <span class="subtext"><?php echo $row["accdescribe"];?></span>
                         </td>
 
