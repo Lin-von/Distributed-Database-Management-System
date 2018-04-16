@@ -124,9 +124,24 @@
     </ul>
 </div>
 <!-- end sidebar -->
-    
+<script type="text/javascript">
+    <?php
+    if($_SESSION['level'] == 1) {
+    ?>
 
-	<!-- main container -->
+    var doc = document.getElementsByClassName("onlevel");
+    /*用for循环遍历所有doc标签*/
+    for(var i=0;i<doc.length;i++){
+        doc[i].style.display="";
+    }
+
+    <?php
+    }
+    ?>
+</script>
+
+
+<!-- main container -->
     <div class="content">
         
         <!-- settings changer -->
@@ -323,21 +338,6 @@
     <script src="js/jquery-latest.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/theme.js"></script>
-    <script type="text/javascript">
-    <?php
-    if($_SESSION['level'] == 1) {
-    ?>
-
-    var doc = document.getElementsByClassName("onlevel");
-    /*用for循环遍历所有doc标签*/
-    for(var i=0;i<doc.length;i++){
-        doc[i].style.display="";
-    }
-
-    <?php
-    }
-    ?>
-</script>
     <script type="text/javascript">
         function selectStatus(obj,id) {
             var text = obj.innerText;

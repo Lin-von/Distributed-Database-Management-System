@@ -63,9 +63,9 @@ switch ($method){
         $name = $_GET['name'];
         $status = $_GET['status'];
         $describe = $_GET['describe'];
-        $sql = "INSERT INTO accessory (id, accname, status, accdescribe , province) VALUES (NULL, '$name', '$status','$describe','shanghai')";
-        // echo $name."<br>".$status."<br>".$describe;
-
+        $id = (time()-1522512000)*10+1;
+        $sql = "INSERT INTO accessory (id, accname, status, accdescribe , province) VALUES ($id, '$name', '$status','$describe','shanghai')";
+        // echo $id."<br>".$name."<br>".$status."<br>".$describe;
         if ($conn->query($sql) === TRUE) {
 
             $sql = "SELECT max(id) FROM record";
