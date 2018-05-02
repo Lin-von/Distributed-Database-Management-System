@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Detail Admin - Tables showcase</title>
+	<title>Detail Admin - New User Form</title>
     
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
@@ -17,26 +17,16 @@
     <link rel="stylesheet" type="text/css" href="css/icons.css" />
 
     <!-- libraries -->
-    <link href="css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/lib/font-awesome.css" />
     
     <!-- this page specific styles -->
-    <link rel="stylesheet" href="css/compiled/tables.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/compiled/new-user.css" type="text/css" media="screen" />
 
 
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <style type="text/css">
-        .selbtn{
-            width: 130px;
-            height: 130px;
-            margin: 20px 20px 20px 20px;
-            position: relative;
-        }
-    </style>
-</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
 
 <!-- navbar -->
@@ -57,7 +47,7 @@
 
             </li>
             <li class="settings ">
-                <a href="personal-info.php" role="button">
+                <a href="setting.php" role="button">
                     <i class="icon-cog"></i>
                 </a>
             </li>
@@ -91,19 +81,19 @@
                 <span>本地仓库管理</span>
             </a>
         </li>
-        <li>
-            <a  href="new-acc.php">
+        <li class="active">
+            <div class="pointer">
+                <div class="arrow"></div>
+                <div class="arrow_border"></div>
+            </div>
+            <a  href="buyman.php">
                 <i class="icon-edit"></i>
                 <span>新进配件</span>
             </a>
 
         </li>
-        <li  class="onlevel active" style="display: none">
-            <div class="pointer">
-                <div class="arrow"></div>
-                <div class="arrow_border"></div>
-            </div>
-            <a  href="transfer.php">
+        <li class="onlevel" style="display: none">
+            <a  href="sellman.php">
                 <i class="icon-share-alt"></i>
                 <span>配件调度</span>
             </a>
@@ -118,14 +108,14 @@
 
         </li>
         <li class="onlevel" style="display: none">
-            <a href="chart-showcase.php">
+            <a href="statistics.php">
                 <i class="icon-signal"></i>
                 <span>数据统计中心</span>
             </a>
         </li>
 
         <li>
-            <a href="personal-info.php">
+            <a href="setting.php">
                 <i class="icon-cog"></i>
                 <span>设置</span>
             </a>
@@ -143,35 +133,80 @@
 
         
         <div class="container-fluid">
-            <div id="pad-wrapper">
-                
-                <!-- products table-->
-                <!-- the script for the toggle all checkboxes from header is located in js/theme.js -->
-                <div class="table-wrapper products-table section">
-                    <div class="row-fluid head">
-                        <div class="span12">
-                            <h3>请选择将配件调往的分库</h3>
+            <div id="pad-wrapper" class="new-user">
+                <div class="row-fluid header">
+                    <h3>新进一个配件</h3>
+                </div>
+
+                <div class="row-fluid form-wrapper">
+                    <!-- left column -->
+                    <div class="span9 with-sidebar">
+                        <div class="container">
+                            <form class="new_user_form inline-input" action="accOperation.php" />
+                            <input name="method" style="display: none" value="3">
+                                <div class="span12 field-box">
+                                    <label>名称:</label>
+                                    <input class="span9" type="text" name="name"/>
+                                </div>
+                                <div class="span12 field-box">
+                                    <label>状态:</label>
+                                    <div class="ui-select span5">
+                                        <select name="status">
+                                            <option selected/>周转备用新件
+                                            <option />周转备用旧件
+                                            <option />返修配件
+                                            <option />报损件
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="span12 field-box textarea">
+                                    <label>描述:</label>
+                                    <textarea class="span9" name="describe"></textarea>
+                                    <span class="charactersleft">请输入100字以内的描述</span>
+                                </div>
+                                <div class="span11 field-box actions">
+                                    <input type="submit" class="btn-glow primary" value="添加" />
+
+                                </div>
+                            <div id="mes"></div>
+                            </form>
                         </div>
-                    </div>
-                    <div style="text-align:center;margin-top: 100px">
-                        <div class="btn-glow selbtn" onclick="window.location.href='trans.php?select=chengdu'"><i class="icon-cloud" style="position: absolute;  top:50%"> 成 都</i> 分配中心</div>
-                        <div class="btn-glow selbtn" onclick="window.location.href='trans.php?select=shanghai'"><i class="icon-cloud"style="position: absolute;  top:50%"> 上 海</i> 地方分库</div>
-                        <div class="btn-glow selbtn" onclick="window.location.href='trans.php?select=shenzhen'"><i class="icon-cloud"style="position: absolute;  top:50%"> 深 圳</i> 地方分库</div>
+
                     </div>
 
                 </div>
-                <!-- end products table -->
-
-
             </div>
         </div>
     </div>
     <!-- end main container -->
 
+
 	<!-- scripts -->
     <script src="js/jquery-latest.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/theme.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            // toggle form between inline and normal inputs
+            var $buttons = $(".toggle-inputs button");
+            var $form = $("form.new_user_form");
+
+            $buttons.click(function () {
+                var mode = $(this).data("input");
+                $buttons.removeClass("active");
+                $(this).addClass("active");
+
+                if (mode === "inline") {
+                    $form.addClass("inline-input");
+                } else {
+                    $form.removeClass("inline-input");
+                }
+            });
+        });
+    </script>
     <script type="text/javascript">
     <?php
     if($_SESSION['level'] == 1) {
@@ -188,6 +223,13 @@
     ?>
 </script>
 
+<script type="text/javascript">
+    var Mes = document.getElementById("mes");
+    //alert(window.location.href.indexOf("mes=1"));
+    if(window.location.href.indexOf("mes=1") != -1)  {Mes.innerText = "新进配件成功！";}
+
+    if(window.location.href.indexOf("mes=2") != -1)  {Mes.innerText = "新进配件失败！";}
+</script>
 
 </body>
 </html>

@@ -29,6 +29,6 @@ echo $sql;
 $result = $conn->query($sql);
 
 // print_r($row);
-header("location:personal-info.php");
+header("location:setting.php");
 
 $conn->close();

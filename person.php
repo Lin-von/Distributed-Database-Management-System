@@ -46,7 +46,7 @@
             <ul class="nav pull-right">
 
                 <li class="settings">
-                    <a href="personal-info.php" role="button">
+                    <a href="setting.php" role="button">
                         <span class="navbar_icon"></span>
                     </a>
                 </li>

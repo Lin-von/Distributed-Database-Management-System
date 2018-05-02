@@ -59,7 +59,7 @@ if(!isset($_SESSION['user']))  header( "location:signin.html");
 
                 </li>
                 <li class="settings ">
-                    <a href="personal-info.php" role="button">
+                    <a href="setting.php" role="button">
                         <i class="icon-cog"></i>
                     </a>
                 </li>
@@ -85,50 +85,40 @@ if(!isset($_SESSION['user']))  header( "location:signin.html");
                     <i class="icon-home"></i>
                     <span>首页</span>
                 </a>
-            </li>            
+            </li>
+            <li>
+                <a  href="buyman.php">
+                    <i class="icon-edit"></i>
+                    <span>进货管理</span>
+                </a>
 
+            </li>
+            <li class="onlevel" style="display: none">
+                <a  href="sellman.php">
+                    <i class="icon-share-alt"></i>
+                    <span>销售管理</span>
+                </a>
 
-
+            </li>
 
             <li>
                 <a href="cage-local.php">
                     <i class="icon-th-large"></i>
-                    <span>本地仓库管理</span>
+                    <span>仓库管理</span>
                 </a>
-            </li>
-            <li>
-                <a  href="new-acc.php">
-                    <i class="icon-edit"></i>
-                    <span>新进配件</span>
-                </a>
-
-            </li>
-            <li class="onlevel" style="display: none">
-                <a  href="transfer.php">
-                    <i class="icon-share-alt"></i>
-                    <span>配件调度</span>
-                </a>
-
             </li>
 
             <li class="onlevel" style="display: none">
-                <a href="cage-center.php">
-                    <i class="icon-code-fork" style="margin-left: 5px;"></i>
-                    <span>仓库管理中心</span>
-                </a>
-
-            </li>
-            <li class="onlevel" style="display: none">
-                <a href="chart-showcase.php">
+                <a href="statistics.php">
                     <i class="icon-signal"></i>
-                    <span>数据统计中心</span>
+                    <span>数据统计</span>
                 </a>
             </li>
 
             <li>
-                <a href="personal-info.php">
+                <a href="setting.php">
                     <i class="icon-cog"></i>
-                    <span>设置</span>
+                    <span>基本设置</span>
                 </a>
             </li>
 

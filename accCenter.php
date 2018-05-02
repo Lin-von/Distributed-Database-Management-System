@@ -55,7 +55,7 @@ switch ($method){
         }
 
 
-        header( "Location: transfer.php" );
+        header( "Location: sellman.php" );
         break;
     }
     case 2:{

@@ -47,7 +47,7 @@
 
             </li>
             <li class="settings ">
-                <a href="personal-info.php" role="button">
+                <a href="setting.php" role="button">
                     <i class="icon-cog"></i>
                 </a>
             </li>
@@ -82,7 +82,7 @@
             </a>
         </li>
         <li>
-            <a  href="new-acc.php">
+            <a  href="buyman.php">
                 <i class="icon-edit"></i>
                 <span>新进配件</span>
             </a>
@@ -93,7 +93,7 @@
                 <div class="arrow"></div>
                 <div class="arrow_border"></div>
             </div>
-            <a  href="transfer.php">
+            <a  href="sellman.php">
                 <i class="icon-share-alt"></i>
                 <span>配件调度</span>
             </a>
@@ -108,14 +108,14 @@
 
         </li>
         <li class="onlevel" style="display: none">
-            <a href="chart-showcase.php">
+            <a href="statistics.php">
                 <i class="icon-signal"></i>
                 <span>数据统计中心</span>
             </a>
         </li>
 
         <li>
-            <a href="personal-info.php">
+            <a href="setting.php">
                 <i class="icon-cog"></i>
                 <span>设置</span>
             </a>
@@ -173,7 +173,7 @@
                     }
                     else
                     {
-                        header("location:transfer.php");
+                        header("location:sellman.php");
                     }
                     $result = $conn->query($sql);
                     //$row = $result->fetch_assoc();

@@ -47,7 +47,7 @@
 
             </li>
             <li class="settings ">
-                <a href="personal-info.php" role="button">
+                <a href="setting.php" role="button">
                     <i class="icon-cog"></i>
                 </a>
             </li>
@@ -87,14 +87,14 @@
             </a>
         </li>
         <li>
-            <a  href="new-acc.php">
+            <a  href="buyman.php">
                 <i class="icon-edit"></i>
                 <span>新进配件</span>
             </a>
 
         </li>
         <li class="onlevel" style="display: none">
-            <a  href="transfer.php">
+            <a  href="sellman.php">
                 <i class="icon-share-alt"></i>
                 <span>配件调度</span>
             </a>
@@ -109,14 +109,14 @@
 
         </li>
         <li class="onlevel" style="display: none">
-            <a href="chart-showcase.php">
+            <a href="statistics.php">
                 <i class="icon-signal"></i>
                 <span>数据统计中心</span>
             </a>
         </li>
 
         <li>
-            <a href="personal-info.php">
+            <a href="setting.php">
                 <i class="icon-cog"></i>
                 <span>设置</span>
             </a>
@@ -198,7 +198,7 @@
                             </div>
 -->                        </div>
 
-                        <a style="margin-top: 40px;" href="new-acc.php" class="btn-flat success pull-right">
+                        <a style="margin-top: 40px;" href="buyman.php" class="btn-flat success pull-right">
                             <span>&#43;</span>
                             新进配件
                         </a>

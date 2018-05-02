@@ -82,9 +82,9 @@ switch ($method){
             $result = $conn->query($sql);
 
 
-            header( "Location: new-acc.php?mes=1" );
+            header( "Location: buyman.php?mes=1" );
         } else {
-            header( "Location: new-acc.php?mes=2" );
+            header( "Location: buyman.php?mes=2" );
         }
     }
 }

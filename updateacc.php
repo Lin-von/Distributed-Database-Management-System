@@ -47,7 +47,7 @@
 
             </li>
             <li class="settings ">
-                <a href="personal-info.php" role="button">
+                <a href="setting.php" role="button">
                     <i class="icon-cog"></i>
                 </a>
             </li>
@@ -64,60 +64,49 @@
 <!-- sidebar -->
 <div id="sidebar-nav">
     <ul id="dashboard-menu">
-        <li>
-
+        <li >
             <a href="index.php">
                 <i class="icon-home"></i>
                 <span>首页</span>
             </a>
         </li>
+        <li>
+            <a  href="buyman.php">
+                <i class="icon-edit"></i>
+                <span>进货管理</span>
+            </a>
 
+        </li>
+        <li class="onlevel" style="display: none">
+            <a  href="sellman.php">
+                <i class="icon-share-alt"></i>
+                <span>销售管理</span>
+            </a>
 
-
+        </li>
 
         <li>
             <a href="cage-local.php">
                 <i class="icon-th-large"></i>
-                <span>本地仓库管理</span>
+                <span>仓库管理</span>
             </a>
         </li>
+
+        <li class="onlevel" style="display: none">
+            <a href="statistics.php">
+                <i class="icon-signal"></i>
+                <span>数据统计</span>
+            </a>
+        </li>
+
         <li class="active">
             <div class="pointer">
                 <div class="arrow"></div>
                 <div class="arrow_border"></div>
             </div>
-            <a  href="new-acc.php">
-                <i class="icon-edit"></i>
-                <span>新进配件</span>
-            </a>
-
-        </li>
-        <li class="onlevel" style="display: none">
-            <a  href="transfer.php">
-                <i class="icon-share-alt"></i>
-                <span>配件调度</span>
-            </a>
-
-        </li>
-
-        <li class="onlevel" style="display: none">
-            <a href="cage-center.php">
-                <i class="icon-code-fork" style="margin-left: 5px;"></i>
-                <span>仓库管理中心</span>
-            </a>
-
-        </li>
-        <li class="onlevel" style="display: none">
-            <a href="chart-showcase.php">
-                <i class="icon-signal"></i>
-                <span>数据统计中心</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="personal-info.php">
+            <a href="setting.php">
                 <i class="icon-cog"></i>
-                <span>设置</span>
+                <span>基本设置</span>
             </a>
         </li>
 
@@ -135,38 +124,95 @@
         <div class="container-fluid">
             <div id="pad-wrapper" class="new-user">
                 <div class="row-fluid header">
-                    <h3>新进一个配件</h3>
+                    <h3>修改配件信息</h3>
                 </div>
+                <?php
+                header("Content-Type: text/html;charset=utf-8");
+                $servername = "localhost:3306";
+                $username = "root";
+                $password = "123";
+                $dbname = "db";
+                // 创建连接
+                $conn = new mysqli($servername, $username, $password, $dbname);
+                // 检测连接
+                if ($conn->connect_error) {
+                    die("连接失败: " . $conn->connect_error);
+                }
+                mysqli_set_charset ($conn,utf8);
 
+                $id = $_GET['id'];
+                $sql = "SELECT * FROM accInfo WHERE id = ".$id;
+                $result = $conn->query($sql);
+                $info = $result->fetch_assoc();
+
+                $sql = "SELECT * FROM accClass";
+
+                $result = $conn->query($sql);
+                //$row = $result->fetch_assoc();
+                $conn->close();
+                $classname = array();
+                ?>
                 <div class="row-fluid form-wrapper">
                     <!-- left column -->
                     <div class="span9 with-sidebar">
                         <div class="container">
-                            <form class="new_user_form inline-input" action="accOperation.php" />
-                            <input name="method" style="display: none" value="3">
+                            <form class="new_user_form inline-input" action="Controller.php?controller=Set&method=updateAcc"  method="post"/>
+
+                            <input name="id" style="display:none;" value="<?php echo $info['id'];?>">
                                 <div class="span12 field-box">
                                     <label>名称:</label>
-                                    <input class="span9" type="text" name="name"/>
+                                    <input class="span3" type="text" name="accname" value="<?php echo $info['accname'];?>"/>
                                 </div>
                                 <div class="span12 field-box">
-                                    <label>状态:</label>
-                                    <div class="ui-select span5">
-                                        <select name="status">
-                                            <option selected/>周转备用新件
-                                            <option />周转备用旧件
-                                            <option />返修配件
-                                            <option />报损件
+                                    <label>类别:</label>
+                                    <div class="ui-select span2">
+                                        <select name="classname">
+                                            <?php
+                                            if ($result->num_rows > 0) {
+                                                // 输出每行数据
+                                                while($row = $result->fetch_assoc())  {
+                                                    $classname[$row['id']] = $row['classname'];
+                                                    if($row['classname'] == $info['classname']) {
+                                            ?>
+                                                    <option selected="selected"/> <?php echo $row["classname"]; ?>
+
+                                            <?php
+                                                    }else{
+                                            ?>
+                                                    <option /> <?php echo $row["classname"];?>
+
+                                            <?php
+                                                    }
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
+                            <div class="span12 field-box">
+                                <label>进价:</label>
+                                <input class="span2" type="text" name="pricein" value="<?php echo $info['pricein'];?>"/>
+                            </div>
+                            <div class="span12 field-box">
+                                <label>售价:</label>
+                                <input class="span2" type="text" name="priceout" value="<?php echo $info['priceout'];?>"/>
+                            </div>
+                            <div class="span12 field-box">
+                                <label>库存下限:</label>
+                                <input class="span2" type="text" name="lowrange" value="<?php echo $info['lowrange'];?>"/>
+                            </div>
+                            <div class="span12 field-box">
+                                <label>库存上限:</label>
+                                <input class="span2" type="text" name="uprange" value="<?php echo $info['uprange'];?>"/>
+                            </div>
 
                                 <div class="span12 field-box textarea">
                                     <label>描述:</label>
-                                    <textarea class="span9" name="describe"></textarea>
+                                    <textarea class="span9" name="note" ><?php echo $info['note'];?></textarea>
                                     <span class="charactersleft">请输入100字以内的描述</span>
                                 </div>
                                 <div class="span11 field-box actions">
-                                    <input type="submit" class="btn-glow primary" value="添加" />
+                                    <input type="submit" class="btn-glow primary" value="确认修改" />
 
                                 </div>
                             <div id="mes"></div>
