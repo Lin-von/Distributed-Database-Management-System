@@ -79,75 +79,36 @@
         <div class="container-fluid">
             <div id="pad-wrapper" class="new-user">
                 <div class="row-fluid header">
-                    <h3>添加一个配件</h3>
+                    <h3>添加一个供货商</h3>
                 </div>
-                <?php
-                header("Content-Type: text/html;charset=utf-8");
-                $servername = "localhost:3306";
-                $username = "root";
-                $password = "123";
-                $dbname = "db";
-                // 创建连接
-                $conn = new mysqli($servername, $username, $password, $dbname);
-                // 检测连接
-                if ($conn->connect_error) {
-                    die("连接失败: " . $conn->connect_error);
-                }
-                mysqli_set_charset ($conn,utf8);
 
-
-                $sql = "SELECT * FROM accClass";
-
-                $result = $conn->query($sql);
-                //$row = $result->fetch_assoc();
-                $conn->close();
-                $classname = array();
-                ?>
                 <div class="row-fluid form-wrapper">
                     <!-- left column -->
                     <div class="span9 with-sidebar">
                         <div class="container">
-                            <form class="new_user_form inline-input" action="Controller.php?controller=Set&method=addAcc"  method="post"/>
+                            <form class="new_user_form inline-input" action="Controller.php?controller=Set&method=addSup"  method="post"/>
                             <input name="method" style="display: none" value="3">
                                 <div class="span12 field-box">
                                     <label>名称:</label>
-                                    <input class="span3" type="text" name="accname"/>
+                                    <input class="span3" type="text" name="supname"/>
                                 </div>
-                                <div class="span12 field-box">
-                                    <label>类别:</label>
-                                    <div class="ui-select span2">
-                                        <select name="classname">
-                                            <?php
-                                            if ($result->num_rows > 0) {
-                                                // 输出每行数据
-                                                while($row = $result->fetch_assoc())  {
-                                                    $classname[$row['id']] = $row['classname']; ?>
-                                                    <option /> <?php echo $row["classname"];?>
-                                                <?php     }
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
+
                             <div class="span12 field-box">
-                                <label>进价:</label>
-                                <input class="span2" type="text" name="pricein"/>
+                                <label>联系人</label>
+                                <input class="span2" type="text" name="connector"/>
                             </div>
                             <div class="span12 field-box">
-                                <label>售价:</label>
-                                <input class="span2" type="text" name="priceout"/>
+                                <label>电话</label>
+                                <input class="span2" type="text" name="tel"/>
                             </div>
                             <div class="span12 field-box">
-                                <label>库存下限:</label>
-                                <input class="span2" type="text" name="lowrange"/>
-                            </div>
-                            <div class="span12 field-box">
-                                <label>库存上限:</label>
-                                <input class="span2" type="text" name="uprange"/>
+                                <label>地址</label>
+                                <input class="span2" type="text" name="address"/>
                             </div>
 
+
                                 <div class="span12 field-box textarea">
-                                    <label>描述:</label>
+                                    <label>备注:</label>
                                     <textarea class="span9" name="note">无</textarea>
                                     <span class="charactersleft">请输入100字以内的描述</span>
                                 </div>

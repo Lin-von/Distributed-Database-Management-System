@@ -62,57 +62,11 @@
 <!-- end navbar -->
 
 <!-- sidebar -->
-<div id="sidebar-nav">
-    <ul id="dashboard-menu">
-        <li >
-            <a href="index.php">
-                <i class="icon-home"></i>
-                <span>首页</span>
-            </a>
-        </li>
-        <li>
-            <a  href="buyman.php">
-                <i class="icon-edit"></i>
-                <span>进货管理</span>
-            </a>
+<?php require_once "sidebar.html";?>
+<script type="text/javascript">
+    document.getElementById('forset').className = "active";
 
-        </li>
-        <li class="onlevel" style="display: none">
-            <a  href="sellman.php">
-                <i class="icon-share-alt"></i>
-                <span>销售管理</span>
-            </a>
-
-        </li>
-
-        <li>
-            <a href="cage-local.php">
-                <i class="icon-th-large"></i>
-                <span>仓库管理</span>
-            </a>
-        </li>
-
-        <li class="onlevel" style="display: none">
-            <a href="statistics.php">
-                <i class="icon-signal"></i>
-                <span>数据统计</span>
-            </a>
-        </li>
-
-        <li class="active">
-            <div class="pointer">
-                <div class="arrow"></div>
-                <div class="arrow_border"></div>
-            </div>
-            <a href="setting.php">
-                <i class="icon-cog"></i>
-                <span>基本设置</span>
-            </a>
-        </li>
-
-    </ul>
-</div>
-<!-- end sidebar -->
+</script><!-- end sidebar -->
 
 
 	<!-- main container -->

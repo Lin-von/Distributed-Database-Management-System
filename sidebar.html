@@ -1,0 +1,83 @@
+<div id="sidebar-nav">
+    <ul id="dashboard-menu">
+        <li id="index">
+            <!--<div class="pointer">
+                <div class="arrow"></div>
+                <div class="arrow_border"></div>
+            </div>-->
+            <a href="index.php">
+                <i class="icon-home"></i>
+                <span>首页</span>
+            </a>
+        </li>
+        <li id="forbuy" style="display: none">
+            <a  href="buyman.php">
+                <i class="icon-edit"></i>
+                <span>进货管理</span>
+            </a>
+
+        </li>
+        <li id="forsell" style="display: none">
+            <a  href="sellman.php">
+                <i class="icon-share-alt"></i>
+                <span>销售管理</span>
+            </a>
+
+        </li>
+
+        <li id="forcage" style="display: none">
+            <a href="cage-local.php">
+                <i class="icon-th-large"></i>
+                <span>仓库管理</span>
+            </a>
+        </li>
+
+        <li id="forsta" style="display: none">
+            <a href="statistics.php">
+                <i class="icon-signal"></i>
+                <span>数据统计</span>
+            </a>
+        </li>
+
+        <li id="forset" style="display: none">
+            <a href="setting.php">
+                <i class="icon-cog"></i>
+                <span>基本设置</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+<script type="text/javascript">
+    <?php
+    if($_SESSION['level'] == "采购员") {
+            ?>
+        document.getElementById("forbuy").style.display="";
+    <?php
+    } if($_SESSION['level'] == "销售员"){
+            ?>
+        document.getElementById("forsell").style.display="";
+    <?php
+    } if($_SESSION['level'] == "业务员"){
+            ?>
+        document.getElementById("forbuy").style.display="";
+        document.getElementById("forsell").style.display="";
+    <?php
+    } if($_SESSION['level'] == "仓管员"){
+            ?>
+        document.getElementById("forcage").style.display="";
+    <?php
+    } if($_SESSION['level'] == "管理员"){
+            ?>
+        document.getElementById("forbuy").style.display="";
+        document.getElementById("forsell").style.display="";
+        document.getElementById("forcage").style.display="";
+        document.getElementById("forsta").style.display="";
+        document.getElementById("forset").style.display="";
+    <?php
+    }
+
+
+        ?>
+</script>

@@ -74,7 +74,7 @@ if(!isset($_SESSION['user']))  header( "location:signin.html");
     <!-- end navbar -->
 
     <!-- sidebar -->
-    <div id="sidebar-nav">
+  <!--  <div id="sidebar-nav">
         <ul id="dashboard-menu">
             <li class="active">
                 <div class="pointer">
@@ -124,21 +124,11 @@ if(!isset($_SESSION['user']))  header( "location:signin.html");
 
         </ul>
     </div>
-    <!-- end sidebar -->
+  -->  <!-- end sidebar -->
+    <?php require_once "sidebar.html";?>
     <script type="text/javascript">
-        <?php
-        if($_SESSION['level'] == 1) {
-        ?>
+       document.getElementById('index').className = "active";
 
-        var doc = document.getElementsByClassName("onlevel");
-        /*用for循环遍历所有doc标签*/
-        for(var i=0;i<doc.length;i++){
-            doc[i].style.display="";
-        }
-
-        <?php
-        }
-        ?>
     </script>
 
     <?php

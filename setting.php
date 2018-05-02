@@ -72,57 +72,11 @@
 <!-- end navbar -->
 
 <!-- sidebar -->
-<div id="sidebar-nav">
-    <ul id="dashboard-menu">
-        <li >
-            <a href="index.php">
-                <i class="icon-home"></i>
-                <span>首页</span>
-            </a>
-        </li>
-        <li>
-            <a  href="buyman.php">
-                <i class="icon-edit"></i>
-                <span>进货管理</span>
-            </a>
+<?php require_once "sidebar.html";?>
+<script type="text/javascript">
+    document.getElementById('forset').className = "active";
 
-        </li>
-        <li class="onlevel" style="display: none">
-            <a  href="sellman.php">
-                <i class="icon-share-alt"></i>
-                <span>销售管理</span>
-            </a>
-
-        </li>
-
-        <li>
-            <a href="cage-local.php">
-                <i class="icon-th-large"></i>
-                <span>仓库管理</span>
-            </a>
-        </li>
-
-        <li class="onlevel" style="display: none">
-            <a href="statistics.php">
-                <i class="icon-signal"></i>
-                <span>数据统计</span>
-            </a>
-        </li>
-
-        <li class="active">
-            <div class="pointer">
-                <div class="arrow"></div>
-                <div class="arrow_border"></div>
-            </div>
-            <a href="setting.php">
-                <i class="icon-cog"></i>
-                <span>基本设置</span>
-            </a>
-        </li>
-
-    </ul>
-</div>
->
+</script>>
 <!-- end sidebar -->
 
 
@@ -145,9 +99,9 @@
                 </div>
                 <div style="text-align:center;margin-top: 100px">
                     <div class="btn-glow selbtn" onclick="window.location.href='accinfo.php'">配件信息</div>
-                    <div class="btn-glow selbtn" onclick="window.location.href='trans.php?select=shanghai'"><i class="icon-cloud"style="position: absolute;  top:50%">供货商设置</i> </div>
-                    <div class="btn-glow selbtn" onclick="window.location.href='trans.php?select=shenzhen'"><i class="icon-cloud"style="position: absolute;  top:50%">客户设置</i> </div>
-                    <div class="btn-glow selbtn" onclick="window.location.href='trans.php?select=shenzhen'"><i class="icon-cloud"style="position: absolute;  top:50%">员工设置</i> </div>
+                    <div class="btn-glow selbtn" onclick="window.location.href='supinfo.php'">供货商设置 </div>
+                    <div class="btn-glow selbtn" onclick="window.location.href='cliinfo.php'">客户设置</div>
+                    <div class="btn-glow selbtn" onclick="window.location.href='userinfo.php'">员工设置</div>
                 </div>
 
             </div>

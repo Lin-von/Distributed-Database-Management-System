@@ -60,3 +60,60 @@ function delacc($id){
     else return false;
 }
 
+
+function addsup($supname,$connector,$tel,$address,$note){
+    $db = new Db();
+
+    $sql = "INSERT INTO supplier (id, supname, connector, tel , address, note ) 
+              VALUES (NULL ,'$supname','$connector','$tel','$address','$note')";
+
+    if ($db->query($sql) === TRUE)  return true ;
+    else return false;
+}
+
+function updatesup($id,$supname,$connector,$tel,$address,$note){
+    $db = new Db();
+
+    $sql = "UPDATE supplier SET supname = '$supname', connector = '$connector',tel = '$tel',address = '$address', note = '$note'
+WHERE id = $id";
+    if ($db->query($sql) === TRUE)  return true ;
+    else return false;
+}
+
+
+function delsup($id){
+    $db = new Db();
+
+    $sql = "DELETE FROM supplier WHERE id = $id ";
+    if ($db->query($sql) === TRUE)  return true ;
+    else return false;
+}
+
+
+function addcli($cliname,$connector,$tel,$address,$note){
+    $db = new Db();
+
+    $sql = "INSERT INTO client (id, cliname, connector, tel , address, note ) 
+              VALUES (NULL ,'$cliname','$connector','$tel','$address','$note')";
+
+    if ($db->query($sql) === TRUE)  return true ;
+    else return false;
+}
+
+function updatecli($id,$cliname,$connector,$tel,$address,$note){
+    $db = new Db();
+
+    $sql = "UPDATE client SET cliname = '$cliname', connector = '$connector',tel = '$tel',address = '$address', note = '$note'
+WHERE id = $id";
+    if ($db->query($sql) === TRUE)  return true ;
+    else return false;
+}
+
+
+function delcli($id){
+    $db = new Db();
+
+    $sql = "DELETE FROM client WHERE id = $id ";
+    if ($db->query($sql) === TRUE)  return true ;
+    else return false;
+}
