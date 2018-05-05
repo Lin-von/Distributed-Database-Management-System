@@ -100,8 +100,8 @@
                 <div style="text-align:center;margin-top: 100px">
                     <div class="btn-glow selbtn" onclick="window.location.href='cagein.php'">采购进货</div>
                     <div class="btn-glow selbtn" onclick="window.location.href='cageinback.php'">采购退货 </div>
-                    <div class="btn-glow selbtn" onclick="window.location.href='cliinfo.php'">进货单据查询</div>
-                    <div class="btn-glow selbtn" onclick="window.location.href='userinfo.php'">往来账务</div>
+                    <div class="btn-glow selbtn" onclick="window.location.href='incageinfo.php'">进货单据查询</div>
+                    <div class="btn-glow selbtn" onclick="window.location.href='supaccount.php'">往来账务</div>
                 </div>
 
             </div>

@@ -9,5 +9,13 @@
     <input type="text" value="北京" name="supplier">
     <button type="submit">sub</button>
 </form>
+<script>
+    function openwin(){
+        var width=Math.round((window.screen.width-400)/2);
+        var height=Math.round((window.screen.height-200)/2);
+        window.open('http://www.baidu.com', 'newwindow', 'height=200, width=400, top='+height+',left='+width+',toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no')
+    }
+</script>
+<a href="javascript:void(0)" onclick="openwin();">同意交换</a>
 </body>
 </html>
