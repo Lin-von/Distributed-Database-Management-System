@@ -290,6 +290,8 @@
         //alert(idstr);
         window.location.href = "accCenter.php?method=1&idstr="+idstr+"&province=<?php echo $province?>";
     }
+
+
 </script>
 
 

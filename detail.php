@@ -293,21 +293,6 @@ $conn->close();
     <script src="js/jquery-latest.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/theme.js"></script>
-    <script type="text/javascript">
-    <?php
-    if($_SESSION['level'] == 1) {
-    ?>
-
-    var doc = document.getElementsByClassName("onlevel");
-    /*用for循环遍历所有doc标签*/
-    for(var i=0;i<doc.length;i++){
-        doc[i].style.display="";
-    }
-
-    <?php
-    }
-    ?>
-</script>
 
 
 </body>

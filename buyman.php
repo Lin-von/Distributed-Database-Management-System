@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Detail Admin - New User Form</title>
-    
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	
+    <title>进货管理</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- bootstrap -->
     <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
     <link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
@@ -17,16 +17,26 @@
     <link rel="stylesheet" type="text/css" href="css/icons.css" />
 
     <!-- libraries -->
-    <link rel="stylesheet" type="text/css" href="css/lib/font-awesome.css" />
-    
+    <link href="css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+
     <!-- this page specific styles -->
-    <link rel="stylesheet" href="css/compiled/new-user.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/compiled/tables.css" type="text/css" media="screen" />
 
 
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <style type="text/css">
+        .selbtn{
+            width: 130px;
+            height: 130px;
+            margin: 20px 20px 20px 20px;
+            position: relative;
+        }
+    </style>
+</head>
 <body>
 
 <!-- navbar -->
@@ -62,174 +72,51 @@
 <!-- end navbar -->
 
 <!-- sidebar -->
-<div id="sidebar-nav">
-    <ul id="dashboard-menu">
-        <li>
+<?php require_once "sidebar.html";?>
+<script type="text/javascript">
+    document.getElementById('forbuy').className = "active";
 
-            <a href="index.php">
-                <i class="icon-home"></i>
-                <span>首页</span>
-            </a>
-        </li>
-
-
-
-
-        <li>
-            <a href="cage-local.php">
-                <i class="icon-th-large"></i>
-                <span>本地仓库管理</span>
-            </a>
-        </li>
-        <li class="active">
-            <div class="pointer">
-                <div class="arrow"></div>
-                <div class="arrow_border"></div>
-            </div>
-            <a  href="buyman.php">
-                <i class="icon-edit"></i>
-                <span>新进配件</span>
-            </a>
-
-        </li>
-        <li class="onlevel" style="display: none">
-            <a  href="sellman.php">
-                <i class="icon-share-alt"></i>
-                <span>配件调度</span>
-            </a>
-
-        </li>
-
-        <li class="onlevel" style="display: none">
-            <a href="cage-center.php">
-                <i class="icon-code-fork" style="margin-left: 5px;"></i>
-                <span>仓库管理中心</span>
-            </a>
-
-        </li>
-        <li class="onlevel" style="display: none">
-            <a href="statistics.php">
-                <i class="icon-signal"></i>
-                <span>数据统计中心</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="setting.php">
-                <i class="icon-cog"></i>
-                <span>设置</span>
-            </a>
-        </li>
-
-    </ul>
-</div>
+</script>>
 <!-- end sidebar -->
 
 
-	<!-- main container -->
-    <div class="content">
-        
-        <!-- settings changer -->
+<!-- main container -->
+<div class="content">
 
-        
-        <div class="container-fluid">
-            <div id="pad-wrapper" class="new-user">
-                <div class="row-fluid header">
-                    <h3>新进一个配件</h3>
-                </div>
+    <!-- settings changer -->
 
-                <div class="row-fluid form-wrapper">
-                    <!-- left column -->
-                    <div class="span9 with-sidebar">
-                        <div class="container">
-                            <form class="new_user_form inline-input" action="accOperation.php" />
-                            <input name="method" style="display: none" value="3">
-                                <div class="span12 field-box">
-                                    <label>名称:</label>
-                                    <input class="span9" type="text" name="name"/>
-                                </div>
-                                <div class="span12 field-box">
-                                    <label>状态:</label>
-                                    <div class="ui-select span5">
-                                        <select name="status">
-                                            <option selected/>周转备用新件
-                                            <option />周转备用旧件
-                                            <option />返修配件
-                                            <option />报损件
-                                        </select>
-                                    </div>
-                                </div>
 
-                                <div class="span12 field-box textarea">
-                                    <label>描述:</label>
-                                    <textarea class="span9" name="describe"></textarea>
-                                    <span class="charactersleft">请输入100字以内的描述</span>
-                                </div>
-                                <div class="span11 field-box actions">
-                                    <input type="submit" class="btn-glow primary" value="添加" />
+    <div class="container-fluid">
+        <div id="pad-wrapper">
 
-                                </div>
-                            <div id="mes"></div>
-                            </form>
-                        </div>
-
+            <!-- products table-->
+            <!-- the script for the toggle all checkboxes from header is located in js/theme.js -->
+            <div class="table-wrapper products-table section">
+                <div class="row-fluid head">
+                    <div class="span12">
+                        <h3>进货管理</h3>
                     </div>
-
                 </div>
+                <div style="text-align:center;margin-top: 100px">
+                    <div class="btn-glow selbtn" onclick="window.location.href='cagein.php'">采购进货</div>
+                    <div class="btn-glow selbtn" onclick="window.location.href='cageinback.php'">采购退货 </div>
+                    <div class="btn-glow selbtn" onclick="window.location.href='cliinfo.php'">进货单据查询</div>
+                    <div class="btn-glow selbtn" onclick="window.location.href='userinfo.php'">往来账务</div>
+                </div>
+
             </div>
+            <!-- end products table -->
+
+
         </div>
     </div>
-    <!-- end main container -->
+</div>
+<!-- end main container -->
 
-
-	<!-- scripts -->
-    <script src="js/jquery-latest.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/theme.js"></script>
-
-    <script type="text/javascript">
-        $(function () {
-
-            // toggle form between inline and normal inputs
-            var $buttons = $(".toggle-inputs button");
-            var $form = $("form.new_user_form");
-
-            $buttons.click(function () {
-                var mode = $(this).data("input");
-                $buttons.removeClass("active");
-                $(this).addClass("active");
-
-                if (mode === "inline") {
-                    $form.addClass("inline-input");
-                } else {
-                    $form.removeClass("inline-input");
-                }
-            });
-        });
-    </script>
-    <script type="text/javascript">
-    <?php
-    if($_SESSION['level'] == 1) {
-    ?>
-
-    var doc = document.getElementsByClassName("onlevel");
-    /*用for循环遍历所有doc标签*/
-    for(var i=0;i<doc.length;i++){
-        doc[i].style.display="";
-    }
-
-    <?php
-    }
-    ?>
-</script>
-
-<script type="text/javascript">
-    var Mes = document.getElementById("mes");
-    //alert(window.location.href.indexOf("mes=1"));
-    if(window.location.href.indexOf("mes=1") != -1)  {Mes.innerText = "新进配件成功！";}
-
-    if(window.location.href.indexOf("mes=2") != -1)  {Mes.innerText = "新进配件失败！";}
-</script>
+<!-- scripts -->
+<script src="js/jquery-latest.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/theme.js"></script>
 
 </body>
 </html>
