@@ -115,3 +115,98 @@ function InCageB($id,$cnt){
         return false;
     }
 }
+
+function outCageRecord($id,$client,$province,$operator,$opedate,$cost){
+    $db = new Db();
+
+    $sql = "INSERT INTO outCage (id, client, province, opedate , operator, cost) 
+              VALUES ('$id','$client','$province','$opedate','$operator',$cost)";
+
+    if ($db->query($sql) === TRUE)  return true ;
+    else return false;
+
+}
+
+function outCageDetail($recordid,$accid,$cnt,$province,$client){
+    $db = new Db();
+
+    $sql = "INSERT INTO outCage_detail (id, recordid, accid, cnt ,province,client) 
+              VALUES (NULL ,'$recordid','$accid',$cnt,'$province','$client')";
+
+    if ($db->query($sql) === TRUE)  return true ;
+    else return false;
+}
+
+function OutCage($id,$cnt){
+    $db = new Db();
+    $sql = "SELECT cnt FROM cage WHERE id='$id' and status = '周转备用新件'";
+    $result = $db->query($sql);
+    $row = $result->fetch_assoc();
+    $newcnt = $row['cnt'] - $cnt;
+    $sql = "UPDATE  cage set cnt = $newcnt WHERE id='$id' and status = '周转备用新件'";
+    if ($db->query($sql) === TRUE)  return true ;
+    else return false;
+
+}
+
+function showOutSum($client){
+    $db = new Db();
+
+    $sql = "select accid,sum(cnt) from outCage_detail where client = '$client' group by accid";
+    $result = $db->query($sql);
+    $array = array();
+    while($row = $result->fetch_assoc()) $array[$row['accid']] = $row['sum(cnt)'];
+    return $array;
+}
+
+function showObSum($client){
+    $db = new Db();
+
+    $sql = "select accid,sum(cnt) from obCage_detail where client = '$client' group by accid";
+    $result = $db->query($sql);
+    $array = array();
+    while($row = $result->fetch_assoc()) array_push($array,$row);
+    return $array;
+}
+
+function outCageBRecord($id,$client,$province,$operator,$opedate,$cost){
+    $db = new Db();
+
+    $sql = "INSERT INTO obCage (id, client, province, opedate , operator, cost) 
+              VALUES ('$id','$client','$province','$opedate','$operator',$cost)";
+
+    if ($db->query($sql) === TRUE)  return true ;
+    else return false;
+
+}
+
+function outCageBDetail($recordid,$accid,$cnt,$province,$client){
+    $db = new Db();
+
+    $sql = "INSERT INTO obCage_detail (id, recordid, accid, cnt ,province,client) 
+              VALUES (NULL ,'$recordid','$accid',$cnt,'$province','$client')";
+
+    if ($db->query($sql) === TRUE)  return true ;
+    else return false;
+}
+
+function OutCageB($id,$cnt,$province){
+
+
+    $db = new Db();
+    $sql = "SELECT cnt FROM cage WHERE id='$id' and status = '周转备用新件'";
+    $result = $db->query($sql);
+    if($result->num_rows>0) {
+        $row = $result->fetch_assoc();
+        $newcnt = $row['cnt'] + $cnt;
+        $sql = "UPDATE  cage set cnt = $newcnt WHERE id='$id' and status = '周转备用新件'";
+        if ($db->query($sql) === TRUE)  return true ;
+        else return false;
+    }
+    else{
+        $sql = "INSERT INTO cage (id, cnt, province, status) 
+              VALUES ('$id',$cnt,'$province','周转备用新件')";
+        if ($db->query($sql) === TRUE)  return true ;
+        else return false;
+    }
+}

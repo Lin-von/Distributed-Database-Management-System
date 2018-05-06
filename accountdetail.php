@@ -47,12 +47,17 @@
     mysqli_set_charset ($conn,utf8);
 
     $id = $_GET['id'];
-    $sql = "SELECT * FROM inCage WHERE id = '$id'";
+    if($id)
+    $sql = "SELECT * FROM inCage WHERE id = '$id'
+            UNION SELECT * FROM outCage WHERE id = '$id'";
 
     $result = $conn->query($sql);
     $info = $result->fetch_assoc();
 
-    $sql = "SELECT * FROM inCage_detail WHERE recordid = '$id'";
+    $sql = "SELECT * FROM inCage_detail WHERE recordid = '$id' 
+            UNION 
+            SELECT * FROM outCage_detail WHERE recordid = '$id' ";
+
 
     $result = $conn->query($sql);
     //$row = $result->fetch_assoc();
@@ -65,7 +70,7 @@
                 <h4 style="margin-bottom: 10px;">流水单号:<?php echo $info["id"];?></h4>
 
             </div>
-            <h5 style="float: left;margin-left: 20px;margin-bottom: 20px;">供货商:<?php echo $info["supplier"];?></h5>
+            <h5 style="float: left;margin-left: 20px;margin-bottom: 20px;">供货商/客户:<?php if($info["supplier"] == "") echo $info["client"]; else echo $info["supplier"]; ?></h5>
             <h5 style="float: left;margin-left: 20px;">金额:<?php echo $info["cost"];?></h5>
             <h5 style="float: left;margin-left: 20px;">经办人:<?php echo $info["operator"];?></h5>
             <h5 style="float: right;margin-left: 20px;">时间:<?php echo $info["opedate"];?></h5>
@@ -125,22 +130,22 @@
                         </td>
                     </tr>
 
+                    <?php     }
+                    } else { ?>
+                        <tr class="first"><td>没有记录</td></tr>
+                        <?php
 
-
+                    }
+                    ?>
+                    </tbody>
+                </table>
             </div>
 
-            <?php     }
-            } else { ?>
-                <tr class="first"><td>没有记录</td></tr>
-                <?php
 
-            }
-            ?>
 
             <!-- row -->
 
-            </tbody>
-                </table>
+
                 <a style="margin-top: 40px;"  id="addbutton" onclick="window.close()" class="btn-flat success pull-right">
 
                     关闭窗口

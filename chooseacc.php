@@ -31,6 +31,27 @@
 <div class="content" style="margin: 0;">
 
     <!-- settings changer -->
+    <?php
+    header("Content-Type: text/html;charset=utf-8");
+    $servername = "localhost:3306";
+    $username = "root";
+    $password = "123";
+    $dbname = "db";
+    // 创建连接
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // 检测连接
+    if ($conn->connect_error) {
+    die("连接失败: " . $conn->connect_error);
+    }
+    mysqli_set_charset ($conn,utf8);
+
+
+    $sql = "SELECT * FROM cage WHERE status = '周转备用新件'";
+
+    $result = $conn->query($sql);
+    //$row = $result->fetch_assoc();
+    $conn->close();
+    ?>
 
 
     <div class="container-fluid">
@@ -47,72 +68,6 @@
 
                 </div>
             </div>
-            <script type="text/javascript">
-                function addRow(tbody,obj)
-                {
-
-                    //添加一行
-                    var newTr = document.createElement('tr');
-                    //添加两列
-                    var newTd0 = newTr.insertCell();
-                    var newTd1 = newTr.insertCell();
-                    var newTd2 = newTr.insertCell();
-                    var newTd3 = newTr.insertCell();
-                    var newTd4 = newTr.insertCell();
-                    var newTd7 = newTr.insertCell();
-
-                    //设置列内容和属性
-                    newTd0.innerText= obj.id;
-                    newTd0.className = "id";
-                    newTd1.innerText= obj.accname;
-                    newTd2.innerText= obj.classname;
-                    newTd3.innerText= obj.pricein;
-                    newTd4.innerText= obj.priceout;
-                    newTd7.innerHTML= "<td style=\"padding-left: 15px;\"><input type=\"checkbox\" name=\"test\"><input type=\"text\" style=\"width: 20px;height: 10px;\"></td>\n";
-
-                    tbody.appendChild(newTr);
-                }
-
-                var xmlhttp;
-                if (window.XMLHttpRequest)
-                {// code for IE7+, Firefox, Chrome, Opera, Safari
-                    xmlhttp=new XMLHttpRequest();
-                }
-                else
-                {// code for IE6, IE5
-                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                }
-
-
-                xmlhttp.onreadystatechange=function()
-                {
-                    if (xmlhttp.readyState==4 && xmlhttp.status==200)
-                    {
-                        var str=xmlhttp.responseText;
-                        //alert(str);
-                        var obj = JSON.parse(str);
-                        //console.log(obj[0]);
-                        if(obj.length>0)
-                        {
-                            var tbody = document.createElement('tbody');
-                            for(var i=0;i<obj.length;i++){
-                                addRow(tbody,obj[i]);
-                            }
-                            document.getElementById('info').appendChild(tbody);
-                        }
-
-                        else{
-                            var newTr = document.getElementById('info').insertRow();
-                            //添加两列
-                            var newTd0 = newTr.insertCell();
-                            newTd0.innerText= "没有记录";
-                        }
-                    }
-                }
-                xmlhttp.open("POST","Controller.php?controller=Set&method=showAccInfo",true);
-                xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-                xmlhttp.send();
-            </script>
 
             <!-- Users table -->
             <div class="row-fluid table">
@@ -130,10 +85,10 @@
                             <span class="line"></span>类别
                         </th>
                         <th class="span2 sortable">
-                            <span class="line"></span>进价
+                            <span class="line"></span>售价
                         </th>
                         <th class="span2 sortable">
-                            <span class="line"></span>售价
+                            <span class="line"></span>库存
                         </th>
 
                         <th class="span2 sortable">
@@ -142,12 +97,49 @@
 
                     </tr>
                     </thead>
-    </table>
+                    <tbody>
+                    <!-- row -->
+                    <?php
+                    if ($result->num_rows > 0) {
+                        // 输出每行数据
+                        while($row = $result->fetch_assoc())
+                        if($row['cnt']==0) continue ; else
+                        { ?>
+                            <tr >
+                                <td><?php echo $row["id"];?></td>
+                                <td>
+
+                                </td>
+                                <td>
+
+
+                                </td>
+                                <td>
+
+
+                                </td>
+                                <td>
+
+                                    <?php echo $row["cnt"];?>
+                                </td>
+                                <td style="padding-left: 15px;"><input type="text" style="margin:0;width: 20px;height: 10px;"><input type="checkbox"  style="margin:0;" name="test"></td>
+                            </tr>
+
+                        <?php     }
+                    } else { ?>
+                        <tr class="first"><td>没有记录</td></tr>
+                        <?php
+
+                    }
+                    ?>
+                    </tbody>
+                </table>
             <a style="margin-top: 40px;"  id="addbutton" onclick="count()" class="btn-flat success pull-right">
 
                 添加配件
             </a>
-</div>
+            </div>
+        </div>
 <!-- end users table -->
 </div>
 </div>
@@ -157,10 +149,28 @@
 <script src="js/theme.js"></script>
 <script type="text/javascript">
     function count() {
+        var flag  = 0;
+        $('input[name="test"]:checked').each(function(){
+            var cnt = $(this).parents("tr").find("input:text").val();
+            var left = $(this).parents("tr").children("td").eq(4)[0].innerText;
+            if(parseInt(cnt)>parseInt(left)) {
+                alert("超出库存上限！");
+                flag = 1;
+                return;
+            }
+        });
+        if(flag == 0)sub();
+    }
+    function sub() {
         // 找到选中行的input
+
         var id_array=new Array();
+
         $('input[name="test"]:checked').each(function(){
             id_array.push($(this).parents("tr").children("td").eq(0)[0].innerText);//向数组中添加元素
+
+            id_array.push($(this).parents("tr").children("td").eq(4)[0].innerText);//向数组中添加元素
+
             //console.log($(this).parents("tr").children("td").eq(0)[0].innerText);
             id_array.push($(this).parents("tr").find("input:text").val());//向数组中添加元素
         });
@@ -173,6 +183,39 @@
 
     }
 
+
+    var accname = new Array();
+    var accprice = new Array();
+    var accclass = new Array();
+    var accpriceo = new Array();
+    $.ajax({
+        type: 'POST',
+        url: 'Controller.php?controller=Set&method=showAccInfo',
+        async:false,
+        success: function (data) {
+            var str = data;
+            infoobj = JSON.parse(str);
+            for(var i=0;i<infoobj.length;i++){
+                accname[infoobj[i].id] = infoobj[i].accname;
+                accprice[infoobj[i].id] = infoobj[i].pricein;
+                accclass[infoobj[i].id] = infoobj[i].classname;
+                accpriceo[infoobj[i].id] = infoobj[i].priceout;
+            }
+        }
+    });
+
+
+    var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
+    var size = list.length;
+    var tr;
+    for(var i = 0; i < size; i++) {
+        tr = list[i];
+        var id = tr.cells[0].innerText;
+        tr.cells[1].innerText = accname[id];
+        tr.cells[2].innerText = accclass[id];
+        tr.cells[3].innerText = accpriceo[id];
+    //    tr.cells[4].innerText = accpriceo[id];
+    }
 </script>
 </body>
 </html>
