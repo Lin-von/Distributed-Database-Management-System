@@ -70,9 +70,6 @@
                             </select>
 
                         </div>
-                        <!-- custom popup filter -->
-                        <!-- styles are located in css/elements.css -->
-                        <!-- script that enables this dropdown is located in js/theme.js -->
 
                         <span style="margin-top: 40px;" id="operator" class="label label-info pull-right"><i class="icon-user" ></i>经办人：<?php echo $_SESSION['user'];?></span>
 
@@ -131,10 +128,6 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/theme.js"></script>
     <script type="text/javascript">
-        function jump(id) {
-            window.location.href="updatesup.php?id="+id;
-        }
-
         function checkcage(s) {
             if(document.getElementById('cagein').value == document.getElementById('cageout').value){
                 alert("调出库和调入库不能相同！");
@@ -156,40 +149,15 @@
                 deleteCurrentRow(obj);
             else return false;
         }
-        function filter(fn) {
-            var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
-            var size = list.length;
-            var tr;
-            for(var i = 0; i < size; i++) {
-                tr = list[i];
-                tr.removeAttribute('class', 'hide')
-                if(!fn(tr)) {
-                    tr.setAttribute('class', 'hide');
-                }
-            }
-        }
-
 
         function value(id) {
             return document.getElementById(id).value;
         }
-        function search() {
-          //  var classname = document.getElementById('classname').value;
-            var name = document.getElementById('searchname').value;
-            //var course = document.getElementById('course').value;
-            filter(function(tr) {
 
-                if(name && tr.cells[0].innerHTML.indexOf(name) < 0) {
-                    return false;
-                }
-
-                return true;
-            });
-        }
 
         $.ajax({
             type: 'POST',
-            url: 'Controller.php?controller=Set&method=showAccInfo',
+            url: 'Controller/Controller.php?controller=Set&method=showAccInfo',
 
             success: function (data) {
                 var str = data;
@@ -239,8 +207,7 @@
                 if(tr.cells[0].innerText == id) {
                     //console.log(tr.cells[3].getElementsByTagName("input")[0].value);
                     var temp =  tr.cells[4].getElementsByTagName("input")[0].value;
-                    var newcnt = tr.cells[4].getElementsByTagName("input")[0].value = (parseInt(temp) + parseInt(cnt)).toString();
-                  // tr.cells[5].innerText = (parseInt(newcnt) * parseInt(tr.cells[2].innerText)).toString();
+                    tr.cells[4].getElementsByTagName("input")[0].value = (parseInt(temp) + parseInt(cnt)).toString();
 
                    flag = 0;
                 }
@@ -254,19 +221,8 @@
 
 
         }
-        var sum = 0;
-        function resum() {
-            var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
-            var size = list.length;
-            var tr;
-            sum = 0;
-            for(var i = 0; i < size; i++) {
-                tr = list[i];
-                sum += parseInt(tr.cells[5].innerText);
 
-            }
-            document.getElementById('sum').innerText = "总计金额：￥" + sum.toString();
-        }
+
         function recalc(tem) {
             var lef = $(tem).parents("tr").children("td").eq(3)[0].innerText;
             var cnt = tem.value;
@@ -274,10 +230,7 @@
                 alert("超出库存上限，请重新添加配件!");
                 deleteCurrentRow($(tem).parents("tr").children("td").eq(5)[0].getElementsByTagName('div')[0]);
             }
-            /*var pri = $(tem).parents("tr").children("td").eq(2)[0].innerText;
 
-            $(tem).parents("tr").children("td").eq(5)[0].innerText = (parseInt(cnt)*parseInt(pri)).toString();
-            resum();*/
         }
         function oopen() {
             var prv = document.getElementById('cageout').value;
@@ -290,9 +243,7 @@
             for(var i=0;i<arr.length;i++){
                 checkhave(arr[i],arr[++i],arr[++i]);
             }
-           // alert(str);
-          //  resum();
-           // console.log(obj[0].id);
+
         }
         
         function subcheck() {
@@ -320,13 +271,13 @@
 
             $.ajax({
                 type: 'POST',
-                url: 'Controller.php?controller=Cage&method=transCage',
+                url: 'Controller/Controller.php?controller=Cage&method=transCage',
                 data: "cageout="+cageout+"&operator="+ope+"&cagein="+cagein+"&cnt="+size,
                 async:false,
                success: function (data) {
                    $.ajax({
                        type: 'POST',
-                       url: 'Controller.php?controller=Center&method=transCageDetail',
+                       url: 'Controller/Controller.php?controller=Center&method=transCageDetail',
                        data: "idstr="+idstr+"&cntstr="+cntstr+"&cageout="+cageout+"&trid="+data+"&cagein="+cagein,
                        async:false,
                        success: window.location.href='cagetrans.php'

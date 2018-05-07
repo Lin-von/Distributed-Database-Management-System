@@ -60,11 +60,6 @@
                 <div class="span10 pull-right">
                     <input id="searchname" style="margin-bottom: 0; max-width: 80%;" type="text" class="span5 " placeholder="查询配件" />
                     <div class="btn-glow" onclick="search()"><i class="icon-search" ></i></div>
-                    <!-- custom popup filter -->
-                    <!-- styles are located in css/elements.css -->
-                    <!-- script that enables this dropdown is located in js/theme.js -->
-
-
 
                 </div>
             </div>
@@ -219,7 +214,7 @@
     var accpriceo = new Array();
     $.ajax({
         type: 'POST',
-        url: 'Controller.php?controller=Set&method=showAccInfo',
+        url: 'Controller/Controller.php?controller=Set&method=showAccInfo',
         async:false,
         success: function (data) {
             var str = data;

@@ -216,7 +216,7 @@
     var accpriceo = new Array();
     $.ajax({
         type: 'POST',
-        url: 'Controller.php?controller=Set&method=showAccInfo',
+        url: 'Controller/Controller.php?controller=Set&method=showAccInfo',
         async:false,
         success: function (data) {
             var str = data;
@@ -239,8 +239,7 @@
         var id = tr.cells[0].innerText;
         tr.cells[1].innerText = accname[id];
         tr.cells[2].innerText = accclass[id];
-       // tr.cells[3].innerText = accpriceo[id];
-    //    tr.cells[4].innerText = accpriceo[id];
+
     }
 
     var myurl = parseURL(window.location.href);
@@ -261,9 +260,7 @@
         }
     }
     function search() {
-        //  var classname = document.getElementById('classname').value;
         var name = document.getElementById('searchname').value;
-        //var course = document.getElementById('course').value;
         filter(function(tr) {
 
             if(name && tr.cells[1].innerHTML.indexOf(name) < 0) {

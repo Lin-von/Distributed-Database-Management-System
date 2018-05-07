@@ -160,7 +160,7 @@ select trCage.`opedate`,trCage_detail.* from trCage,trCage_detail where trCage.`
                                         <?php
                                             switch (substr($row['recordid'],0,2)){
                                                 case "IN": {echo "采购进货"; break;}
-    case "IB": {echo "采购退货"; break;}
+                                                case "IB": {echo "采购退货"; break;}
                                                 case "OT": {echo "配件销售"; break;}
                                                 case "Ob": {echo "客户退货"; break;}
                                                 case "SO": {echo "配件报旧"; break;}
@@ -169,8 +169,6 @@ select trCage.`opedate`,trCage_detail.* from trCage,trCage_detail where trCage.`
                                                 case "SU": {echo "配件报溢"; break;}
                                                 case "CI": {echo "调拨入库"; break;}
                                                 case "CO": {echo "调拨出库"; break;}
-
-
                                             }
                                         ?>
 
@@ -184,8 +182,6 @@ select trCage.`opedate`,trCage_detail.* from trCage,trCage_detail where trCage.`
                                         <?php echo $row["province"];?>
                                     </td>
                                 </tr>
-
-
 
                                 </div>
 
@@ -215,26 +211,7 @@ select trCage.`opedate`,trCage_detail.* from trCage,trCage_detail where trCage.`
     <script src="js/bootstrap.min.js"></script>
     <script src="js/theme.js"></script>
     <script type="text/javascript">
-        function jump(id) {
-            window.location.href="updatecli.php?id="+id;
-        }
 
-        function oopen(recordid) {
-            var width=Math.round((window.screen.width-500)/2);
-            var height=Math.round((window.screen.height-400)/2);
-            window.open('accountdetail.php?id='+recordid,'title','height=400,width=500,top='+height+',left='+width+',toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no');
-        }
-
-        function destroyCommit(id) {
-            if(confirm("确定要删除该客户信息吗？"))
-                $.ajax({
-                    type: 'POST',
-                    url: 'Controller.php?controller=Set&method=delCli',
-                    data: "id="+id,
-                    success: window.location.href='cliinfo.php'
-                });
-            else return false;
-        }
         function filter(fn) {
             var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
             var size = list.length;
@@ -247,9 +224,7 @@ select trCage.`opedate`,trCage_detail.* from trCage,trCage_detail where trCage.`
                 }
             }
         }
-        function value(id) {
-            return document.getElementById(id).value;
-        }
+
         function CompareDate(d1,d2)
         {
             return ((new Date(d1.replace(/-/g,"\/"))) > (new Date(d2.replace(/-/g,"\/"))));
@@ -291,7 +266,7 @@ select trCage.`opedate`,trCage_detail.* from trCage,trCage_detail where trCage.`
         var accpriceo = new Array();
         $.ajax({
             type: 'POST',
-            url: 'Controller.php?controller=Set&method=showAccInfo',
+            url: 'Controller/Controller.php?controller=Set&method=showAccInfo',
             async:false,
             success: function (data) {
                 var str = data;
@@ -313,7 +288,7 @@ select trCage.`opedate`,trCage_detail.* from trCage,trCage_detail where trCage.`
             tr.cells[3].innerText = accname[id];
             tr.cells[6].innerText = parseInt(accpriceo[id])*parseInt(tr.cells[5].innerText);
 
-            //    tr.cells[4].innerText = accpriceo[id];
+
         }
     </script>
 

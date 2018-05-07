@@ -81,7 +81,7 @@
                     <!-- left column -->
                     <div class="span9 with-sidebar">
                         <div class="container">
-                            <form class="new_user_form inline-input" action="Controller.php?controller=Set&method=updateAcc"  method="post"/>
+                            <form class="new_user_form inline-input" action="Controller/Controller.php?controller=Set&method=updateAcc" method="post"/>
 
                             <input name="id" style="display:none;" value="<?php echo $info['id'];?>">
                                 <div class="span12 field-box">

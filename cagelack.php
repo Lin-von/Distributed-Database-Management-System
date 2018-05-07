@@ -141,9 +141,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/theme.js"></script>
     <script type="text/javascript">
-        function jump(id) {
-            window.location.href="updatesup.php?id="+id;
-        }
+
 
         function deleteCurrentRow(obj){
             var tr=obj.parentNode.parentNode;
@@ -159,40 +157,16 @@
                 deleteCurrentRow(obj);
             else return false;
         }
-        function filter(fn) {
-            var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
-            var size = list.length;
-            var tr;
-            for(var i = 0; i < size; i++) {
-                tr = list[i];
-                tr.removeAttribute('class', 'hide')
-                if(!fn(tr)) {
-                    tr.setAttribute('class', 'hide');
-                }
-            }
-        }
 
 
         function value(id) {
             return document.getElementById(id).value;
         }
-        function search() {
-          //  var classname = document.getElementById('classname').value;
-            var name = document.getElementById('searchname').value;
-            //var course = document.getElementById('course').value;
-            filter(function(tr) {
 
-                if(name && tr.cells[0].innerHTML.indexOf(name) < 0) {
-                    return false;
-                }
-
-                return true;
-            });
-        }
 
         $.ajax({
             type: 'POST',
-            url: 'Controller.php?controller=Set&method=showAccInfo',
+            url: 'Controller/Controller.php?controller=Set&method=showAccInfo',
 
             success: function (data) {
                 var str = data;
@@ -242,8 +216,8 @@
                 if(tr.cells[0].innerText == id) {
                     //console.log(tr.cells[3].getElementsByTagName("input")[0].value);
                     var temp =  tr.cells[4].getElementsByTagName("input")[0].value;
-                    var newcnt = tr.cells[4].getElementsByTagName("input")[0].value = (parseInt(temp) + parseInt(cnt)).toString();
-                   // tr.cells[5].innerText = (parseInt(newcnt) * parseInt(tr.cells[2].innerText)).toString();
+                     tr.cells[4].getElementsByTagName("input")[0].value = (parseInt(temp) + parseInt(cnt)).toString();
+
 
                    flag = 0;
                 }
@@ -257,30 +231,14 @@
 
 
         }
-        var sum = 0;
-        function resum() {
-            var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
-            var size = list.length;
-            var tr;
-            sum = 0;
-            for(var i = 0; i < size; i++) {
-                tr = list[i];
-                sum += parseInt(tr.cells[5].innerText);
 
-            }
-            document.getElementById('sum').innerText = "总计金额：￥" + sum.toString();
-        }
         function recalc(tem) {
             var lef = $(tem).parents("tr").children("td").eq(2)[0].innerText;
             var cnt = tem.value;
             if(parseInt(lef)<parseInt(cnt)) {
                 alert("超出库存上限，请重新添加配件!");
                 deleteCurrentRow($(tem).parents("tr").children("td").eq(4)[0].getElementsByTagName('div')[0]);
-            }/*
-            var pri = $(tem).parents("tr").children("td").eq(2)[0].innerText;
-
-            $(tem).parents("tr").children("td").eq(5)[0].innerText = (parseInt(cnt)*parseInt(pri)).toString();
-            resum();*/
+            }
         }
         function oopen() {
             window.open('chooseacc.php','title','height=500,width=370,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no');
@@ -292,9 +250,7 @@
             for(var i=0;i<arr.length;i++){
                 checkhave(arr[i],arr[++i],arr[++i]);
             }
-           // alert(str);
-            //resum();
-           // console.log(obj[0].id);
+
         }
         
         function subcheck() {
@@ -319,7 +275,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: 'Controller.php?controller=Cage&method=statusChange',
+                url: 'Controller/Controller.php?controller=Cage&method=statusChange',
                 data: "idstr="+idstr+"&cntstr="+cntstr+"&operation="+opt+"&operator="+ope,
                 success: window.location.href='cagelack.php'
             });

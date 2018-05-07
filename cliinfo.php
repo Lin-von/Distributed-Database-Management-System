@@ -188,7 +188,7 @@
             if(confirm("确定要删除该客户信息吗？"))
                 $.ajax({
                     type: 'POST',
-                    url: 'Controller.php?controller=Set&method=delCli',
+                    url: 'Controller/Controller.php?controller=Set&method=delCli',
                     data: "id="+id,
                     success: window.location.href='cliinfo.php'
                 });
@@ -206,9 +206,7 @@
                 }
             }
         }
-        function value(id) {
-            return document.getElementById(id).value;
-        }
+
         function search() {
           //  var classname = document.getElementById('classname').value;
             var name = document.getElementById('searchname').value;

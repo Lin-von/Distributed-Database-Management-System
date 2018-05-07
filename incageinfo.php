@@ -180,9 +180,6 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/theme.js"></script>
     <script type="text/javascript">
-        function jump(id) {
-            window.location.href="updatecli.php?id="+id;
-        }
 
         function oopen(recordid) {
             var width=Math.round((window.screen.width-500)/2);
@@ -190,16 +187,7 @@
             window.open('accountdetail.php?id='+recordid,'title','height=400,width=500,top='+height+',left='+width+',toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no');
         }
 
-        function destroyCommit(id) {
-            if(confirm("确定要删除该客户信息吗？"))
-                $.ajax({
-                    type: 'POST',
-                    url: 'Controller.php?controller=Set&method=delCli',
-                    data: "id="+id,
-                    success: window.location.href='cliinfo.php'
-                });
-            else return false;
-        }
+
         function filter(fn) {
             var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
             var size = list.length;
@@ -212,9 +200,7 @@
                 }
             }
         }
-        function value(id) {
-            return document.getElementById(id).value;
-        }
+
         function CompareDate(d1,d2)
         {
             return ((new Date(d1.replace(/-/g,"\/"))) > (new Date(d2.replace(/-/g,"\/"))));

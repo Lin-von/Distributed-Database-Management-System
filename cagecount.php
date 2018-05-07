@@ -132,15 +132,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/theme.js"></script>
     <script type="text/javascript">
-        function jump(id) {
-            window.location.href="updatecli.php?id="+id;
-        }
 
-        function oopen(recordid) {
-            var width=Math.round((window.screen.width-500)/2);
-            var height=Math.round((window.screen.height-400)/2);
-            window.open('accountdetail.php?id='+recordid,'title','height=400,width=500,top='+height+',left='+width+',toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no');
-        }
         function deleteRows(){
             var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
             var size = list.length;
@@ -152,22 +144,9 @@
             }
         }
 
-        function destroyCommit(id) {
-            if(confirm("确定要删除该客户信息吗？"))
-                $.ajax({
-                    type: 'POST',
-                    url: 'Controller.php?controller=Set&method=delCli',
-                    data: "id="+id,
-                    success: window.location.href='cliinfo.php'
-                });
-            else return false;
-        }
 
         var tbody = document.createElement('tbody');
-
         document.getElementById('info').appendChild(tbody);
-
-
 
         function addRow(tbody,id,cnt)
         {
@@ -197,18 +176,7 @@
         }
 
 
-        function filter(fn) {
-            var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
-            var size = list.length;
-            var tr;
-            for(var i = 0; i < size; i++) {
-                tr = list[i];
-                tr.removeAttribute('class', 'hide')
-                if(!fn(tr)) {
-                    tr.setAttribute('class', 'hide');
-                }
-            }
-        }
+
         function recalc(tem) {
             var id = $(tem).parents("tr").children("td").eq(0)[0].innerText;
 
@@ -238,7 +206,7 @@
         var accpriceo = new Array();
         $.ajax({
             type: 'POST',
-            url: 'Controller.php?controller=Set&method=showAccInfo',
+            url: 'Controller/Controller.php?controller=Set&method=showAccInfo',
            // async:false,
             success: function (data) {
                 var str = data;
@@ -270,7 +238,7 @@
            document.getElementById('aldcnt').innerText = "已盘种数："+(size+1).toString();
            $.ajax({
                type: 'POST',
-               url: 'Controller.php?controller=Cage&method=showAccCnt',
+               url: 'Controller/Controller.php?controller=Cage&method=showAccCnt',
                data: "id="+id,
                // async:false,
                success: function (data) {

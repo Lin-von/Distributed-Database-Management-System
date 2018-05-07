@@ -58,12 +58,6 @@
                         <input id="status" style="margin-bottom: 0; max-width: 20%;" type="text" class="span5 " placeholder="输入状态" />
 
                         <div class="btn-glow" onclick="search()"><i class="icon-search" ></i></div>
-                        <!-- custom popup filter -->
-                        <!-- styles are located in css/elements.css -->
-                        <!-- script that enables this dropdown is located in js/theme.js -->
-
-
-
                     </div>
                 </div>
                 <?php
@@ -206,9 +200,6 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/theme.js"></script>
     <script type="text/javascript">
-        function jump(id) {
-            window.location.href="updatecli.php?id="+id;
-        }
 
         function oopen(recordid) {
             var width=Math.round((window.screen.width-600)/2);
@@ -216,16 +207,7 @@
             window.open('accdetail.php?id='+recordid,'title','height=400,width=600,top='+height+',left='+width+',toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no');
         }
 
-        function destroyCommit(id) {
-            if(confirm("确定要删除该客户信息吗？"))
-                $.ajax({
-                    type: 'POST',
-                    url: 'Controller.php?controller=Set&method=delCli',
-                    data: "id="+id,
-                    success: window.location.href='cliinfo.php'
-                });
-            else return false;
-        }
+
         function filter(fn) {
             var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
             var size = list.length;
@@ -238,9 +220,7 @@
                 }
             }
         }
-        function value(id) {
-            return document.getElementById(id).value;
-        }
+
         function search() {
             var accname = document.getElementById('accname').value;
             var classname = document.getElementById('classname').value;
@@ -276,7 +256,7 @@
         var accpriceo = new Array();
         $.ajax({
             type: 'POST',
-            url: 'Controller.php?controller=Set&method=showAccInfo',
+            url: 'Controller/Controller.php?controller=Set&method=showAccInfo',
             async:false,
             success: function (data) {
                 var str = data;

@@ -89,10 +89,6 @@
                             </select>
 
                         </div>
-                        <!-- custom popup filter -->
-                        <!-- styles are located in css/elements.css -->
-                        <!-- script that enables this dropdown is located in js/theme.js -->
-
                         <span style="margin-top: 40px;margin-left: 20px;" id="sum" class="label label-info pull-right"><i class="icon-money" ></i>总计金额：￥0</span>
                         <span style="margin-top: 40px;" id="operator" class="label label-info pull-right"><i class="icon-user" ></i>经办人：<?php echo $_SESSION['user'];?></span>
 
@@ -156,60 +152,16 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/theme.js"></script>
     <script type="text/javascript">
-        function jump(id) {
-            window.location.href="updatesup.php?id="+id;
-        }
-
-        function deleteCurrentRow(obj){
-            var tr=obj.parentNode.parentNode;
-            var tbody=tr.parentNode;
-            tbody.removeChild(tr);
-            //只剩行首时删除表格
-            if(tbody.rows.length==1) {
-                tbody.parentNode.removeChild(tbody);
-            }
-        }
-        function destroyCommit(obj) {
-            if(confirm("确定要删除该配件吗？"))
-                deleteCurrentRow(obj);
-            else return false;
-        }
-        function filter(fn) {
-            var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
-            var size = list.length;
-            var tr;
-            for(var i = 0; i < size; i++) {
-                tr = list[i];
-                tr.removeAttribute('class', 'hide')
-                if(!fn(tr)) {
-                    tr.setAttribute('class', 'hide');
-                }
-            }
-        }
-
-
         function value(id) {
             return document.getElementById(id).value;
         }
-        function search() {
-          //  var classname = document.getElementById('classname').value;
-            var name = document.getElementById('searchname').value;
-            //var course = document.getElementById('course').value;
-            filter(function(tr) {
 
-                if(name && tr.cells[0].innerHTML.indexOf(name) < 0) {
-                    return false;
-                }
-
-                return true;
-            });
-        }
         var accname = new Array();
         var accprice = new Array();
 
         $.ajax({
             type: 'POST',
-            url: 'Controller.php?controller=Set&method=showAccInfo',
+            url: 'Controller/Controller.php?controller=Set&method=showAccInfo',
 
             success: function (data) {
                 var str = data;
@@ -357,7 +309,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: 'Controller.php?controller=Cage&method=outCageBack',
+                url: 'Controller/Controller.php?controller=Cage&method=outCageBack',
                 data: "idstr="+idstr+"&cntstr="+cntstr+"&client="+cli+"&operator="+ope+"&cost="+sum,
                 success: window.location.href='cageoutback.php'
             });
@@ -369,7 +321,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: 'Controller.php?controller=Cage&method=showOutBack',
+                url: 'Controller/Controller.php?controller=Cage&method=showOutBack',
                 data: "client="+cli,
                 success: function (data) {
                     var str = data;

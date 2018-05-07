@@ -115,14 +115,11 @@
                         </td>
                         <td>
 
-
                         </td>
                         <td>
 
-
                         </td>
                         <td>
-
 
                         </td>
                         <td >
@@ -141,10 +138,7 @@
                 </table>
             </div>
 
-
-
             <!-- row -->
-
 
                 <a style="margin-top: 40px;"  id="addbutton" onclick="window.close()" class="btn-flat success pull-right">
 
@@ -165,7 +159,7 @@
     var accpriceo = new Array();
     $.ajax({
         type: 'POST',
-        url: 'Controller.php?controller=Set&method=showAccInfo',
+        url: 'Controller/Controller.php?controller=Set&method=showAccInfo',
         async:false,
         success: function (data) {
             var str = data;

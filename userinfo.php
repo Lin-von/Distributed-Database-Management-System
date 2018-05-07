@@ -176,7 +176,7 @@
             if(confirm("确定要删除该员工信息吗？"))
                 $.ajax({
                     type: 'POST',
-                    url: 'Controller.php?controller=User&method=delUser',
+                    url: 'Controller/Controller.php?controller=User&method=delUser',
                     data: "id="+id,
                     success: window.location.href='userinfo.php'
                 });
@@ -194,9 +194,7 @@
                 }
             }
         }
-        function value(id) {
-            return document.getElementById(id).value;
-        }
+
         function search() {
           //  var classname = document.getElementById('classname').value;
             var name = document.getElementById('searchname').value;

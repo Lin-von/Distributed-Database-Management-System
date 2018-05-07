@@ -54,11 +54,6 @@
                     <div class="span10 pull-right">
                         <input id="searchname" style="margin-bottom: 0; max-width: 80%;" type="text" class="span5 " placeholder="输入供货商名称" />
                         <div class="btn-glow" onclick="search()"><i class="icon-search" ></i></div>
-                        <!-- custom popup filter -->
-                        <!-- styles are located in css/elements.css -->
-                        <!-- script that enables this dropdown is located in js/theme.js -->
-
-
                         <a style="margin-top: 40px;" href="newsup.php" class="btn-flat success pull-right">
                             <span>&#43;</span>
                             添加供货商
@@ -188,7 +183,7 @@
             if(confirm("确定要删除该供货商信息吗？"))
                 $.ajax({
                     type: 'POST',
-                    url: 'Controller.php?controller=Set&method=delSup',
+                    url: 'Controller/Controller.php?controller=Set&method=delSup',
                     data: "id="+id,
                     success: window.location.href='supinfo.php'
                 });
@@ -206,9 +201,7 @@
                 }
             }
         }
-        function value(id) {
-            return document.getElementById(id).value;
-        }
+
         function search() {
           //  var classname = document.getElementById('classname').value;
             var name = document.getElementById('searchname').value;

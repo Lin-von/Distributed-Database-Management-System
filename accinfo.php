@@ -129,7 +129,7 @@
 
                     }
                 }
-                xmlhttp.open("POST","Controller.php?controller=Set&method=showClassName",true);
+                xmlhttp.open("POST","Controller/Controller.php?controller=Set&method=showClassName",true);
                 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
                 xmlhttp.send();
             </script>
@@ -203,7 +203,7 @@
                         }
                     }
                 }
-                xmlhttp.open("POST","Controller.php?controller=Set&method=showAccInfo",true);
+                xmlhttp.open("POST","Controller/Controller.php?controller=Set&method=showAccInfo",true);
                 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
                 xmlhttp.send();
             </script>
@@ -263,7 +263,7 @@
         if(confirm("确定要删除该配件信息吗？"))
             $.ajax({
                 type: 'POST',
-                url: 'Controller.php?controller=Set&method=delAcc',
+                url: 'Controller/Controller.php?controller=Set&method=delAcc',
                 data: "id="+id,
                 success: window.location.href='accinfo.php'
             });
@@ -284,9 +284,6 @@
                 tr.setAttribute('class', 'hide');
             }
         }
-    }
-    function value(id) {
-        return document.getElementById(id).value;
     }
     function search() {
         var classname = document.getElementById('classname').value;
