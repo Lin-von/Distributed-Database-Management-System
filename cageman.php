@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>基本设置</title>
+    <title>仓库管理</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -74,7 +74,7 @@
 <!-- sidebar -->
 <?php require_once "sidebar.html";?>
 <script type="text/javascript">
-    document.getElementById('forset').className = "active";
+    document.getElementById('forcage').className = "active";
 
 </script>
 <!-- end sidebar -->
@@ -94,14 +94,18 @@
             <div class="table-wrapper products-table section">
                 <div class="row-fluid head">
                     <div class="span12">
-                        <h3>基本设置</h3>
+                        <h3>仓库管理</h3>
                     </div>
                 </div>
                 <div style="text-align:center;margin-top: 100px">
-                    <div class="btn-glow selbtn" onclick="window.location.href='accinfo.php'">配件信息</div>
-                    <div class="btn-glow selbtn" onclick="window.location.href='supinfo.php'">供货商设置 </div>
-                    <div class="btn-glow selbtn" onclick="window.location.href='cliinfo.php'">客户设置</div>
-                    <div class="btn-glow selbtn" onclick="window.location.href='userinfo.php'">员工设置</div>
+                    <div class="btn-glow selbtn" onclick="window.location.href='showcage.php'">当前库存查询</div>
+                    <div class="btn-glow selbtn" onclick="window.location.href='cagechange.php'">库存变动查询 </div>
+                    <div class="btn-glow selbtn" onclick="window.location.href='cagelack.php'">配件报损</div>
+                    <div class="btn-glow selbtn" onclick="window.location.href='cageover.php'">配件报溢</div>
+                    <div class="btn-glow selbtn" onclick="window.location.href='cagecount.php'">库存盘点</div>
+                    <div class="btn-glow selbtn" onclick="window.location.href='cagealert.php'">库存报警</div>
+                    <div class="btn-glow selbtn" onclick="window.location.href='cagetrans.php'">库存调拨</div>
+
                 </div>
 
             </div>

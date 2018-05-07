@@ -84,9 +84,7 @@
                         <th class="span2 sortable">
                             <span class="line"></span>类别
                         </th>
-                        <th class="span2 sortable">
-                            <span class="line"></span>售价
-                        </th>
+
                         <th class="span2 sortable">
                             <span class="line"></span>库存
                         </th>
@@ -110,10 +108,7 @@
                                 <td>
 
                                 </td>
-                                <td>
 
-
-                                </td>
                                 <td>
 
 
@@ -123,6 +118,9 @@
                                     <?php echo $row["cnt"];?>
                                 </td>
                                 <td style="padding-left: 15px;"><input type="checkbox"  style="margin:0;" name="test"><input type="text" style="margin:0;width: 20px;margin:0;height: 10px;"></td>
+                                <td style="display: none">
+                                    <?php echo $row["province"];?>
+                                </td>
                             </tr>
 
                         <?php     }
@@ -161,35 +159,6 @@
         });
         if(flag == 0)sub();
     }
-
-    function filter(fn) {
-        var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
-        var size = list.length;
-        var tr;
-        for(var i = 0; i < size; i++) {
-            tr = list[i];
-            tr.removeAttribute('class', 'hide')
-            if(!fn(tr)) {
-                tr.setAttribute('class', 'hide');
-            }
-        }
-    }
-
-    function search() {
-        //  var classname = document.getElementById('classname').value;
-        var name = document.getElementById('searchname').value;
-        //var course = document.getElementById('course').value;
-        filter(function(tr) {
-
-            if(name && tr.cells[1].innerHTML.indexOf(name) < 0) {
-                return false;
-            }
-
-            return true;
-        });
-    }
-
-
     function sub() {
         // 找到选中行的input
 
@@ -198,7 +167,7 @@
         $('input[name="test"]:checked').each(function(){
             id_array.push($(this).parents("tr").children("td").eq(0)[0].innerText);//向数组中添加元素
 
-            id_array.push($(this).parents("tr").children("td").eq(4)[0].innerText);//向数组中添加元素
+            id_array.push($(this).parents("tr").children("td").eq(3)[0].innerText);//向数组中添加元素
 
             //console.log($(this).parents("tr").children("td").eq(0)[0].innerText);
             id_array.push($(this).parents("tr").find("input:text").val());//向数组中添加元素
@@ -211,6 +180,34 @@
         this.close();
 
     }
+    function parseURL(url) {
+        var a =  document.createElement('a');
+        a.href = url;
+        return {
+            source: url,
+            protocol: a.protocol.replace(':',''),
+            host: a.hostname,
+            port: a.port,
+            query: a.search,
+            params: (function(){
+                var ret = {},
+                    seg = a.search.replace(/^\?/,'').split('&'),
+                    len = seg.length, i = 0, s;
+                for (;i<len;i++) {
+                    if (!seg[i]) { continue; }
+                    s = seg[i].split('=');
+                    ret[s[0]] = s[1];
+                }
+                return ret;
+            })(),
+            file: (a.pathname.match(/\/([^\/?#]+)$/i) || [,''])[1],
+            hash: a.hash.replace('#',''),
+            path: a.pathname.replace(/^([^\/])/,'/$1'),
+            relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [,''])[1],
+            segments: a.pathname.replace(/^\//,'').split('/')
+        };
+    }
+
 
 
     var accname = new Array();
@@ -242,9 +239,51 @@
         var id = tr.cells[0].innerText;
         tr.cells[1].innerText = accname[id];
         tr.cells[2].innerText = accclass[id];
-        tr.cells[3].innerText = accpriceo[id];
+       // tr.cells[3].innerText = accpriceo[id];
     //    tr.cells[4].innerText = accpriceo[id];
     }
+
+    var myurl = parseURL(window.location.href);
+    var prv = myurl.params.province;
+    prv = decodeURIComponent(prv);
+    console.log(prv);
+
+    function filter(fn) {
+        var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
+        var size = list.length;
+        var tr;
+        for(var i = 0; i < size; i++) {
+            tr = list[i];
+            tr.removeAttribute('class', 'hide')
+            if(!fn(tr)) {
+                tr.setAttribute('class', 'hide');
+            }
+        }
+    }
+    function search() {
+        //  var classname = document.getElementById('classname').value;
+        var name = document.getElementById('searchname').value;
+        //var course = document.getElementById('course').value;
+        filter(function(tr) {
+
+            if(name && tr.cells[1].innerHTML.indexOf(name) < 0) {
+                return false;
+            }
+            if(prv && tr.cells[5].innerHTML.indexOf(prv) < 0) {
+                return false;
+            }
+            return true;
+        });
+    }
+
+    filter(function(tr) {
+
+        if(prv && tr.cells[5].innerHTML.indexOf(prv) < 0) {
+            return false;
+        }
+
+        return true;
+    });
 </script>
 </body>
 </html>

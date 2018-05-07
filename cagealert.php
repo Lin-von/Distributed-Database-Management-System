@@ -65,7 +65,7 @@
 <!-- sidebar -->
 <?php require_once "sidebar.html";?>
 <script type="text/javascript">
-    document.getElementById('forset').className = "active";
+    document.getElementById('forcage').className = "active";
 
 </script>
 
@@ -79,19 +79,19 @@
         <div class="container-fluid">
             <div id="pad-wrapper" class="users-list">
                 <div style="margin-bottom: 30px;" class="row-fluid header">
-                    <h3 style="margin-bottom: 20px;">供货商信息</h3>
+                    <h3 style="margin-bottom: 20px;">库存报警</h3>
                     <div class="span10 pull-right">
-                        <input id="searchname" style="margin-bottom: 0; max-width: 80%;" type="text" class="span5 " placeholder="输入供货商名称" />
+                        <input id="accid" style="margin-bottom: 0; max-width: 30%;" type="text" class="span5 " placeholder="输入配件编号" />
+                        <input id="accname" style="margin-bottom: 0; max-width: 30%;" type="text" class="span5 " placeholder="输入配件名称" />
+                        <input id="alertname" style="margin-bottom: 0; max-width: 30%;" type="text" class="span5 " placeholder="输入报警类型" />
+
                         <div class="btn-glow" onclick="search()"><i class="icon-search" ></i></div>
                         <!-- custom popup filter -->
                         <!-- styles are located in css/elements.css -->
                         <!-- script that enables this dropdown is located in js/theme.js -->
 
 
-                        <a style="margin-top: 40px;" href="newsup.php" class="btn-flat success pull-right">
-                            <span>&#43;</span>
-                            添加供货商
-                        </a>
+
                     </div>
                 </div>
                 <?php
@@ -109,7 +109,7 @@
                 mysqli_set_charset ($conn,utf8);
 
 
-                $sql = "SELECT * FROM supplier";
+                $sql = "SELECT * FROM cage WHERE status = '周转备用新件'";
 
                 $result = $conn->query($sql);
                 //$row = $result->fetch_assoc();
@@ -120,25 +120,31 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th class="span3 sortable">
-                                    名称
+                                <th class="span2 sortable">
+                                    配件编号
                                 </th>
 
                                 <th class="span2 sortable">
-                                    <span class="line"></span>联系人
+                                    <span class="line"></span>名称
                                 </th>
                                 <th class="span2 sortable">
-                                    <span class="line"></span>电话
+                                    <span class="line"></span>类别
                                 </th>
-                                <th class="span3 sortable">
-                                    <span class="line"></span>地址
+                                <th class="span2 sortable ">
+                                    <span class="line"></span>报警类型
                                 </th>
                                 <th class="span2 sortable">
-                                    <span class="line"></span>备注
+                                    <span class="line"></span>库存量
                                 </th>
-                                <th class="span3 sortable align-right">
-                                    <span class="line"></span>操作
+                                <th class="span2 sortable">
+                                    <span class="line"></span>库存下限
                                 </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>库存上限
+                                </th>
+
+
+
                             </tr>
                         </thead>
                         <tbody>
@@ -148,35 +154,29 @@
                             // 输出每行数据
                             while($row = $result->fetch_assoc()) { ?>
                                 <tr class="first">
+                                    <td><?php echo $row["id"];?></td>
                                     <td>
-                                        <?php echo $row["supname"];?>
 
-                                    </td>
-                                    <td>
-                                        <?php echo $row["connector"];?>
 
                                     </td>
                                     <td>
-                                        <?php echo $row["tel"];?>
+                                    </td>
+                                    <td >
 
                                     </td>
                                     <td>
-                                        <?php echo $row["address"];?>
+                                        <?php echo $row["cnt"];?>
 
                                     </td>
                                     <td>
-                                        <?php echo $row["note"];?>
+
 
                                     </td>
-                                    <td class="align-right">
+                                    <td>
 
-                                        <div class="btn-glow" onclick="jump(<?php echo $row["id"];?>)" style="margin-left: 20px;"><i class="icon-remove-sign" ></i> 修改</div>
-
-                                        <div class="btn-glow" onclick="destroyCommit(<?php echo $row["id"];?>)" style="margin-left: 20px;"><i class="icon-remove-sign" ></i> 删除</div>
-
-                                        <!--                                <a href="#">alejandra@canvas.com</a>
-                                        -->
                                     </td>
+
+
                                 </tr>
 
 
@@ -210,16 +210,22 @@
     <script src="js/theme.js"></script>
     <script type="text/javascript">
         function jump(id) {
-            window.location.href="updatesup.php?id="+id;
+            window.location.href="updatecli.php?id="+id;
+        }
+
+        function oopen(recordid) {
+            var width=Math.round((window.screen.width-500)/2);
+            var height=Math.round((window.screen.height-400)/2);
+            window.open('accountdetail.php?id='+recordid,'title','height=400,width=500,top='+height+',left='+width+',toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no');
         }
 
         function destroyCommit(id) {
-            if(confirm("确定要删除该供货商信息吗？"))
+            if(confirm("确定要删除该客户信息吗？"))
                 $.ajax({
                     type: 'POST',
-                    url: 'Controller.php?controller=Set&method=delSup',
+                    url: 'Controller.php?controller=Set&method=delCli',
                     data: "id="+id,
-                    success: window.location.href='supinfo.php'
+                    success: window.location.href='cliinfo.php'
                 });
             else return false;
         }
@@ -239,17 +245,70 @@
             return document.getElementById(id).value;
         }
         function search() {
-          //  var classname = document.getElementById('classname').value;
-            var name = document.getElementById('searchname').value;
-            //var course = document.getElementById('course').value;
+            var accname = document.getElementById('accname').value;
+            var alertname = document.getElementById('alertname').value;
+            var accid = document.getElementById('accid').value;
             filter(function(tr) {
 
-                if(name && tr.cells[0].innerHTML.indexOf(name) < 0) {
+                if(accid && tr.cells[0].innerHTML.indexOf(accid) < 0) {
+                    return false;
+                }
+                if(accname && tr.cells[1].innerHTML.indexOf(accname) < 0) {
+                    return false;
+                }
+                if(alertname && tr.cells[3].innerHTML.indexOf(alertname) < 0) {
                     return false;
                 }
 
+
                 return true;
             });
+        }
+
+        var accname = new Array();
+        var acclowrange = new Array();
+        var accclass = new Array();
+        var accuprange = new Array();
+        $.ajax({
+            type: 'POST',
+            url: 'Controller.php?controller=Set&method=showAccInfo',
+            async:false,
+            success: function (data) {
+                var str = data;
+                infoobj = JSON.parse(str);
+                for(var i=0;i<infoobj.length;i++){
+                    accname[infoobj[i].id] = infoobj[i].accname;
+                    acclowrange[infoobj[i].id] = infoobj[i].lowrange;
+                    accclass[infoobj[i].id] = infoobj[i].classname;
+                    accuprange[infoobj[i].id] = infoobj[i].uprange;
+                }
+            }
+        });
+
+
+        var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
+        var size = list.length;
+        var tr;
+        for(var i = size-1; i >= 0 ; i--) {
+            tr = list[i];
+
+            var id = tr.cells[0].innerText;
+            var cnt = parseInt(tr.cells[4].innerText);
+            var low = parseInt(acclowrange[id]);
+            var up = parseInt(accuprange[id]);
+
+
+            tr.cells[1].innerText = accname[id];
+            tr.cells[2].innerText = accclass[id];
+            tr.cells[5].innerText = acclowrange[id];
+            tr.cells[6].innerText = accuprange[id];
+            if(cnt<low)  tr.cells[3].innerText = "低于下限";
+            else if(cnt>up) tr.cells[3].innerText = "高于上限";
+            else {var tbody=tr.parentNode;
+                tbody.removeChild(tr);}
+
+
+            //    tr.cells[4].innerText = accuprange[id];
         }
     </script>
 

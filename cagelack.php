@@ -65,7 +65,7 @@
 <!-- sidebar -->
 <?php require_once "sidebar.html";?>
 <script type="text/javascript">
-    document.getElementById('forbuy').className = "active";
+    document.getElementById('forcage').className = "active";
 
 </script>
 
@@ -89,7 +89,7 @@
         mysqli_set_charset ($conn,utf8);
 
 
-        $sql = "SELECT supname FROM supplier";
+        $sql = "SELECT cliname FROM client";
 
         $result = $conn->query($sql);
         //$row = $result->fetch_assoc();
@@ -99,21 +99,14 @@
         <div class="container-fluid">
             <div id="pad-wrapper" class="users-list">
                 <div style="margin-bottom: 30px;" class="row-fluid header">
-                    <h3 style="margin-bottom: 20px;">采购退货</h3>
+                    <h3 style="margin-bottom: 20px;">配件报损</h3>
                     <div class="span10 pull-right">
                         <div class="ui-dropdown">
-                            <select style="min-height: 30px;margin-top: 40px; width: 150px;" id="supplier" onchange="getInfo(this)" >
-                                <option disabled="disabled" selected/>选择供货商
-                                <?php
-                                if ($result->num_rows > 0) {
-                                    // 输出每行数据
-                                    while($row = $result->fetch_assoc())  {
-                                 ?>
-                                        <option /> <?php echo $row["supname"];?>
-                                    <?php     }
-                                }
-                                ?>
-
+                            <select style="min-height: 30px;margin-top: 40px; width: 150px;" id="operation" >
+                                <option disabled="disabled" selected/>选择操作
+                                <option />配件报旧
+                                <option />配件报修
+                                <option />配件报损
 
                             </select>
 
@@ -122,19 +115,15 @@
                         <!-- styles are located in css/elements.css -->
                         <!-- script that enables this dropdown is located in js/theme.js -->
 
-                        <span style="margin-top: 40px;margin-left: 20px;" id="sum" class="label label-info pull-right"><i class="icon-money" ></i>总计金额：￥0</span>
                         <span style="margin-top: 40px;" id="operator" class="label label-info pull-right"><i class="icon-user" ></i>经办人：<?php echo $_SESSION['user'];?></span>
 
                     </div>
 
                 </div>
                 <a style="margin-bottom: 20px;" onclick="oopen()" class="btn-flat info ">
-                    整单退货
+                    添加配件
 
                 </a>
-
-                 <h4 style="margin-left: 0;margin-bottom: 10px;">可退配件</h4>
-
                 <!-- Users table -->
                 <div class="row-fluid table">
                     <table class="table table-hover" id="info">
@@ -146,18 +135,14 @@
                                 <th class="span2 sortable">
                                     名称
                                 </th>
+
                                 <th class="span2 sortable">
-                                    <span class="line"></span>单价
-                                </th>
-                                <th class="span2 sortable">
-                                    <span class="line"></span>可退量
+                                    <span class="line"></span>库存
                                 </th>
                                 <th class="span2 sortable">
-                                    <span class="line"></span>退货量
+                                    <span class="line"></span>数量
                                 </th>
-                                <th class="span3 sortable">
-                                    <span class="line"></span>总计
-                                </th>
+
 
                                 <th class="span3 sortable ">
                                     <span class="line"></span>操作
@@ -169,7 +154,7 @@
                 </div>
                 <div class="pagination pull-right">
                     <a style="margin-bottom: 20px;" onclick="subcheck()" class="btn-flat success ">
-                        确认退货
+                        确认出售
 
                     </a>
                 </div>
@@ -233,8 +218,6 @@
                 return true;
             });
         }
-        var accname = new Array();
-        var accprice = new Array();
 
         $.ajax({
             type: 'POST',
@@ -242,11 +225,7 @@
 
             success: function (data) {
                 var str = data;
-                infoobj = JSON.parse(str);
-                for(var i=0;i<infoobj.length;i++){
-                    accname[infoobj[i].id] = infoobj[i].accname;
-                    accprice[infoobj[i].id] = infoobj[i].pricein;
-                }
+                obj = JSON.parse(str);
             }
         });
 
@@ -256,7 +235,7 @@
 
 
 
-        function addRow(tbody,obj)
+        function addRow(tbody,obj,cnt,lef)
         {
 
             //添加一行
@@ -264,27 +243,25 @@
             //添加两列
             var newTd0 = newTr.insertCell();
             var newTd1 = newTr.insertCell();
-            var newTd2 = newTr.insertCell();
+            //var newTd2 = newTr.insertCell();
             var newTd3 = newTr.insertCell();
             var newTd4 = newTr.insertCell();
-            var newTd5 = newTr.insertCell();
+           // var newTd5 = newTr.insertCell();
             var newTd8 = newTr.insertCell();
 
             //设置列内容和属性
             newTd0.innerText= obj.id;
-            newTd1.innerText= accname[obj.id];
-            newTd2.innerText= accprice[obj.id];
-            newTd3.innerText= obj.cnt;
-            newTd4.innerHTML= "<td><input type=\"text\" onchange='recalc(this)' style=\"width: 20px;margin:0;height: 10px;\"></td>\n";
-
-         //   newTd5.innerText= (parseInt(cnt)*parseInt(obj.pricein)).toString();
-
+            newTd1.innerText= obj.accname;
+           // newTd2.innerText= obj.priceout;
+            newTd3.innerText= lef;
+            newTd4.innerHTML= "<td><input type=\"text\" value=\""+cnt+"\" onchange='recalc(this)' style=\"width: 20px;margin:0;height: 10px;\"></td>\n";
+           // newTd5.innerText= (parseInt(cnt)*parseInt(obj.priceout)).toString();
             newTd8.innerHTML =
-                '<input type="checkbox" onchange="selcheck(this)" name="test" style="margin:0;" >选择退货';
+                '<div class="btn-glow" onclick="destroyCommit(this)" style="margin-left: 20px;"><i class="icon-remove-sign" ></i> 删除</div>';
 
             tbody.appendChild(newTr);
         }
-        function checkhave(id,cnt) {
+        function checkhave(id,lef,cnt) {
             var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
             var size = list.length;
             var tr;
@@ -293,16 +270,16 @@
                 tr = list[i];
                 if(tr.cells[0].innerText == id) {
                     //console.log(tr.cells[3].getElementsByTagName("input")[0].value);
-                    var temp =  tr.cells[3].getElementsByTagName("input")[0].value;
-                    var newcnt = tr.cells[3].getElementsByTagName("input")[0].value = (parseInt(temp) + parseInt(cnt)).toString();
-                    tr.cells[4].innerText = (parseInt(newcnt) * parseInt(tr.cells[2].innerText)).toString();
+                    var temp =  tr.cells[4].getElementsByTagName("input")[0].value;
+                    var newcnt = tr.cells[4].getElementsByTagName("input")[0].value = (parseInt(temp) + parseInt(cnt)).toString();
+                   // tr.cells[5].innerText = (parseInt(newcnt) * parseInt(tr.cells[2].innerText)).toString();
 
                    flag = 0;
                 }
             }
             if(flag == 1)
             for(var i=0;i<obj.length;i++){
-                if(obj[i].id == id) addRow(tbody,obj[i],cnt);
+                if(obj[i].id == id) addRow(tbody,obj[i],cnt,lef);
             }
 
 
@@ -317,48 +294,42 @@
             sum = 0;
             for(var i = 0; i < size; i++) {
                 tr = list[i];
-                if(tr.cells[6].getElementsByTagName('input')[0].checked == true)
                 sum += parseInt(tr.cells[5].innerText);
 
             }
             document.getElementById('sum').innerText = "总计金额：￥" + sum.toString();
         }
         function recalc(tem) {
-            var pri = $(tem).parents("tr").children("td").eq(2)[0].innerText;
+            var lef = $(tem).parents("tr").children("td").eq(2)[0].innerText;
             var cnt = tem.value;
-            var upper = $(tem).parents("tr").children("td").eq(3)[0].innerText;
-
-            if(parseInt(upper)<parseInt(cnt)) {
-                alert("超过可退货上限");
-                tem.value = 0;
-                return;
-            }
+            if(parseInt(lef)<parseInt(cnt)) {
+                alert("超出库存上限，请重新添加配件!");
+                deleteCurrentRow($(tem).parents("tr").children("td").eq(4)[0].getElementsByTagName('div')[0]);
+            }/*
+            var pri = $(tem).parents("tr").children("td").eq(2)[0].innerText;
 
             $(tem).parents("tr").children("td").eq(5)[0].innerText = (parseInt(cnt)*parseInt(pri)).toString();
-            resum();
+            resum();*/
         }
         function oopen() {
-            window.open('chooseacc.html','title','height=500,width=370,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no');
+            window.open('chooseacc.php','title','height=500,width=370,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no');
         }
 
         function show(str) {
             var arr = str.split(',');
 
             for(var i=0;i<arr.length;i++){
-                checkhave(arr[i],arr[++i]);
+                checkhave(arr[i],arr[++i],arr[++i]);
             }
            // alert(str);
-            resum();
-            console.log(obj[0].id);
+            //resum();
+           // console.log(obj[0].id);
         }
-        function selcheck(tem) {
-            if($(tem).parents("tr").children("td").eq(4)[0].getElementsByTagName('input')[0].value == "") alert("请输入数量");
-            else resum();
-        }
+        
         function subcheck() {
-            var sup = document.getElementById('supplier').value;
+            var opt = document.getElementById('operation').value;
             var ope = document.getElementById('operator').innerText.substr(4);
-            if(sup == "选择供货商") {alert("请选择供货商"); return; }
+            if(opt == "选择操作") {alert("请选择操作"); return; }
             var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
             var size = list.length;
             if(size == 0) {alert("请选择配件"); return; }
@@ -366,57 +337,24 @@
             var tr;
             var id_array=new Array();
             var cnt_array=new Array();
-            var flag = 0;
+
             for(var i = 0; i < size; i++) {
                 tr = list[i];
-                if(tr.cells[6].getElementsByTagName('input')[0].checked == true){
-                    flag = 1;
-                    id_array.push(tr.cells[0].innerText);//向数组中添加元素
-                    cnt_array.push(tr.cells[4].getElementsByTagName("input")[0].value);//向数组中添加元素
-
-                }
-
-            }
-            if (flag==0) {
-                alert("请选择需要退货的配件！");
-                return;
+                id_array.push(tr.cells[0].innerText);//向数组中添加元素
+                cnt_array.push(tr.cells[3].getElementsByTagName("input")[0].value);//向数组中添加元素
             }
             var idstr=id_array.join(',');//将数组元素连接起来以构建一个字符串
             var cntstr=cnt_array.join(',');//将数组元素连接起来以构建一个字符串
 
             $.ajax({
                 type: 'POST',
-                url: 'Controller.php?controller=Cage&method=inCageBack',
-                data: "idstr="+idstr+"&cntstr="+cntstr+"&supplier="+sup+"&operator="+ope+"&cost="+sum,
-                success: window.location.href='cageinback.php'
+                url: 'Controller.php?controller=Cage&method=statusChange',
+                data: "idstr="+idstr+"&cntstr="+cntstr+"&operation="+opt+"&operator="+ope,
+                success: window.location.href='cagelack.php'
             });
 
         }
 
-        function getInfo(s) {
-            var sup = s.value;
-
-            $.ajax({
-                type: 'POST',
-                url: 'Controller.php?controller=Cage&method=showInBack',
-                data: "supplier="+sup,
-                success: function (data) {
-                    var str = data;
-                    obj = JSON.parse(str);
-
-                    for(var i=0;i<obj.length;i++){
-                        addRow(tbody,obj[i]);
-                    }
-                }
-            });
-
-
-
-
-
-
-
-        }
     </script>
 
 </body>

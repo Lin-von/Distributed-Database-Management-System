@@ -317,17 +317,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="pagination pull-right">
-                    <ul>
-                        <li><a href="#">&#8249;</a></li>
-                        <li><a class="active" href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&#8250;</a></li>
-                    </ul>
-                </div>
+
                 <!-- end users table -->
             </div>
         </div>

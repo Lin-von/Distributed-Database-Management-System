@@ -266,7 +266,7 @@
             newTd1.innerText= obj.accname;
             newTd2.innerText= obj.priceout;
             newTd3.innerText= lef;
-            newTd4.innerHTML= "<td><input type=\"text\" value=\""+cnt+"\" onchange='recalc(this)' style=\"width: 20px;height: 10px;\"></td>\n";
+            newTd4.innerHTML= "<td><input type=\"text\" value=\""+cnt+"\" onchange='recalc(this)' style=\"width: 20px;margin:0;height: 10px;\"></td>\n";
             newTd5.innerText= (parseInt(cnt)*parseInt(obj.priceout)).toString();
             newTd8.innerHTML =
                 '<div class="btn-glow" onclick="destroyCommit(this)" style="margin-left: 20px;"><i class="icon-remove-sign" ></i> 删除</div>';
@@ -344,6 +344,8 @@
             if(cli == "选择客户") {alert("请选择客户"); return; }
             var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
             var size = list.length;
+            if(size == 0) {alert("请选择配件"); return; }
+
             var tr;
             var id_array=new Array();
             var cnt_array=new Array();

@@ -65,7 +65,7 @@
 <!-- sidebar -->
 <?php require_once "sidebar.html";?>
 <script type="text/javascript">
-    document.getElementById('forset').className = "active";
+    document.getElementById('forcage').className = "active";
 
 </script>
 
@@ -79,19 +79,19 @@
         <div class="container-fluid">
             <div id="pad-wrapper" class="users-list">
                 <div style="margin-bottom: 30px;" class="row-fluid header">
-                    <h3 style="margin-bottom: 20px;">供货商信息</h3>
+                    <h3 style="margin-bottom: 20px;">库存变动信息</h3>
                     <div class="span10 pull-right">
-                        <input id="searchname" style="margin-bottom: 0; max-width: 80%;" type="text" class="span5 " placeholder="输入供货商名称" />
+                        <input id="infoid" style="margin-bottom: 0; max-width: 30%;" type="text" class="span5 " placeholder="输入流水单号" />
+                        <input id="accid" style="margin-bottom: 0; max-width: 30%;" type="text" class="span5 " placeholder="输入配件编号" />
+                        <input id="accname" style="margin-bottom: 0; max-width: 30%;" type="text" class="span5 " placeholder="输入配件名称" />
+
                         <div class="btn-glow" onclick="search()"><i class="icon-search" ></i></div>
                         <!-- custom popup filter -->
                         <!-- styles are located in css/elements.css -->
                         <!-- script that enables this dropdown is located in js/theme.js -->
 
 
-                        <a style="margin-top: 40px;" href="newsup.php" class="btn-flat success pull-right">
-                            <span>&#43;</span>
-                            添加供货商
-                        </a>
+
                     </div>
                 </div>
                 <?php
@@ -109,36 +109,63 @@
                 mysqli_set_charset ($conn,utf8);
 
 
-                $sql = "SELECT * FROM supplier";
+                $sql = "select inCage.`opedate`,inCage_detail.* from inCage,inCage_detail where inCage.`id`=inCage_detail.`recordid`
+union
+select ibCage.`opedate`,ibCage_detail.* from ibCage,ibCage_detail where ibCage.`id`=ibCage_detail.`recordid`
+union
+select obCage.`opedate`,obCage_detail.* from obCage,obCage_detail where obCage.`id`=obCage_detail.`recordid`
+union
+select outCage.`opedate`,outCage_detail.* from outCage,outCage_detail where outCage.`id`=outCage_detail.`recordid`
+union
+select statusChange.`opedate`,statusChange_detail.* from statusChange,statusChange_detail where statusChange.`id`=statusChange_detail.`recordid`
+union
+select trCage.`opedate`,trCage_detail.* from trCage,trCage_detail where trCage.`id`=trCage_detail.`trid` order by opedate desc";
 
                 $result = $conn->query($sql);
                 //$row = $result->fetch_assoc();
                 $conn->close();
                 ?>
+                <div class="ui-dropdown">
+                    <select style="min-height: 30px;margin-bottom: 10px;" id="cage" onchange="search()">
+                        <option disabled="disabled" selected/>按仓库查看
+                        <option value=""/>所有仓库
+                        <option />成都
+                        <option />上海
+                        <option />深圳
+
+                    </select>
+                </div>
                 <!-- Users table -->
                 <div class="row-fluid table">
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th class="span3 sortable">
-                                    名称
+                                <th class="span1 sortable">
+                                    日期
                                 </th>
 
-                                <th class="span2 sortable">
-                                    <span class="line"></span>联系人
+                                <th class="span1 sortable">
+                                    <span class="line"></span>流水单号
+                                </th>
+                                <th class="span1 sortable">
+                                    <span class="line"></span>配件编号
                                 </th>
                                 <th class="span2 sortable">
-                                    <span class="line"></span>电话
-                                </th>
-                                <th class="span3 sortable">
-                                    <span class="line"></span>地址
+                                    <span class="line"></span>配件名称
                                 </th>
                                 <th class="span2 sortable">
-                                    <span class="line"></span>备注
+                                    <span class="line"></span>说明
                                 </th>
-                                <th class="span3 sortable align-right">
-                                    <span class="line"></span>操作
+                                <th class="span1 sortable">
+                                    <span class="line"></span>操作量
                                 </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>总值
+                                </th>
+                                <th class="span1 sortable">
+                                    <span class="line"></span>仓库
+                                </th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -148,34 +175,40 @@
                             // 输出每行数据
                             while($row = $result->fetch_assoc()) { ?>
                                 <tr class="first">
+                                    <td><?php echo $row["opedate"];?></td>
+                                    <td><?php echo $row["recordid"];?>
+                                    </td>
+                                    <td><?php echo $row["accid"];?>
                                     <td>
-                                        <?php echo $row["supname"];?>
+
 
                                     </td>
                                     <td>
-                                        <?php echo $row["connector"];?>
+                                        <?php
+                                            switch (substr($row['recordid'],0,2)){
+                                                case "IN": {echo "采购进货"; break;}
+                                                case "IB": {echo "采购进货"; break;}
+                                                case "OT": {echo "配件销售"; break;}
+                                                case "Ob": {echo "客户退货"; break;}
+                                                case "SO": {echo "配件报旧"; break;}
+                                                case "SF": {echo "配件报修"; break;}
+                                                case "SD": {echo "配件报损"; break;}
+                                                case "SU": {echo "配件报溢"; break;}
+                                                case "CI": {echo "调拨入库"; break;}
+                                                case "CO": {echo "调拨出库"; break;}
+
+
+                                            }
+                                        ?>
+
+                                    </td>
+                                    <td><?php echo $row["cnt"];?></td>
+
+                                    <td>
 
                                     </td>
                                     <td>
-                                        <?php echo $row["tel"];?>
-
-                                    </td>
-                                    <td>
-                                        <?php echo $row["address"];?>
-
-                                    </td>
-                                    <td>
-                                        <?php echo $row["note"];?>
-
-                                    </td>
-                                    <td class="align-right">
-
-                                        <div class="btn-glow" onclick="jump(<?php echo $row["id"];?>)" style="margin-left: 20px;"><i class="icon-remove-sign" ></i> 修改</div>
-
-                                        <div class="btn-glow" onclick="destroyCommit(<?php echo $row["id"];?>)" style="margin-left: 20px;"><i class="icon-remove-sign" ></i> 删除</div>
-
-                                        <!--                                <a href="#">alejandra@canvas.com</a>
-                                        -->
+                                        <?php echo $row["province"];?>
                                     </td>
                                 </tr>
 
@@ -210,16 +243,22 @@
     <script src="js/theme.js"></script>
     <script type="text/javascript">
         function jump(id) {
-            window.location.href="updatesup.php?id="+id;
+            window.location.href="updatecli.php?id="+id;
+        }
+
+        function oopen(recordid) {
+            var width=Math.round((window.screen.width-500)/2);
+            var height=Math.round((window.screen.height-400)/2);
+            window.open('accountdetail.php?id='+recordid,'title','height=400,width=500,top='+height+',left='+width+',toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no');
         }
 
         function destroyCommit(id) {
-            if(confirm("确定要删除该供货商信息吗？"))
+            if(confirm("确定要删除该客户信息吗？"))
                 $.ajax({
                     type: 'POST',
-                    url: 'Controller.php?controller=Set&method=delSup',
+                    url: 'Controller.php?controller=Set&method=delCli',
                     data: "id="+id,
-                    success: window.location.href='supinfo.php'
+                    success: window.location.href='cliinfo.php'
                 });
             else return false;
         }
@@ -239,17 +278,56 @@
             return document.getElementById(id).value;
         }
         function search() {
-          //  var classname = document.getElementById('classname').value;
-            var name = document.getElementById('searchname').value;
-            //var course = document.getElementById('course').value;
+            var accname = document.getElementById('accname').value;
+            var infoid = document.getElementById('infoid').value;
+            var accid = document.getElementById('accid').value;
+            var cage = document.getElementById('cage').value;
             filter(function(tr) {
 
-                if(name && tr.cells[0].innerHTML.indexOf(name) < 0) {
+                if(accid && tr.cells[2].innerHTML.indexOf(accid) < 0) {
+                    return false;
+                }
+                if(accname && tr.cells[3].innerHTML.indexOf(accname) < 0) {
+                    return false;
+                }
+                if(infoid && tr.cells[1].innerHTML.indexOf(infoid) < 0) {
+                    return false;
+                }
+                if(cage && tr.cells[6].innerHTML.indexOf(cage) < 0) {
                     return false;
                 }
 
                 return true;
             });
+        }
+
+        var accname = new Array();
+        var accpriceo = new Array();
+        $.ajax({
+            type: 'POST',
+            url: 'Controller.php?controller=Set&method=showAccInfo',
+            async:false,
+            success: function (data) {
+                var str = data;
+                infoobj = JSON.parse(str);
+                for(var i=0;i<infoobj.length;i++){
+                    accname[infoobj[i].id] = infoobj[i].accname;
+                    accpriceo[infoobj[i].id] = infoobj[i].priceout;
+                }
+            }
+        });
+
+
+        var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
+        var size = list.length;
+        var tr;
+        for(var i = 0; i < size; i++) {
+            tr = list[i];
+            var id = tr.cells[2].innerText;
+            tr.cells[3].innerText = accname[id];
+            tr.cells[6].innerText = parseInt(accpriceo[id])*parseInt(tr.cells[5].innerText);
+
+            //    tr.cells[4].innerText = accpriceo[id];
         }
     </script>
 

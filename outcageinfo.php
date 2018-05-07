@@ -81,9 +81,9 @@
                 <div style="margin-bottom: 30px;" class="row-fluid header">
                     <h3 style="margin-bottom: 20px;">销售单据信息</h3>
                     <div class="span10 pull-right">
-                        <input id="searchname" style="margin-bottom: 0; max-width: 20%;" type="text" class="span5 " placeholder="输入流水单号" />
-                        <input id="cliname" style="margin-bottom: 0; max-width: 10%;" type="text" class="span5 " placeholder="输入客户名称" />
-                        <input id="oprname" style="margin-bottom: 0; max-width: 10%;" type="text" class="span5 " placeholder="输入经办人" />
+                        <input id="searchname" style="margin-bottom: 0; max-width: 30%;" type="text" class="span5 " placeholder="输入流水单号" />
+                        <input id="cliname" style="margin-bottom: 0; max-width: 30%;" type="text" class="span5 " placeholder="输入客户名称" />
+                        <input id="oprname" style="margin-bottom: 0; max-width: 30%;" type="text" class="span5 " placeholder="输入经办人" />
 
                         <div class="btn-glow" onclick="search()"><i class="icon-search" ></i></div>
                         <!-- custom popup filter -->
@@ -191,17 +191,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="pagination pull-right">
-                    <ul>
-                        <li><a href="#">&#8249;</a></li>
-                        <li><a class="active" href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&#8250;</a></li>
-                    </ul>
-                </div>
+
                 <!-- end users table -->
             </div>
         </div>

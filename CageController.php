@@ -115,5 +115,57 @@ class CageController{
         }
     }
 
+    public function statusChange($idstr,$cntstr,$operation,$operator){
+        switch ($operation){
+            case "配件报旧":{
+                $id = "SO".time();
+                $status = "周转备用旧件";
+            break;
+            }
+            case "配件报修":{
+                $id = "SF".time();
+                $status = "返修配件";
+                break;
+            }
+            case "配件报损":{
+                $id = "SD".time();
+                $status = "报损件";
+                break;
+            }
+            case "配件报溢":{
+                $id = "SU".time();
+                $status = "周转备用新件";
+                break;
+            }
+        }
+
+        $province = "成都";
+        $opedate = date("Y-m-d H:i:s",time());
+        statusChaRecord($id,$province,$operator,$opedate);
+
+        $ids = explode(',',$idstr);
+        $cnts = explode(',',$cntstr);
+        for($i = 0;$i < count($ids);$i++){
+            statusChaDetail($id,$ids[$i],$cnts[$i],$province);
+
+            StatusChange($ids[$i],$cnts[$i],$operation,$status,$province);
+        }
+
+
+    }
+
+
+    public function transCage($cageout,$operator,$cagein,$cnt){
+        $ctime = time();
+        $trid = "TR".$ctime;
+        $opedate = date("Y-m-d H:i:s",time());
+        trCageRecord($trid,$cageout,$cagein,$cnt,$operator,$opedate);
+        echo $trid;
+    }
+
+    public function showAccCnt($id){
+        echo showacccnt($id);
+    }
+
 
 }

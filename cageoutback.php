@@ -361,6 +361,8 @@
             if(cli == "选择客户") {alert("请选择客户"); return; }
             var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
             var size = list.length;
+            if(size == 0) {alert("请选择配件"); return; }
+
             var tr;
             var id_array=new Array();
             var cnt_array=new Array();

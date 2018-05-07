@@ -65,7 +65,7 @@
 <!-- sidebar -->
 <?php require_once "sidebar.html";?>
 <script type="text/javascript">
-    document.getElementById('forset').className = "active";
+    document.getElementById('forcage').className = "active";
 
 </script>
 
@@ -79,19 +79,20 @@
         <div class="container-fluid">
             <div id="pad-wrapper" class="users-list">
                 <div style="margin-bottom: 30px;" class="row-fluid header">
-                    <h3 style="margin-bottom: 20px;">供货商信息</h3>
+                    <h3 style="margin-bottom: 20px;">当前仓库信息</h3>
                     <div class="span10 pull-right">
-                        <input id="searchname" style="margin-bottom: 0; max-width: 80%;" type="text" class="span5 " placeholder="输入供货商名称" />
+                        <input id="accid" style="margin-bottom: 0; max-width: 25%;" type="text" class="span5 " placeholder="输入配件编号" />
+                        <input id="accname" style="margin-bottom: 0; max-width: 20%;" type="text" class="span5 " placeholder="输入配件名称" />
+                        <input id="classname" style="margin-bottom: 0; max-width: 20%;" type="text" class="span5 " placeholder="输入类别" />
+                        <input id="status" style="margin-bottom: 0; max-width: 20%;" type="text" class="span5 " placeholder="输入状态" />
+
                         <div class="btn-glow" onclick="search()"><i class="icon-search" ></i></div>
                         <!-- custom popup filter -->
                         <!-- styles are located in css/elements.css -->
                         <!-- script that enables this dropdown is located in js/theme.js -->
 
 
-                        <a style="margin-top: 40px;" href="newsup.php" class="btn-flat success pull-right">
-                            <span>&#43;</span>
-                            添加供货商
-                        </a>
+
                     </div>
                 </div>
                 <?php
@@ -109,34 +110,56 @@
                 mysqli_set_charset ($conn,utf8);
 
 
-                $sql = "SELECT * FROM supplier";
+                $sql = "SELECT * FROM cage";
 
                 $result = $conn->query($sql);
                 //$row = $result->fetch_assoc();
                 $conn->close();
                 ?>
                 <!-- Users table -->
+                <div class="ui-dropdown">
+                    <select style="min-height: 30px;margin-bottom: 10px;" id="cage" onchange="search()">
+                        <option disabled="disabled" selected/>按仓库查看
+                        <option value=""/>所有仓库
+                        <option />成都
+                        <option />上海
+                        <option />深圳
+
+                    </select>
+                </div>
                 <div class="row-fluid table">
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th class="span3 sortable">
-                                    名称
+                                <th class="span1 sortable">
+                                    配件编号
                                 </th>
 
-                                <th class="span2 sortable">
-                                    <span class="line"></span>联系人
+                                <th class="span1 sortable">
+                                    <span class="line"></span>名称
+                                </th>
+                                <th class="span1 sortable">
+                                    <span class="line"></span>类别
+                                </th>
+                                <th class="span1 sortable">
+                                    <span class="line"></span>库存量
+                                </th>
+                                <th class="span1 sortable">
+                                    <span class="line"></span>进价
+                                </th>
+                                <th class="span1 sortable">
+                                    <span class="line"></span>售价
+                                </th>
+                                <th class="span1 sortable">
+                                    <span class="line"></span>总值
                                 </th>
                                 <th class="span2 sortable">
-                                    <span class="line"></span>电话
+                                    <span class="line"></span>状态
                                 </th>
-                                <th class="span3 sortable">
-                                    <span class="line"></span>地址
+                                <th class="span1 sortable">
+                                    <span class="line"></span>仓库
                                 </th>
-                                <th class="span2 sortable">
-                                    <span class="line"></span>备注
-                                </th>
-                                <th class="span3 sortable align-right">
+                                <th class="span2 sortable ">
                                     <span class="line"></span>操作
                                 </th>
                             </tr>
@@ -148,34 +171,37 @@
                             // 输出每行数据
                             while($row = $result->fetch_assoc()) { ?>
                                 <tr class="first">
+                                    <td><?php echo $row["id"];?></td>
                                     <td>
-                                        <?php echo $row["supname"];?>
+
 
                                     </td>
                                     <td>
-                                        <?php echo $row["connector"];?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row["cnt"];?>
 
                                     </td>
                                     <td>
-                                        <?php echo $row["tel"];?>
+                                        <?php echo $row["operator"];?>
 
                                     </td>
                                     <td>
-                                        <?php echo $row["address"];?>
 
                                     </td>
+
                                     <td>
-                                        <?php echo $row["note"];?>
 
                                     </td>
-                                    <td class="align-right">
+                                    <td><?php echo $row["status"];?>
 
-                                        <div class="btn-glow" onclick="jump(<?php echo $row["id"];?>)" style="margin-left: 20px;"><i class="icon-remove-sign" ></i> 修改</div>
+                                    </td>
+                                    <td><?php echo $row["province"];?>
 
-                                        <div class="btn-glow" onclick="destroyCommit(<?php echo $row["id"];?>)" style="margin-left: 20px;"><i class="icon-remove-sign" ></i> 删除</div>
+                                    </td>
+                                    <td >
+                                        <div class="btn-glow" onclick="oopen('<?php echo $row["id"];?>')" style="margin-left: 0px;"><i class="icon-search" ></i> 查看详情</div>
 
-                                        <!--                                <a href="#">alejandra@canvas.com</a>
-                                        -->
                                     </td>
                                 </tr>
 
@@ -210,16 +236,22 @@
     <script src="js/theme.js"></script>
     <script type="text/javascript">
         function jump(id) {
-            window.location.href="updatesup.php?id="+id;
+            window.location.href="updatecli.php?id="+id;
+        }
+
+        function oopen(recordid) {
+            var width=Math.round((window.screen.width-600)/2);
+            var height=Math.round((window.screen.height-400)/2);
+            window.open('accdetail.php?id='+recordid,'title','height=400,width=600,top='+height+',left='+width+',toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no');
         }
 
         function destroyCommit(id) {
-            if(confirm("确定要删除该供货商信息吗？"))
+            if(confirm("确定要删除该客户信息吗？"))
                 $.ajax({
                     type: 'POST',
-                    url: 'Controller.php?controller=Set&method=delSup',
+                    url: 'Controller.php?controller=Set&method=delCli',
                     data: "id="+id,
-                    success: window.location.href='supinfo.php'
+                    success: window.location.href='cliinfo.php'
                 });
             else return false;
         }
@@ -239,17 +271,68 @@
             return document.getElementById(id).value;
         }
         function search() {
-          //  var classname = document.getElementById('classname').value;
-            var name = document.getElementById('searchname').value;
-            //var course = document.getElementById('course').value;
+            var accname = document.getElementById('accname').value;
+            var classname = document.getElementById('classname').value;
+            var accid = document.getElementById('accid').value;
+            var cage = document.getElementById('cage').value;
+            var status = document.getElementById('status').value;
             filter(function(tr) {
 
-                if(name && tr.cells[0].innerHTML.indexOf(name) < 0) {
+                if(accid && tr.cells[0].innerHTML.indexOf(accid) < 0) {
+                    return false;
+                }
+                if(accname && tr.cells[1].innerHTML.indexOf(accname) < 0) {
+                    return false;
+                }
+                if(classname && tr.cells[4].innerHTML.indexOf(classname) < 0) {
+                    return false;
+                }
+                if(status && tr.cells[4].innerHTML.indexOf(status) < 0) {
+                    return false;
+                }
+
+                if(cage && tr.cells[6].innerHTML.indexOf(cage) < 0) {
                     return false;
                 }
 
                 return true;
             });
+        }
+
+        var accname = new Array();
+        var accprice = new Array();
+        var accclass = new Array();
+        var accpriceo = new Array();
+        $.ajax({
+            type: 'POST',
+            url: 'Controller.php?controller=Set&method=showAccInfo',
+            async:false,
+            success: function (data) {
+                var str = data;
+                infoobj = JSON.parse(str);
+                for(var i=0;i<infoobj.length;i++){
+                    accname[infoobj[i].id] = infoobj[i].accname;
+                    accprice[infoobj[i].id] = infoobj[i].pricein;
+                    accclass[infoobj[i].id] = infoobj[i].classname;
+                    accpriceo[infoobj[i].id] = infoobj[i].priceout;
+                }
+            }
+        });
+
+
+        var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
+        var size = list.length;
+        var tr;
+        for(var i = 0; i < size; i++) {
+            tr = list[i];
+            var id = tr.cells[0].innerText;
+            tr.cells[1].innerText = accname[id];
+            tr.cells[2].innerText = accclass[id];
+            tr.cells[4].innerText = accprice[id];
+            tr.cells[5].innerText = accpriceo[id];
+            tr.cells[6].innerText = parseInt(accpriceo[id])*parseInt(tr.cells[3].innerText);
+
+            //    tr.cells[4].innerText = accpriceo[id];
         }
     </script>
 

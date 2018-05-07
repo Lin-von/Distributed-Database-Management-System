@@ -173,6 +173,33 @@
 
     }
 
+    function filter(fn) {
+        var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
+        var size = list.length;
+        var tr;
+        for(var i = 0; i < size; i++) {
+            tr = list[i];
+            tr.removeAttribute('class', 'hide')
+            if(!fn(tr)) {
+                tr.setAttribute('class', 'hide');
+            }
+        }
+    }
+
+    function search() {
+        //  var classname = document.getElementById('classname').value;
+        var name = document.getElementById('searchname').value;
+        //var course = document.getElementById('course').value;
+        filter(function(tr) {
+
+            if(name && tr.cells[1].innerHTML.indexOf(name) < 0) {
+                return false;
+            }
+
+            return true;
+        });
+    }
+
 </script>
 </body>
 </html>

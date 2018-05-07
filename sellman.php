@@ -76,7 +76,7 @@
 <script type="text/javascript">
     document.getElementById('forsell').className = "active";
 
-</script>>
+</script>
 <!-- end sidebar -->
 
 

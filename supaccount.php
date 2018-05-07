@@ -134,7 +134,7 @@ $result = $conn->query($sql);
 
                 查看供货
             </a>
-            <?php $sql = "SELECT * FROM inCage";
+            <?php $sql = "SELECT * FROM inCage UNION SELECT * FROM ibCage ORDER BY opedate	";
 
             $result = $conn->query($sql);
             //$row = $result->fetch_assoc();
@@ -150,6 +150,9 @@ $result = $conn->query($sql);
 
                         <th class="span2 sortable">
                             <span class="line"></span>供货商
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>说明
                         </th>
                         <th class="span2 sortable">
                             <span class="line"></span>金额
@@ -175,6 +178,10 @@ $result = $conn->query($sql);
 
                         </td>
                         <td><?php echo $row["supplier"];?></td>
+                        <td>
+                            <?php if(substr($row['id'],0,2)=="IN") echo "进货"; else echo "退货";?>
+
+                        </td>
                         <td>
                             <?php echo $row["cost"];?>
 
