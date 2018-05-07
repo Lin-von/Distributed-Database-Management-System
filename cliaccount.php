@@ -30,42 +30,13 @@
 <body>
 
 <!-- navbar -->
-<div class="navbar navbar-inverse">
-    <div class="navbar-inner">
-        <button type="button" class="btn btn-navbar visible-phone" id="menu-toggler">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <ul class="nav pull-right" style="float: right">
-
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle " data-toggle="dropdown">
-                    欢迎您，<?php  echo $_SESSION['user']; ?>
-
-                </a>
-
-            </li>
-            <li class="settings ">
-                <a href="setting.php" role="button">
-                    <i class="icon-cog"></i>
-                </a>
-            </li>
-            <li class="settings ">
-                <a href="signout.php" role="button">
-                    <i class="icon-share-alt"></i>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-
+<?php require_once "navbar.html";?>
 <!-- end navbar -->
 
 <!-- sidebar -->
 <?php require_once "sidebar.html";?>
 <script type="text/javascript">
-    document.getElementById('forsell').className = "active";
+    document.getElementById('forsta').className = "active";
 
 </script>
 <?php
@@ -134,7 +105,7 @@ $result = $conn->query($sql);
 
                 查看要货
             </a>
-            <?php $sql = "SELECT * FROM outCage UNION SELECT * FROM obCage ORDER BY opedate";
+            <?php $sql = "SELECT * FROM outCage UNION SELECT * FROM obCage ORDER BY opedate DESC ";
 
             $result = $conn->query($sql);
             //$row = $result->fetch_assoc();
@@ -172,7 +143,7 @@ $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                     // 输出每行数据
                     while($row = $result->fetch_assoc()) { ?>
-                    <tr class="first">
+                    <tr  >
                         <td>
                             <?php echo $row["id"];?>
 
@@ -199,7 +170,7 @@ $result = $conn->query($sql);
 
                     <?php     }
                     } else { ?>
-                        <tr class="first"><td>没有记录</td></tr>
+                        <tr  ><td>没有记录</td></tr>
                         <?php
 
                     }
@@ -248,7 +219,7 @@ $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         // 输出每行数据
                         while($row = $result->fetch_assoc()) { ?>
-                            <tr class="first">
+                            <tr  >
                                 <td><?php echo $row["accid"];?></td>
                                 <td style="display: none"><?php echo $row["client"];?></td>
 
@@ -273,7 +244,7 @@ $result = $conn->query($sql);
 
                         <?php     }
                     } else { ?>
-                        <tr class="first"><td>没有记录</td></tr>
+                        <tr  ><td>没有记录</td></tr>
                         <?php
 
                     }

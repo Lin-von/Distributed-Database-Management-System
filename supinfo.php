@@ -30,36 +30,7 @@
 <body>
 
 <!-- navbar -->
-<div class="navbar navbar-inverse">
-    <div class="navbar-inner">
-        <button type="button" class="btn btn-navbar visible-phone" id="menu-toggler">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <ul class="nav pull-right" style="float: right">
-
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle " data-toggle="dropdown">
-                    欢迎您，<?php  echo $_SESSION['user']; ?>
-
-                </a>
-
-            </li>
-            <li class="settings ">
-                <a href="setting.php" role="button">
-                    <i class="icon-cog"></i>
-                </a>
-            </li>
-            <li class="settings ">
-                <a href="signout.php" role="button">
-                    <i class="icon-share-alt"></i>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-
+<?php require_once "navbar.html";?>
 <!-- end navbar -->
 
 <!-- sidebar -->
@@ -147,7 +118,7 @@
                         if ($result->num_rows > 0) {
                             // 输出每行数据
                             while($row = $result->fetch_assoc()) { ?>
-                                <tr class="first">
+                                <tr  >
                                     <td>
                                         <?php echo $row["supname"];?>
 
@@ -185,7 +156,7 @@
 
                             <?php     }
                         } else { ?>
-                                <tr class="first"><td>没有记录</td></tr>
+                                <tr  ><td>没有记录</td></tr>
                         <?php
 
                         }

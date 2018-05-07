@@ -36,7 +36,7 @@
 <!-- sidebar -->
 <?php require_once "sidebar.html";?>
 <script type="text/javascript">
-    document.getElementById('forbuy').className = "active";
+    document.getElementById('forsta').className = "active";
 
 </script>
 <?php
@@ -68,21 +68,15 @@ $result = $conn->query($sql);
     <div class="container-fluid">
         <div id="pad-wrapper" class="users-list">
             <div style="margin-bottom: 30px;" class="row-fluid header">
-                <h3 style="margin-bottom: 20px;">供货商往来账务</h3>
+                <h3 style="margin-bottom: 20px;">配件销售排行</h3>
                 <div class="span10 pull-right">
                     <div class="ui-dropdown">
-                        <select style="min-height: 30px;margin-top: 0px; width: 150px;" id="supname" onchange="supchange()" >
-                            <option disabled="disabled"  selected/>选择供货商
-                            <?php
-                            if ($result->num_rows > 0) {
-                                // 输出每行数据
-                                while($row = $result->fetch_assoc())  {
-                                    ?>
-                                    <option /> <?php echo $row["supname"];?>
-                                <?php     }
-                            }
-                            ?>
-
+                        <select style="min-height: 30px;margin-top: 0px; width: 150px;" id="cage" onchange="cagechange()" >
+                            <option disabled="disabled"  selected/>选择仓库
+                            <option />所有仓库
+                            <option />成都
+                            <option />上海
+                            <option />深圳
 
                         </select>
 
@@ -98,41 +92,38 @@ $result = $conn->query($sql);
             </div>
 
             <!-- Users table -->
-            <a  id="addbutton" onclick="show(1)" class="btn-flat success pull-left">
 
-                查看单据
-            </a><a style="margin: 0px 0px 20px 10px;"  id="addbutton" onclick="show(2)" class="btn-flat success pull-left">
-
-                查看供货
-            </a>
-            <?php $sql = "SELECT * FROM inCage UNION SELECT * FROM ibCage ORDER BY opedate DESC	";
+            <?php $sql = "SELECT accid,sum(cnt) FROM outCage_detail GROUP BY accid ORDER BY sum(cnt) DESC	";
 
             $result = $conn->query($sql);
             //$row = $result->fetch_assoc();
 
             ?>
-            <div class="row-fluid table" id="account" style="display: none">
+            <div class="row-fluid table" id="account" >
                 <table class="table table-hover">
                     <thead>
                     <tr>
                         <th class="span2 sortable">
-                            流水单号
+                            配件编号
                         </th>
 
                         <th class="span2 sortable">
-                            <span class="line"></span>供货商
+                            <span class="line"></span>配件名称
                         </th>
                         <th class="span2 sortable">
-                            <span class="line"></span>说明
+                            <span class="line"></span>进价
                         </th>
                         <th class="span2 sortable">
-                            <span class="line"></span>金额
+                            <span class="line"></span>售价
                         </th>
                         <th class="span2 sortable">
-                            <span class="line"></span>时间
+                            <span class="line"></span>销售量
                         </th>
                         <th class="span2 sortable">
-                            <span class="line"></span>经办人
+                            <span class="line"></span>销售额
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>总利润
                         </th>
 
                     </tr>
@@ -144,27 +135,29 @@ $result = $conn->query($sql);
                     // 输出每行数据
                     while($row = $result->fetch_assoc()) { ?>
                     <tr  >
+                        <td><?php echo $row["accid"];?></td>
+                        <td></td>
                         <td>
-                            <?php echo $row["id"];?>
 
-                        </td>
-                        <td><?php echo $row["supplier"];?></td>
-                        <td>
-                            <?php if(substr($row['id'],0,2)=="IN") echo "进货"; else echo "退货";?>
 
                         </td>
                         <td>
-                            <?php echo $row["cost"];?>
+
 
                         </td>
                         <td>
-                            <?php echo $row["opedate"];?>
+                            <?php echo $row["sum(cnt)"];?>
 
                         </td>
                         <td>
-                            <?php echo $row["operator"];?>
+
 
                         </td>
+                        <td>
+
+
+                        </td>
+
 
                     </tr>
 
@@ -181,7 +174,7 @@ $result = $conn->query($sql);
 
             </div>
             <?php
-            $sql = "select accid,sum(cnt),supplier from inCage_detail  group by accid,supplier";
+            $sql = "SELECT accid,sum(cnt),province FROM outCage_detail GROUP BY accid,province ORDER BY sum(cnt) DESC";
 
             $result = $conn->query($sql);
             //$row = $result->fetch_assoc();
@@ -199,16 +192,19 @@ $result = $conn->query($sql);
                             <span class="line"></span>配件名称
                         </th>
                         <th class="span2 sortable">
-                            <span class="line"></span>配件类别
-                        </th>
-                        <th class="span2 sortable">
                             <span class="line"></span>进价
                         </th>
                         <th class="span2 sortable">
                             <span class="line"></span>售价
                         </th>
                         <th class="span2 sortable">
-                            <span class="line"></span>数量
+                            <span class="line"></span>销售量
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>销售额
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>总利润
                         </th>
 
                     </tr>
@@ -221,25 +217,28 @@ $result = $conn->query($sql);
                         while($row = $result->fetch_assoc()) { ?>
                             <tr  >
                                 <td><?php echo $row["accid"];?></td>
-                                <td style="display: none"><?php echo $row["supplier"];?></td>
-
+                                <td></td>
                                 <td>
 
-                                </td>
-                                <td>
 
                                 </td>
                                 <td>
 
-                                </td>
-                                <td>
 
                                 </td>
                                 <td>
                                     <?php echo $row["sum(cnt)"];?>
 
                                 </td>
+                                <td>
 
+
+                                </td>
+                                <td>
+
+
+                                </td>
+                                <td style="display:none;"><?php echo $row["province"];?></td>
                             </tr>
 
                         <?php     }
@@ -272,10 +271,10 @@ $result = $conn->query($sql);
 <script src="js/bootstrap.min.js"></script>
 <script src="js/theme.js"></script>
 <script type="text/javascript">
-    accname = new Array();
-    accprice = new Array();
-    accclass = new Array();
-    accpriceo = new Array();
+    var accname = new Array();
+    var accprice = new Array();
+    var accclass = new Array();
+    var accpriceo = new Array();
     $.ajax({
         type: 'POST',
         url: 'Controller.php?controller=Set&method=showAccInfo',
@@ -295,6 +294,23 @@ $result = $conn->query($sql);
         }
     });
 
+    var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
+    var size = list.length;
+    var tr;
+    for(var i = 0; i < size; i++) {
+        tr = list[i];
+        var id = tr.cells[0].innerText;
+        // console.log(accname);
+        tr.cells[1].innerText = accname[id];
+        tr.cells[2].innerText = accprice[id];
+        tr.cells[3].innerText = accpriceo[id];
+        tr.cells[5].innerText = parseInt(accpriceo[id])*parseInt(tr.cells[4].innerText);
+        tr.cells[6].innerText = (parseInt(accpriceo[id])-parseInt(accprice[id]))*parseInt(tr.cells[4].innerText);
+
+    }
+
+
+
     var list = document.getElementsByTagName('table')[1].getElementsByTagName('tbody')[0].rows;
     var size = list.length;
     var tr;
@@ -302,10 +318,12 @@ $result = $conn->query($sql);
         tr = list[i];
         var id = tr.cells[0].innerText;
        // console.log(accname);
-        tr.cells[2].innerText = accname[id];
-        tr.cells[3].innerText = accclass[id];
-        tr.cells[4].innerText = accprice[id];
-        tr.cells[5].innerText = accpriceo[id];
+        tr.cells[1].innerText = accname[id];
+        tr.cells[2].innerText = accprice[id];
+        tr.cells[3].innerText = accpriceo[id];
+        tr.cells[5].innerText = parseInt(accpriceo[id])*parseInt(tr.cells[4].innerText);
+        tr.cells[6].innerText = (parseInt(accpriceo[id])-parseInt(accprice[id]))*parseInt(tr.cells[4].innerText);
+
     }
 
 
@@ -332,16 +350,7 @@ $result = $conn->query($sql);
         else return false;
     }
     function filter(fn) {
-        var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
-        var size = list.length;
-        var tr;
-        for(var i = 0; i < size; i++) {
-            tr = list[i];
-            tr.removeAttribute('class', 'hide')
-            if(!fn(tr)) {
-                tr.setAttribute('class', 'hide');
-            }
-        }
+
          list = document.getElementsByTagName('table')[1].getElementsByTagName('tbody')[0].rows;
          size = list.length;
 
@@ -356,14 +365,13 @@ $result = $conn->query($sql);
     function value(id) {
         return document.getElementById(id).value;
     }
-    function search() {
-        var sup = document.getElementById('supname').value;
+    function search(prv) {
 
         //var course = document.getElementById('course').value;
         filter(function(tr) {
 
 
-            if(sup && tr.cells[1].innerHTML != sup) {
+            if(prv && tr.cells[7].innerHTML != prv) {
                 return false;
             }
 
@@ -373,10 +381,7 @@ $result = $conn->query($sql);
     }
     flag = 0;
     function show(num) {
-        if(document.getElementById('supname').value == "选择供货商") {
-            alert("请选择供货商！");
-            return;
-        }
+
 
         if(num===1) {
             document.getElementById('account').style.display = "";
@@ -390,13 +395,60 @@ $result = $conn->query($sql);
         }
 
     }
-    function supchange() {
-
-        search();
-
-        if(flag==0) show(1);
+    function cagechange() {
+        var prv = document.getElementById('cage').value;
+        if(prv == "所有仓库") show(1);
+        else {
+            search(prv);
+            show(2);
+        }
 
     }
+
+    function makeSortable(table) {
+        var headers=table.getElementsByTagName("th");
+        for(var i=0;i<headers.length;i++){
+            (function(n){
+                var flag=false;
+                headers[n].onclick=function(){
+                    // sortrows(table,n);
+                    var tbody=table.tBodies[0];//第一个<tbody>
+                    var rows=tbody.getElementsByTagName("tr");//tbody中的所有行
+                    rows=Array.prototype.slice.call(rows,0);//真实数组中的快照
+
+                    //基于第n个<td>元素的值对行排序
+                    rows.sort(function(row1,row2){
+                        var cell1=row1.getElementsByTagName("td")[n];//获得第n个单元格
+                        var cell2=row2.getElementsByTagName("td")[n];
+                        var val1=cell1.textContent||cell1.innerText;//获得文本内容
+                        var val2=cell2.textContent||cell2.innerText;
+
+                        if(val1<val2){
+                            return -1;
+                        }else if(val1>val2){
+                            return 1;
+                        }else{
+                            return 0;
+                        }
+                    });
+                    if(flag){
+                        rows.reverse();
+                    }
+                    //在tbody中按它们的顺序把行添加到最后
+                    //这将自动把它们从当前位置移走，故没必要预先删除它们
+                    //如果<tbody>还包含了除了<tr>的任何其他元素，这些节点将会悬浮到顶部位置
+                    for(var i=0;i<rows.length;i++){
+                        tbody.appendChild(rows[i]);
+                    }
+
+                    flag=!flag;
+                }
+            }(i));
+        }
+    }
+
+    makeSortable(document.getElementsByTagName('table')[0]);
+    makeSortable(document.getElementsByTagName('table')[1]);
 </script>
 
 

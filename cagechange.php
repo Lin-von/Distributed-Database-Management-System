@@ -30,36 +30,7 @@
 <body>
 
 <!-- navbar -->
-<div class="navbar navbar-inverse">
-    <div class="navbar-inner">
-        <button type="button" class="btn btn-navbar visible-phone" id="menu-toggler">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <ul class="nav pull-right" style="float: right">
-
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle " data-toggle="dropdown">
-                    欢迎您，<?php  echo $_SESSION['user']; ?>
-
-                </a>
-
-            </li>
-            <li class="settings ">
-                <a href="setting.php" role="button">
-                    <i class="icon-cog"></i>
-                </a>
-            </li>
-            <li class="settings ">
-                <a href="signout.php" role="button">
-                    <i class="icon-share-alt"></i>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-
+<?php require_once "navbar.html";?>
 <!-- end navbar -->
 
 <!-- sidebar -->
@@ -125,9 +96,11 @@ select trCage.`opedate`,trCage_detail.* from trCage,trCage_detail where trCage.`
                 //$row = $result->fetch_assoc();
                 $conn->close();
                 ?>
+                <div style="margin-bottom: 10px;">  查询日期： <input id="start_time" type="date" style="margin:0 5px 0 0 ;height: 10px;">至<input id="end_time" type="date" style="margin:0 0 0 5px;height: 10px;">
+                </div>
                 <div class="ui-dropdown">
                     <select style="min-height: 30px;margin-bottom: 10px;" id="cage" onchange="search()">
-                        <option disabled="disabled" selected/>按仓库查看
+                        <option disabled="disabled"  value="" selected/>按仓库查看
                         <option value=""/>所有仓库
                         <option />成都
                         <option />上海
@@ -174,7 +147,7 @@ select trCage.`opedate`,trCage_detail.* from trCage,trCage_detail where trCage.`
                         if ($result->num_rows > 0) {
                             // 输出每行数据
                             while($row = $result->fetch_assoc()) { ?>
-                                <tr class="first">
+                                <tr  >
                                     <td><?php echo $row["opedate"];?></td>
                                     <td><?php echo $row["recordid"];?>
                                     </td>
@@ -187,7 +160,7 @@ select trCage.`opedate`,trCage_detail.* from trCage,trCage_detail where trCage.`
                                         <?php
                                             switch (substr($row['recordid'],0,2)){
                                                 case "IN": {echo "采购进货"; break;}
-                                                case "IB": {echo "采购进货"; break;}
+    case "IB": {echo "采购退货"; break;}
                                                 case "OT": {echo "配件销售"; break;}
                                                 case "Ob": {echo "客户退货"; break;}
                                                 case "SO": {echo "配件报旧"; break;}
@@ -218,7 +191,7 @@ select trCage.`opedate`,trCage_detail.* from trCage,trCage_detail where trCage.`
 
                             <?php     }
                         } else { ?>
-                                <tr class="first"><td>没有记录</td></tr>
+                                <tr  ><td>没有记录</td></tr>
                         <?php
 
                         }
@@ -277,12 +250,25 @@ select trCage.`opedate`,trCage_detail.* from trCage,trCage_detail where trCage.`
         function value(id) {
             return document.getElementById(id).value;
         }
+        function CompareDate(d1,d2)
+        {
+            return ((new Date(d1.replace(/-/g,"\/"))) > (new Date(d2.replace(/-/g,"\/"))));
+        }
         function search() {
             var accname = document.getElementById('accname').value;
             var infoid = document.getElementById('infoid').value;
             var accid = document.getElementById('accid').value;
             var cage = document.getElementById('cage').value;
+            var stime = document.getElementById('start_time').value;
+            var etime = document.getElementById('end_time').value;
+            if(CompareDate(stime,etime)) {alert("起始日期不能大于终止日期！"); return;}
             filter(function(tr) {
+                if(stime && CompareDate(stime,tr.cells[0].innerText)) {
+                    return false;
+                }
+                if(etime && CompareDate(tr.cells[0].innerText,etime)) {
+                    return false;
+                }
 
                 if(accid && tr.cells[2].innerHTML.indexOf(accid) < 0) {
                     return false;

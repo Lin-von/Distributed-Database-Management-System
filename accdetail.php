@@ -124,7 +124,7 @@ select trCage.`opedate`,trCage.`cageout`,trCage_detail.`recordid`,trCage_detail.
                     if ($result->num_rows > 0) {
                     // 输出每行数据
                     while($row = $result->fetch_assoc()) { ?>
-                    <tr class="first">
+                    <tr  >
                         <td><?php echo $row["opedate"];?></td>
                         <td><?php echo $row["recordid"];?>
                         </td>
@@ -133,7 +133,7 @@ select trCage.`opedate`,trCage.`cageout`,trCage_detail.`recordid`,trCage_detail.
                             <?php
                             switch (substr($row['recordid'],0,2)){
                                 case "IN": {echo "采购进货"; break;}
-                                case "IB": {echo "采购进货"; break;}
+                                case "IB": {echo "采购退货"; break;}
                                 case "OT": {echo "配件销售"; break;}
                                 case "Ob": {echo "客户退货"; break;}
                                 case "SO": {echo "配件报旧"; break;}
@@ -170,7 +170,7 @@ select trCage.`opedate`,trCage.`cageout`,trCage_detail.`recordid`,trCage_detail.
 
         <?php     }
         } else { ?>
-            <tr class="first"><td>没有记录</td></tr>
+            <tr  ><td>没有记录</td></tr>
             <?php
 
         }

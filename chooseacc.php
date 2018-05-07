@@ -127,7 +127,7 @@
 
                         <?php     }
                     } else { ?>
-                        <tr class="first"><td>没有记录</td></tr>
+                        <tr  ><td>没有记录</td></tr>
                         <?php
 
                     }

@@ -36,7 +36,7 @@
 <!-- sidebar -->
 <?php require_once "sidebar.html";?>
 <script type="text/javascript">
-    document.getElementById('forbuy').className = "active";
+    document.getElementById('forsta').className = "active";
 
 </script>
 <?php
@@ -105,7 +105,7 @@ $result = $conn->query($sql);
 
                 查看供货
             </a>
-            <?php $sql = "SELECT * FROM inCage UNION SELECT * FROM ibCage ORDER BY opedate DESC	";
+            <?php $sql = "SELECT * FROM inCage UNION SELECT * FROM ibCage ORDER BY opedate	";
 
             $result = $conn->query($sql);
             //$row = $result->fetch_assoc();

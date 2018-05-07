@@ -30,36 +30,7 @@
 <body>
 
 <!-- navbar -->
-<div class="navbar navbar-inverse">
-    <div class="navbar-inner">
-        <button type="button" class="btn btn-navbar visible-phone" id="menu-toggler">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <ul class="nav pull-right" style="float: right">
-
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle " data-toggle="dropdown">
-                    欢迎您，<?php  echo $_SESSION['user']; ?>
-
-                </a>
-
-            </li>
-            <li class="settings ">
-                <a href="setting.php" role="button">
-                    <i class="icon-cog"></i>
-                </a>
-            </li>
-            <li class="settings ">
-                <a href="signout.php" role="button">
-                    <i class="icon-share-alt"></i>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-
+<?php require_once "navbar.html";?>
 <!-- end navbar -->
 
 <!-- sidebar -->
@@ -94,6 +65,8 @@
 
                     </div>
                 </div>
+                <div style="margin-bottom: 10px;">  查询日期： <input id="start_time" type="date" style="margin:0 5px 0 0 ;height: 10px;">至<input id="end_time" type="date" style="margin:0 0 0 5px;height: 10px;">
+                </div>
                 <?php
                 header("Content-Type: text/html;charset=utf-8");
                 $servername = "localhost:3306";
@@ -109,7 +82,7 @@
                 mysqli_set_charset ($conn,utf8);
 
 
-                $sql = "SELECT * FROM outCage";
+                $sql = "SELECT * FROM outCage ORDER BY opedate DESC";
 
                 $result = $conn->query($sql);
                 //$row = $result->fetch_assoc();
@@ -147,7 +120,7 @@
                         if ($result->num_rows > 0) {
                             // 输出每行数据
                             while($row = $result->fetch_assoc()) { ?>
-                                <tr class="first">
+                                <tr  >
                                     <td>
                                         <?php echo $row["id"];?>
 
@@ -180,7 +153,7 @@
 
                             <?php     }
                         } else { ?>
-                                <tr class="first"><td>没有记录</td></tr>
+                                <tr  ><td>没有记录</td></tr>
                         <?php
 
                         }
@@ -239,13 +212,24 @@
         function value(id) {
             return document.getElementById(id).value;
         }
+        function CompareDate(d1,d2)
+        {
+            return ((new Date(d1.replace(/-/g,"\/"))) > (new Date(d2.replace(/-/g,"\/"))));
+        }
         function search() {
             var cli = document.getElementById('cliname').value;
             var opr = document.getElementById('oprname').value;
             var name = document.getElementById('searchname').value;
-            //var course = document.getElementById('course').value;
+            var stime = document.getElementById('start_time').value;
+            var etime = document.getElementById('end_time').value;
+            if(CompareDate(stime,etime)) {alert("起始日期不能大于终止日期！"); return;}
             filter(function(tr) {
-
+                if(stime && CompareDate(stime,tr.cells[3].innerText)) {
+                    return false;
+                }
+                if(etime && CompareDate(tr.cells[3].innerText,etime)) {
+                    return false;
+                }
                 if(name && tr.cells[0].innerHTML.indexOf(name) < 0) {
                     return false;
                 }

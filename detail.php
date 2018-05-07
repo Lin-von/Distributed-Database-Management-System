@@ -212,7 +212,7 @@ $conn->close();
                                     if ($result->num_rows > 0) {
                                     // 输出每行数据
                                     while($row = $result->fetch_assoc()) { ?>
-                                    <tr class="first">
+                                    <tr  >
                                         <td>
                                             <?php
                                                 switch ($row['operation']){
@@ -254,7 +254,7 @@ $conn->close();
 
                         <?php     }
                         } else { ?>
-                            <tr class="first"><td>没有记录</td></tr>
+                            <tr  ><td>没有记录</td></tr>
                             <?php
 
                         }

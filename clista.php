@@ -36,7 +36,7 @@
 <!-- sidebar -->
 <?php require_once "sidebar.html";?>
 <script type="text/javascript">
-    document.getElementById('forbuy').className = "active";
+    document.getElementById('forsta').className = "active";
 
 </script>
 <?php
@@ -53,7 +53,7 @@ if ($conn->connect_error) {
 }
 mysqli_set_charset ($conn,utf8);
 
-$sql = "SELECT supname FROM supplier";
+$sql = "SELECT cliname FROM client";
 $result = $conn->query($sql);
 //$row = $result->fetch_assoc();
 
@@ -68,17 +68,17 @@ $result = $conn->query($sql);
     <div class="container-fluid">
         <div id="pad-wrapper" class="users-list">
             <div style="margin-bottom: 30px;" class="row-fluid header">
-                <h3 style="margin-bottom: 20px;">供货商往来账务</h3>
+                <h3 style="margin-bottom: 20px;">客户往来账务</h3>
                 <div class="span10 pull-right">
                     <div class="ui-dropdown">
-                        <select style="min-height: 30px;margin-top: 0px; width: 150px;" id="supname" onchange="supchange()" >
-                            <option disabled="disabled"  selected/>选择供货商
+                        <select style="min-height: 30px;margin-top: 0px; width: 150px;" id="cliname" onchange="supchange()" >
+                            <option disabled="disabled"  selected/>选择客户
                             <?php
                             if ($result->num_rows > 0) {
                                 // 输出每行数据
                                 while($row = $result->fetch_assoc())  {
                                     ?>
-                                    <option /> <?php echo $row["supname"];?>
+                                    <option /> <?php echo $row["cliname"];?>
                                 <?php     }
                             }
                             ?>
@@ -103,9 +103,9 @@ $result = $conn->query($sql);
                 查看单据
             </a><a style="margin: 0px 0px 20px 10px;"  id="addbutton" onclick="show(2)" class="btn-flat success pull-left">
 
-                查看供货
+                查看要货
             </a>
-            <?php $sql = "SELECT * FROM inCage UNION SELECT * FROM ibCage ORDER BY opedate DESC	";
+            <?php $sql = "SELECT * FROM outCage UNION SELECT * FROM obCage ORDER BY opedate";
 
             $result = $conn->query($sql);
             //$row = $result->fetch_assoc();
@@ -120,7 +120,7 @@ $result = $conn->query($sql);
                         </th>
 
                         <th class="span2 sortable">
-                            <span class="line"></span>供货商
+                            <span class="line"></span>客户
                         </th>
                         <th class="span2 sortable">
                             <span class="line"></span>说明
@@ -148,9 +148,9 @@ $result = $conn->query($sql);
                             <?php echo $row["id"];?>
 
                         </td>
-                        <td><?php echo $row["supplier"];?></td>
+                        <td><?php echo $row["client"];?></td>
                         <td>
-                            <?php if(substr($row['id'],0,2)=="IN") echo "进货"; else echo "退货";?>
+                            <?php if(substr($row['id'],0,2)=="OT") echo "出售"; else echo "退货";?>
 
                         </td>
                         <td>
@@ -181,7 +181,7 @@ $result = $conn->query($sql);
 
             </div>
             <?php
-            $sql = "select accid,sum(cnt),supplier from inCage_detail  group by accid,supplier";
+            $sql = "select accid,sum(cnt),client from outCage_detail  group by accid,client";
 
             $result = $conn->query($sql);
             //$row = $result->fetch_assoc();
@@ -221,7 +221,7 @@ $result = $conn->query($sql);
                         while($row = $result->fetch_assoc()) { ?>
                             <tr  >
                                 <td><?php echo $row["accid"];?></td>
-                                <td style="display: none"><?php echo $row["supplier"];?></td>
+                                <td style="display: none"><?php echo $row["client"];?></td>
 
                                 <td>
 
@@ -357,7 +357,7 @@ $result = $conn->query($sql);
         return document.getElementById(id).value;
     }
     function search() {
-        var sup = document.getElementById('supname').value;
+        var sup = document.getElementById('cliname').value;
 
         //var course = document.getElementById('course').value;
         filter(function(tr) {
@@ -373,8 +373,8 @@ $result = $conn->query($sql);
     }
     flag = 0;
     function show(num) {
-        if(document.getElementById('supname').value == "选择供货商") {
-            alert("请选择供货商！");
+        if(document.getElementById('cliname').value == "选择客户") {
+            alert("请选择客户！");
             return;
         }
 

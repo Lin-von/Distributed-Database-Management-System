@@ -36,7 +36,7 @@
 <!-- sidebar -->
 <?php require_once "sidebar.html";?>
 <script type="text/javascript">
-    document.getElementById('forbuy').className = "active";
+    document.getElementById('forsta').className = "active";
 
 </script>
 
@@ -46,51 +46,62 @@
         
         <!-- settings changer -->
 
-        
+        <?php
+        header("Content-Type: text/html;charset=utf-8");
+        $servername = "localhost:3306";
+        $username = "root";
+        $password = "123";
+        $dbname = "db";
+        // 创建连接
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // 检测连接
+        if ($conn->connect_error) {
+            die("连接失败: " . $conn->connect_error);
+        }
+        mysqli_set_charset ($conn,utf8);
+
+        $sql = "SELECT * FROM users  ";
+
+        $info = $conn->query($sql);
+
+        $sql = "SELECT * FROM outCage UNION SELECT * FROM obCage ORDER BY opedate DESC ";
+
+        $result = $conn->query($sql);
+        //$row = $result->fetch_assoc();
+        $conn->close();
+        ?>
         <div class="container-fluid">
             <div id="pad-wrapper" class="users-list">
                 <div style="margin-bottom: 30px;" class="row-fluid header">
-                    <h3 style="margin-bottom: 20px;">采购单据信息</h3>
-
+                    <h3 style="margin-bottom: 20px;">业务员销售统计</h3>
                     <div class="span10 pull-right">
+                        <div class="ui-dropdown">
+                            <select style="min-height: 30px;margin-top: 40px; width: 150px;" id="opr" onchange="search()" >
+                                <option disabled="disabled" value="" selected/>请选择经办人
+                                <?php
+                                if ($info->num_rows > 0) {
+                                    // 输出每行数据
+                                    while($row = $info->fetch_assoc())  {
+                                        ?>
+                                        <option /> <?php echo $row["realname"];?>
+                                    <?php     }
+                                }
+                                ?>
 
-                        <input id="searchname" style="margin-bottom: 0; max-width: 30%;" type="text" class="span5 " placeholder="输入流水单号" />
-                        <input id="supname" style="margin-bottom: 0; max-width: 30%;" type="text" class="span5 " placeholder="输入供货商名称" />
-                        <input id="oprname" style="margin-bottom: 0; max-width: 30%;" type="text" class="span5 " placeholder="输入经办人" />
 
-                        <div class="btn-glow" onclick="search()"><i class="icon-search" ></i></div>
-                        <!-- custom popup filter -->
+                            </select>
+
+                        </div><!-- custom popup filter -->
                         <!-- styles are located in css/elements.css -->
                         <!-- script that enables this dropdown is located in js/theme.js -->
 
 
 
                     </div>
-
                 </div>
                 <div style="margin-bottom: 10px;">  查询日期： <input id="start_time" type="date" style="margin:0 5px 0 0 ;height: 10px;">至<input id="end_time" type="date" style="margin:0 0 0 5px;height: 10px;">
+                    <i class="icon-search" onclick="search()"></i>
                 </div>
-                <?php
-                header("Content-Type: text/html;charset=utf-8");
-                $servername = "localhost:3306";
-                $username = "root";
-                $password = "123";
-                $dbname = "db";
-                // 创建连接
-                $conn = new mysqli($servername, $username, $password, $dbname);
-                // 检测连接
-                if ($conn->connect_error) {
-                    die("连接失败: " . $conn->connect_error);
-                }
-                mysqli_set_charset ($conn,utf8);
-
-
-                $sql = "SELECT * FROM inCage ORDER BY opedate DESC ";
-
-                $result = $conn->query($sql);
-                //$row = $result->fetch_assoc();
-                $conn->close();
-                ?>
                 <!-- Users table -->
                 <div class="row-fluid table">
                     <table class="table table-hover">
@@ -99,19 +110,25 @@
                                 <th class="span2 sortable">
                                     流水单号
                                 </th>
-
-                                <th class="span2 sortable">
-                                    <span class="line"></span>供货商
-                                </th>
-                                <th class="span2 sortable">
-                                    <span class="line"></span>金额
-                                </th>
                                 <th class="span2 sortable">
                                     <span class="line"></span>时间
                                 </th>
                                 <th class="span2 sortable">
                                     <span class="line"></span>经办人
                                 </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>说明
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>客户
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>金额
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>仓库
+                                </th>
+
                                 <th class="span3 sortable ">
                                     <span class="line"></span>操作
                                 </th>
@@ -129,19 +146,44 @@
 
                                     </td>
                                     <td>
-                                        <?php echo $row["supplier"];?>
-
-                                    </td>
-                                    <td>
-                                        <?php echo $row["cost"];?>
-
-                                    </td>
-                                    <td>
                                         <?php echo $row["opedate"];?>
 
                                     </td>
                                     <td>
                                         <?php echo $row["operator"];?>
+
+
+                                    </td>
+                                    <td>
+                                        <?php
+                                        switch (substr($row['id'],0,2)){
+                                            case "IN": {echo "采购进货"; break;}
+                                            case "IB": {echo "采购退货"; break;}
+                                            case "OT": {echo "配件销售"; break;}
+                                            case "Ob": {echo "客户退货"; break;}
+                                            case "SO": {echo "配件报旧"; break;}
+                                            case "SF": {echo "配件报修"; break;}
+                                            case "SD": {echo "配件报损"; break;}
+                                            case "SU": {echo "配件报溢"; break;}
+                                            case "CI": {echo "调拨入库"; break;}
+                                            case "CO": {echo "调拨出库"; break;}
+
+
+                                        }
+                                        ?>
+
+                                    </td>
+                                    <td>
+                                        <?php echo $row["client"];?>
+
+                                    </td>
+
+                                    <td>
+                                        <?php echo $row["cost"];?>
+
+                                    </td>
+                                    <td>
+                                        <?php echo $row["province"];?>
 
                                     </td>
                                     <td >
@@ -220,9 +262,8 @@
             return ((new Date(d1.replace(/-/g,"\/"))) > (new Date(d2.replace(/-/g,"\/"))));
         }
         function search() {
-            var sup = document.getElementById('supname').value;
-            var opr = document.getElementById('oprname').value;
-            var name = document.getElementById('searchname').value;
+            var opr = document.getElementById('opr').value;
+            //var course = document.getElementById('course').value;
             var stime = document.getElementById('start_time').value;
             var etime = document.getElementById('end_time').value;
             if(CompareDate(stime,etime)) {alert("起始日期不能大于终止日期！"); return;}
@@ -233,17 +274,8 @@
                 if(etime && CompareDate(tr.cells[3].innerText,etime)) {
                     return false;
                 }
-                if(name && tr.cells[0].innerHTML.indexOf(name) < 0) {
-                    return false;
-                }
 
-                if(name && tr.cells[0].innerHTML.indexOf(name) < 0) {
-                    return false;
-                }
-                if(sup && tr.cells[1].innerHTML.indexOf(sup) < 0) {
-                    return false;
-                }
-                if(opr && tr.cells[4].innerHTML.indexOf(opr) < 0) {
+                if(opr && tr.cells[2].innerHTML.indexOf(opr) < 0) {
                     return false;
                 }
 
