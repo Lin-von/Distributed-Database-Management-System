@@ -306,11 +306,6 @@
               <item name="DDMSystem" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
-            <path>
-              <item name="DDMSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DDMSystem" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="分库文件" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -373,12 +368,12 @@
       <updated>1523518072101</updated>
       <workItem from="1523518073497" duration="142023000" />
       <workItem from="1525576461921" duration="49724000" />
-      <workItem from="1525743913979" duration="5127000" />
+      <workItem from="1525743913979" duration="5361000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="196874000" />
+    <option name="totallyTimeSpent" value="197108000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="6" />

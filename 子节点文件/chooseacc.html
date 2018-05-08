@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>售后配件库管理系统</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- bootstrap -->
+    <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="css/elements.css" />
+    <link rel="stylesheet" type="text/css" href="css/icons.css" />
+
+    <!-- libraries -->
+    <link href="css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="css/compiled/user-list.css" type="text/css" media="screen" />
+
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
+    <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body>
+<div class="content" style="margin: 0;">
+
+    <!-- settings changer -->
+
+
+    <div class="container-fluid">
+        <div id="pad-wrapper" class="users-list">
+            <div style="margin-bottom: 30px;" class="row-fluid header">
+                <div class="span10 pull-right">
+                    <input id="searchname" style="margin-bottom: 0; max-width: 80%;" type="text" class="span5 " placeholder="查询配件" />
+                    <div class="btn-glow" onclick="search()"><i class="icon-search" ></i></div>
+
+                </div>
+            </div>
+            <script type="text/javascript">
+                function addRow(tbody,obj)
+                {
+
+                    //添加一行
+                    var newTr = document.createElement('tr');
+                    //添加两列
+                    var newTd0 = newTr.insertCell();
+                    var newTd1 = newTr.insertCell();
+                    var newTd2 = newTr.insertCell();
+                    var newTd3 = newTr.insertCell();
+                    var newTd4 = newTr.insertCell();
+                    var newTd7 = newTr.insertCell();
+
+                    //设置列内容和属性
+                    newTd0.innerText= obj.id;
+                    newTd0.className = "id";
+                    newTd1.innerText= obj.accname;
+                    newTd2.innerText= obj.classname;
+                    newTd3.innerText= obj.pricein;
+                    newTd4.innerText= obj.priceout;
+                    newTd7.innerHTML= "<td style=\"padding-left: 15px;\"><input type=\"checkbox\" name=\"test\"><input type=\"text\" style=\"width: 20px;height: 10px;\"></td>\n";
+
+                    tbody.appendChild(newTr);
+                }
+
+                var xmlhttp;
+                if (window.XMLHttpRequest)
+                {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp=new XMLHttpRequest();
+                }
+                else
+                {// code for IE6, IE5
+                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                }
+
+
+                xmlhttp.onreadystatechange=function()
+                {
+                    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                    {
+                        var str=xmlhttp.responseText;
+                        //alert(str);
+                        var obj = JSON.parse(str);
+                        //console.log(obj[0]);
+                        if(obj.length>0)
+                        {
+                            var tbody = document.createElement('tbody');
+                            for(var i=0;i<obj.length;i++){
+                                addRow(tbody,obj[i]);
+                            }
+                            document.getElementById('info').appendChild(tbody);
+                        }
+
+                        else{
+                            var newTr = document.getElementById('info').insertRow();
+                            //添加两列
+                            var newTd0 = newTr.insertCell();
+                            newTd0.innerText= "没有记录";
+                        }
+                    }
+                }
+                xmlhttp.open("POST","http://111.230.12.120/Controller/Controller.php?controller=Set&method=showAccInfo",true);
+                xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                xmlhttp.send();
+            </script>
+
+            <!-- Users table -->
+            <div class="row-fluid table">
+                <table class="table table-hover" id="info">
+                    <thead>
+                    <tr>
+                        <th class="span2 sortable">
+                            编号
+                        </th>
+
+                        <th class="span2 sortable">
+                            <span class="line"></span>名称
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>类别
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>进价
+                        </th>
+                        <th class="span2 sortable">
+                            <span class="line"></span>售价
+                        </th>
+
+                        <th class="span2 sortable">
+                            <span class="line"></span>数量
+                        </th>
+
+                    </tr>
+                    </thead>
+    </table>
+            <a style="margin-top: 40px;"  id="addbutton" onclick="count()" class="btn-flat success pull-right">
+
+                添加配件
+            </a>
+</div>
+<!-- end users table -->
+</div>
+</div>
+</div>
+<script src="js/jquery-latest.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/theme.js"></script>
+<script type="text/javascript">
+    function count() {
+        // 找到选中行的input
+        var id_array=new Array();
+        $('input[name="test"]:checked').each(function(){
+            id_array.push($(this).parents("tr").children("td").eq(0)[0].innerText);//向数组中添加元素
+            //console.log($(this).parents("tr").children("td").eq(0)[0].innerText);
+            id_array.push($(this).parents("tr").find("input:text").val());//向数组中添加元素
+        });
+        var idstr=id_array.join(',');//将数组元素连接起来以构建一个字符串
+     //   alert(idstr);
+        //str = .map(function() {return $(this).val();}).get().join(", ");
+        var wind = self.opener;
+        wind.show(idstr);
+        this.close();
+
+    }
+
+    function filter(fn) {
+        var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
+        var size = list.length;
+        var tr;
+        for(var i = 0; i < size; i++) {
+            tr = list[i];
+            tr.removeAttribute('class', 'hide')
+            if(!fn(tr)) {
+                tr.setAttribute('class', 'hide');
+            }
+        }
+    }
+
+    function search() {
+        //  var classname = document.getElementById('classname').value;
+        var name = document.getElementById('searchname').value;
+        //var course = document.getElementById('course').value;
+        filter(function(tr) {
+
+            if(name && tr.cells[1].innerHTML.indexOf(name) < 0) {
+                return false;
+            }
+
+            return true;
+        });
+    }
+
+</script>
+</body>
+</html>
