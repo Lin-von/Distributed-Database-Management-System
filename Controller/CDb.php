@@ -15,10 +15,10 @@ class CDb{
 
        header("Content-Type: text/html;charset=utf-8");
 
-       $servername = "localhost:3306";
+       $servername = "localhost:8066";
        $username = "root";
        $password = "123";
-       $dbname = "db";
+       $dbname = "TESTDB";
 // 创建连接
        $this->conn = new mysqli($servername, $username, $password, $dbname);
 // 检测连接

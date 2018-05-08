@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>仓库管理</title>
+    <title>售后配件库管理系统</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -24,7 +24,7 @@
 
 
     <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
     <![endif]-->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -71,12 +71,11 @@
                 <div style="text-align:center;margin-top: 100px">
                     <div class="btn-glow selbtn" onclick="window.location.href='accinsta.php'">配件采购统计</div>
                     <div class="btn-glow selbtn" onclick="window.location.href='accoutsta.php'">配件销售统计</div>
+                    <div class="btn-glow selbtn" onclick="window.location.href='accrank.php'">配件销售排行</div>
                     <div class="btn-glow selbtn" onclick="window.location.href='oprinsta.php'">采购员采购统计 </div>
-                    <div class="btn-glow selbtn" onclick="window.location.href='oproutsta.php'">业务员销售统计</div>
+                    <div class="btn-glow selbtn" onclick="window.location.href='oproutsta.php'">销售员销售统计</div>
                     <div class="btn-glow selbtn" onclick="window.location.href='supsta.php'">供货商供货统计</div>
                     <div class="btn-glow selbtn" onclick="window.location.href='clista.php'">客户销售统计</div>
-                    <div class="btn-glow selbtn" onclick="window.location.href='accrank.php'">配件销售排行</div>
-                    <div class="btn-glow selbtn" onclick="window.location.href='runningsta.php'">营业分析</div>
 
                 </div>
 

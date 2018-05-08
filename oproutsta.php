@@ -24,7 +24,7 @@
 
 
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
     <![endif]-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
@@ -73,7 +73,7 @@
         <div class="container-fluid">
             <div id="pad-wrapper" class="users-list">
                 <div style="margin-bottom: 30px;" class="row-fluid header">
-                    <h3 style="margin-bottom: 20px;">业务员销售统计</h3>
+                    <h3 style="margin-bottom: 20px;">销售员销售统计</h3>
                     <div class="span10 pull-right">
                         <div class="ui-dropdown">
                             <select style="min-height: 30px;margin-top: 40px; width: 150px;" id="opr" onchange="search()" >

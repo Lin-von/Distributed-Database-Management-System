@@ -1,4 +1,5 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 /**
  * Created by PhpStorm.
  * User: linvon
@@ -11,9 +12,12 @@
 $class_name = $_GET['controller']."Controller";
 
 $method_name = $_GET['method'];
-set_include_path("/"); //这里需要将路径放入include
-spl_autoload($class_name);
+//set_include_path(""); //这里需要将路径放入include
 
+function __autoload($class_name) {
+    require_once $class_name . '.php';
+}
+__autoload($class_name);
 $class = new ReflectionClass($class_name);
 $instance =  $class->newInstance();
 

@@ -29,9 +29,9 @@ $row = $result->fetch_assoc();
 if ($result->num_rows > 0) {
     $_SESSION['user'] = "$uname";
     $_SESSION['level'] = $row["level"];
-    header( "Location: index.php" );
+    header( "Location: ../index.php" );
 } else {
-    header( "Location: signin.html?err=1" );
+    header( "Location: ../signin.html?err=1" );
 }
 $conn->close();
 ?>

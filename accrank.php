@@ -24,7 +24,7 @@
 
 
     <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
     <![endif]-->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
@@ -41,10 +41,10 @@
 </script>
 <?php
 header("Content-Type: text/html;charset=utf-8");
-$servername = "localhost:3306";
+$servername = "localhost:8066";
 $username = "root";
 $password = "123";
-$dbname = "db";
+$dbname = "TESTDB";
 // 创建连接
 $conn = new mysqli($servername, $username, $password, $dbname);
 // 检测连接
@@ -72,8 +72,8 @@ $result = $conn->query($sql);
                 <div class="span10 pull-right">
                     <div class="ui-dropdown">
                         <select style="min-height: 30px;margin-top: 0px; width: 150px;" id="cage" onchange="cagechange()" >
-                            <option disabled="disabled"  selected/>选择仓库
-                            <option />所有仓库
+                            <option disabled="disabled"  value="" selected/>选择仓库
+                            <option value=""/>所有仓库
                             <option />成都
                             <option />上海
                             <option />深圳
@@ -93,7 +93,7 @@ $result = $conn->query($sql);
 
             <!-- Users table -->
 
-            <?php $sql = "SELECT accid,sum(cnt) FROM outCage_detail GROUP BY accid ORDER BY sum(cnt) DESC	";
+            <?php $sql = "SELECT accid,sum(cnt) FROM outCage_detail GROUP BY accid ";
 
             $result = $conn->query($sql);
             //$row = $result->fetch_assoc();
@@ -146,7 +146,7 @@ $result = $conn->query($sql);
 
                         </td>
                         <td>
-                            <?php echo $row["sum(cnt)"];?>
+                            <?php echo $row["SUM1"];?>
 
                         </td>
                         <td>
@@ -174,7 +174,7 @@ $result = $conn->query($sql);
 
             </div>
             <?php
-            $sql = "SELECT accid,sum(cnt),province FROM outCage_detail GROUP BY accid,province ORDER BY sum(cnt) DESC";
+            $sql = "SELECT accid,sum(cnt),province FROM outCage_detail GROUP BY accid,province ";
 
             $result = $conn->query($sql);
             //$row = $result->fetch_assoc();
@@ -227,7 +227,7 @@ $result = $conn->query($sql);
 
                                 </td>
                                 <td>
-                                    <?php echo $row["sum(cnt)"];?>
+                                    <?php echo $row["SUM1"];?>
 
                                 </td>
                                 <td>

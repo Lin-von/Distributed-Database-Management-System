@@ -10,7 +10,7 @@ require_once "CDb.php";
 
 function trCageDetail($recordid,$accid,$cnt,$province,$trid){
     $db = new CDb();
-    $ctime = time().$province;
+    $ctime = time().$province.substr($accid,5,5);
     $sql = "INSERT INTO trCage_detail (id, recordid, accid, cnt ,province,trid) 
               VALUES ('$ctime' ,'$recordid','$accid',$cnt,'$province','$trid')";
 
@@ -41,7 +41,7 @@ function trCage($id,$cnt,$cageout,$cagein){
         if ($db->query($sql) === TRUE) return true;
         else return false;
     } else {
-        $ctime = time();
+        $ctime = time().substr($id,5,5);
         $sql = "INSERT INTO cage (priid, id, cnt, province, status) 
               VALUES ('$ctime','$id',$cnt,'$cagein','周转备用新件')";
         if ($db->query($sql) === TRUE) return true;

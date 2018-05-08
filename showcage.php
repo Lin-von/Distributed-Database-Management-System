@@ -24,7 +24,7 @@
 
 
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
     <![endif]-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
@@ -62,10 +62,10 @@
                 </div>
                 <?php
                 header("Content-Type: text/html;charset=utf-8");
-                $servername = "localhost:3306";
+                $servername = "localhost:8066";
                 $username = "root";
                 $password = "123";
-                $dbname = "db";
+                $dbname = "TESTDB";
                 // 创建连接
                 $conn = new mysqli($servername, $username, $password, $dbname);
                 // 检测连接
@@ -84,7 +84,7 @@
                 <!-- Users table -->
                 <div class="ui-dropdown">
                     <select style="min-height: 30px;margin-bottom: 10px;" id="cage" onchange="search()">
-                        <option disabled="disabled" selected/>按仓库查看
+                        <option disabled="disabled" value="" selected/>按仓库查看
                         <option value=""/>所有仓库
                         <option />成都
                         <option />上海
@@ -235,14 +235,14 @@
                 if(accname && tr.cells[1].innerHTML.indexOf(accname) < 0) {
                     return false;
                 }
-                if(classname && tr.cells[4].innerHTML.indexOf(classname) < 0) {
+                if(classname && tr.cells[2].innerHTML.indexOf(classname) < 0) {
                     return false;
                 }
-                if(status && tr.cells[4].innerHTML.indexOf(status) < 0) {
+                if(status && tr.cells[7].innerHTML.indexOf(status) < 0) {
                     return false;
                 }
 
-                if(cage && tr.cells[6].innerHTML.indexOf(cage) < 0) {
+                if(cage && tr.cells[8].innerHTML.indexOf(cage) < 0) {
                     return false;
                 }
 

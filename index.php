@@ -29,7 +29,7 @@ if(!isset($_SESSION['user']))  header( "location:signin.html");
     <link rel="stylesheet" href="css/compiled/index.css" type="text/css" media="screen" />    
 
 
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
     <![endif]-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 
@@ -55,23 +55,23 @@ if(!isset($_SESSION['user']))  header( "location:signin.html");
     }
     mysqli_set_charset ($conn,utf8);
 
-    $sql = "SELECT * FROM accessory WHERE status = '周转备用新件'";
+    $sql = "SELECT * FROM cage WHERE status = '周转备用新件'";
     $result = $conn->query($sql);
     $count1 = $result->num_rows;
-    $sql = "SELECT * FROM accessory WHERE status = '周转备用旧件'";
+    $sql = "SELECT * FROM cage WHERE status = '周转备用旧件'";
     $result = $conn->query($sql);
     $count2 = $result->num_rows;
-    $sql = "SELECT * FROM accessory WHERE status = '返修配件'";
+    $sql = "SELECT * FROM cage WHERE status = '返修配件'";
     $result = $conn->query($sql);
     $count3 = $result->num_rows;
-    $sql = "SELECT * FROM accessory WHERE status = '报损件'";
+    $sql = "SELECT * FROM cage WHERE status = '报损件'";
     $result = $conn->query($sql);
     $count4 = $result->num_rows;
 
     $sql = "select dateduan,count(*)
 from 
 (select  
-        operation,
+        id,
         case    
             when   (opedate>='2018-12-01 00:00:00')              then   '12' 
             when   (opedate>='2018-11-01 00:00:00' and opedate<'2018-12-01 00:00:00')   then   '11'
@@ -88,8 +88,8 @@ from
             else     'opedate unknow'
         end     as dateduan from 
 
-         record
-)  as t where operation = 1 or operation = 3 group by dateduan";
+         incage
+)  as t  group by dateduan";
     $result = $conn->query($sql);
     $incage = array(0,0,0,0,0,0,0,0,0,0,0,0,0);
     while($row = $result->fetch_assoc()){
@@ -100,7 +100,7 @@ from
     $sql = "select dateduan,count(*)
 from 
 (select  
-        operation,
+        id,
         case    
             when   (opedate>='2018-12-01 00:00:00')              then   '12' 
             when   (opedate>='2018-11-01 00:00:00' and opedate<'2018-12-01 00:00:00')   then   '11'
@@ -117,8 +117,8 @@ from
             else     'opedate unknow'
         end     as dateduan from 
 
-         record
-)  as t where operation = 4 group by dateduan";
+         outcage
+)  as t  group by dateduan";
     $result = $conn->query($sql);
     $outcage = array(0,0,0,0,0,0,0,0,0,0,0,0,0);
     while($row = $result->fetch_assoc()){
@@ -176,7 +176,7 @@ from
                 <!-- statistics chart built with jQuery Flot -->
                 <div class="row-fluid chart">
                     <h4>
-                        进出库变化统计
+                        成交量变化统计
                     </h4>
                     <div class="span12">
                         <div id="statsChart"></div>
@@ -266,8 +266,8 @@ from
                 [12,<?php echo $incage[12]-$outcage[12];?>]];
 
             var plot = $.plot($("#statsChart"),
-                [ { data: visits, label: "出库"},
-                 { data: visitors, label: "入库" }], {
+                [ { data: visits, label: "销售"},
+                 { data: visitors, label: "采购" }], {
                     series: {
                         lines: { show: true,
                                 lineWidth: 1,

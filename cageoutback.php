@@ -24,7 +24,7 @@
 
 
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
     <![endif]-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
@@ -95,10 +95,6 @@
                     </div>
 
                 </div>
-                <a style="margin-bottom: 20px;" onclick="oopen()" class="btn-flat info ">
-                    整单退货
-
-                </a>
 
                  <h4 style="margin-left: 0;margin-bottom: 10px;">可退配件</h4>
 

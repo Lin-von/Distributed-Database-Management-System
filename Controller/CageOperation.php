@@ -21,7 +21,7 @@ function InCageRecord($id,$supplier,$province,$operator,$opedate,$cost){
 
 function inCageDetail($recordid,$accid,$cnt,$province,$supplier){
     $db = new Db();
-    $ctime = time();
+    $ctime = time().substr($accid,5,5);
     $sql = "INSERT INTO inCage_detail (id, recordid, accid, cnt ,province,supplier) 
               VALUES ('$ctime' ,'$recordid','$accid',$cnt,'$province','$supplier')";
 
@@ -41,7 +41,7 @@ function InCage($id,$cnt,$province){
         else return false;
     }
     else{
-        $ctime = time();
+        $ctime = time().substr($id,5,5);
         $sql = "INSERT INTO cage (priid, id, cnt, province, status) 
               VALUES ('$ctime','$id',$cnt,'$province','周转备用新件')";
         if ($db->query($sql) === TRUE)  return true ;
@@ -93,7 +93,7 @@ function InCageBRecord($id,$supplier,$province,$operator,$opedate,$cost){
 
 function inCageBDetail($recordid,$accid,$cnt,$province,$supplier){
     $db = new Db();
-    $ctime = time();
+    $ctime = time().substr($accid,5,5);
 
     $sql = "INSERT INTO ibCage_detail (id, recordid, accid, cnt ,province,supplier) 
               VALUES ('$ctime' ,'$recordid','$accid',$cnt,'$province','$supplier')";
@@ -131,7 +131,7 @@ function outCageRecord($id,$client,$province,$operator,$opedate,$cost){
 
 function outCageDetail($recordid,$accid,$cnt,$province,$client){
     $db = new Db();
-    $ctime = time();
+    $ctime = time().substr($accid,5,5);
 
     $sql = "INSERT INTO outCage_detail (id, recordid, accid, cnt ,province,client) 
               VALUES ('$ctime' ,'$recordid','$accid',$cnt,'$province','$client')";
@@ -185,7 +185,7 @@ function outCageBRecord($id,$client,$province,$operator,$opedate,$cost){
 
 function outCageBDetail($recordid,$accid,$cnt,$province,$client){
     $db = new Db();
-    $ctime = time();
+    $ctime = time().substr($accid,5,5);
 
     $sql = "INSERT INTO obCage_detail (id, recordid, accid, cnt ,province,client) 
               VALUES ('$ctime' ,'$recordid','$accid',$cnt,'$province','$client')";
@@ -208,7 +208,7 @@ function OutCageB($id,$cnt,$province){
         else return false;
     }
     else{
-        $ctime = time();
+        $ctime = time().substr($id,5,5);
 
         $sql = "INSERT INTO cage (priid, id, cnt, province, status) 
               VALUES ('$ctime','$id',$cnt,'$province','周转备用新件')";
@@ -229,7 +229,7 @@ function statusChaRecord($id,$province,$operator,$opedate){
 
 function statusChaDetail($recordid,$accid,$cnt,$province){
     $db = new Db();
-    $ctime = time();
+    $ctime = time().substr($accid,5,5);
 
     $sql = "INSERT INTO statusChange_detail (id, recordid, accid, cnt ,province, fromto) 
               VALUES ('$ctime' ,'$recordid','$accid',$cnt,'$province','$province')";
@@ -269,7 +269,7 @@ function StatusChange($id,$cnt,$operation,$status,$province)
             if ($db->query($sql) === TRUE) return true;
             else return false;
         } else {
-            $ctime = time();
+            $ctime = time().substr($id,5,5);
 
             $sql = "INSERT INTO cage (priid, id, cnt, province, status) 
               VALUES ('$ctime','$id',$cnt,'$province','$status')";

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>基本设置</title>
+    <title>售后配件库管理系统</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -24,7 +24,7 @@
 
 
     <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
     <![endif]-->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 

@@ -18,10 +18,10 @@ class UserController{
         if ($result->num_rows > 0) {
             $_SESSION['user'] = $row['realname'];
             $_SESSION['level'] = $row["uposition"];
-            header( "Location: index.php" );
+            header( "Location: ../index.php" );
 
         } else {
-            header( "Location: signin.html?err=1" );
+            header( "Location: ../signin.html?err=1" );
         }
 
     }
@@ -29,16 +29,16 @@ class UserController{
 
     public function addUser($realname,$tel,$uposition,$username,$password){
 
-        if(adduser($realname,$tel,$uposition,$username,$password))  header( "Location: userinfo.php" );
+        if(adduser($realname,$tel,$uposition,$username,$password))  header( "Location: ../userinfo.php" );
 
     }
 
     public function updateUser($id,$realname,$tel,$uposition,$password){
-        if(updateuser($id,$realname,$tel,$uposition,$password))  header( "Location: userinfo.php" );
+        if(updateuser($id,$realname,$tel,$uposition,$password))  header( "Location: ../userinfo.php" );
     }
 
     public function delUser($id){
-        if(deluser($id))             header( "Location: userinfo.php" );
+        if(deluser($id))             header( "Location: ../userinfo.php" );
 
     }
 }
