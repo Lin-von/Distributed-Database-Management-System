@@ -1,19 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
-/**
- * Created by PhpStorm.
- * User: linvon
- * Date: 2018/5/1
- * Time: 14:45
- */
-
-
-
 $class_name = $_GET['controller']."Controller";
-
 $method_name = $_GET['method'];
-//set_include_path(""); //这里需要将路径放入include
-
 function __autoload($class_name) {
     require_once $class_name . '.php';
 }

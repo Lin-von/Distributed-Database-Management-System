@@ -17,7 +17,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("连接失败: " . $conn->connect_error);
 }
-mysqli_set_charset ($conn,utf8);
+mysqli_set_charset ($conn,'utf8');
 
 $username = $_SESSION['user'];
 $realname = $_POST['realname'];

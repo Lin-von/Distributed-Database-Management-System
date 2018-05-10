@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: linvon
- * Date: 2018/5/6
- * Time: 19:15
- */
-
 require_once "CenterOperation.php";
-
 class CenterController{
 
 

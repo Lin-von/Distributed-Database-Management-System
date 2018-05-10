@@ -72,7 +72,7 @@
                 if ($conn->connect_error) {
                     die("连接失败: " . $conn->connect_error);
                 }
-                mysqli_set_charset ($conn,utf8);
+                mysqli_set_charset ($conn,'utf8');
 
 
                 $sql = "SELECT * FROM supplier";

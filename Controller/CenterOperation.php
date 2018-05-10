@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: linvon
- * Date: 2018/5/6
- * Time: 19:17
- */
-
 require_once "CDb.php";
-
 function trCageDetail($recordid,$accid,$cnt,$province,$trid){
     $db = new CDb();
     $ctime = time().$province.substr($accid,5,5);

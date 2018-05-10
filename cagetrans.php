@@ -275,6 +275,9 @@
                 data: "cageout="+cageout+"&operator="+ope+"&cagein="+cagein+"&cnt="+size,
                 async:false,
                success: function (data) {
+                    data = $.trim(data);
+                    cageout = $.trim(cageout);
+                    cagein = $.trim(cagein);
                    $.ajax({
                        type: 'POST',
                        url: 'Controller/Controller.php?controller=Center&method=transCageDetail',

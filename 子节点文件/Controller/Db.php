@@ -25,7 +25,7 @@ class Db{
        if ($this->conn->connect_error) {
            die("连接失败: " . $this->conn->connect_error);
        }
-       mysqli_set_charset ($this->conn,utf8);
+       mysqli_set_charset ($this->conn,'utf8');
 
    }
 

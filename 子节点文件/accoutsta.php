@@ -70,7 +70,7 @@
                 if ($conn->connect_error) {
                     die("连接失败: " . $conn->connect_error);
                 }
-                mysqli_set_charset ($conn,utf8);
+                mysqli_set_charset ($conn,'utf8');
 
 
                 $sql = "select outCage.*,outCage_detail.* from outCage,outCage_detail where outCage.`id`=outCage_detail.`recordid`
