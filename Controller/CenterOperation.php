@@ -1,5 +1,22 @@
 <?php
 require_once "CDb.php";
+
+function trCageRecord($trid,$cageout,$cagein,$cnt,$operator,$opedate){
+    $db = new CDb();
+    $priid = $trid.$cageout;
+    $sql = "INSERT INTO trCage (priid, id, opedate , operator,cageout,cagein,cnt,province) 
+              VALUES ('$priid','$trid','$opedate','$operator','$cageout','$cagein',$cnt,'$cageout')";
+    $db->query($sql);
+    $priid = $cagein.$trid;
+    $sql = "INSERT INTO trCage (priid, id, opedate , operator,cageout,cagein,cnt,province) 
+              VALUES ('$priid','$trid','$opedate','$operator','$cageout','$cagein',$cnt,'$cagein')";
+
+
+    if ($db->query($sql) === TRUE)  return true ;
+    else return false;
+}
+
+
 function trCageDetail($recordid,$accid,$cnt,$province,$trid){
     $db = new CDb();
     $ctime = time().$province.substr($accid,5,5);

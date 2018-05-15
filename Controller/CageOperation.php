@@ -279,16 +279,7 @@ function StatusChange($id,$cnt,$operation,$status,$province)
 
     }
 }
-function trCageRecord($trid,$cageout,$cagein,$cnt,$operator,$opedate){
-    $db = new Db();
 
-    $sql = "INSERT INTO trCage (id, opedate , operator,cageout,cagein,cnt) 
-              VALUES ('$trid','$opedate','$operator','$cageout','$cagein',$cnt)";
-
-
-    if ($db->query($sql) === TRUE)  return true ;
-    else return false;
-}
 
 
 function showacccnt($id){

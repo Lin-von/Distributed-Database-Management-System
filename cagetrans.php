@@ -271,7 +271,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: 'Controller/Controller.php?controller=Cage&method=transCage',
+                url: 'Controller/Controller.php?controller=Center&method=transCage',
                 data: "cageout="+cageout+"&operator="+ope+"&cagein="+cagein+"&cnt="+size,
                 async:false,
                success: function (data) {

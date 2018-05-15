@@ -155,13 +155,6 @@ class CageController{
     }
 
 
-    public function transCage($cageout,$operator,$cagein,$cnt){
-        $ctime = time();
-        $trid = "TR".$ctime;
-        $opedate = date("Y-m-d H:i:s",time());
-        trCageRecord($trid,$cageout,$cagein,$cnt,$operator,$opedate);
-        echo $trid;
-    }
 
     public function showAccCnt($id){
         echo showacccnt($id);
