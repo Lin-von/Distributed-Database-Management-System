@@ -125,7 +125,7 @@
                 </div>
                 <div class="pagination pull-right">
                     <a style="margin-bottom: 20px;" onclick="subcheck()" class="btn-flat success ">
-                        确认出售
+                        确认操作
 
                     </a>
                 </div>

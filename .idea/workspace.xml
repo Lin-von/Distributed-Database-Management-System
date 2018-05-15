@@ -2,84 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="838d622e-7e90-48de-90d2-92358ac6e760" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CDb.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CDb.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CenterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CenterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CenterOperation.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CenterOperation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/Db.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/Db.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accdetail.php" beforeDir="false" afterPath="$PROJECT_DIR$/accdetail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accinfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/accinfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accinsta.php" beforeDir="false" afterPath="$PROJECT_DIR$/accinsta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accountdetail.php" beforeDir="false" afterPath="$PROJECT_DIR$/accountdetail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accoutsta.php" beforeDir="false" afterPath="$PROJECT_DIR$/accoutsta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accrank.php" beforeDir="false" afterPath="$PROJECT_DIR$/accrank.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/allacc.php" beforeDir="false" afterPath="$PROJECT_DIR$/allacc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cagealert.php" beforeDir="false" afterPath="$PROJECT_DIR$/cagealert.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cagechange.php" beforeDir="false" afterPath="$PROJECT_DIR$/cagechange.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cagecount.php" beforeDir="false" afterPath="$PROJECT_DIR$/cagecount.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cagein.php" beforeDir="false" afterPath="$PROJECT_DIR$/cagein.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cageinback.php" beforeDir="false" afterPath="$PROJECT_DIR$/cageinback.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cagelack.php" beforeDir="false" afterPath="$PROJECT_DIR$/cagelack.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cageout.php" beforeDir="false" afterPath="$PROJECT_DIR$/cageout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cageoutback.php" beforeDir="false" afterPath="$PROJECT_DIR$/cageoutback.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cagetrans.php" beforeDir="false" afterPath="$PROJECT_DIR$/cagetrans.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chooseacc.php" beforeDir="false" afterPath="$PROJECT_DIR$/chooseacc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cliaccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/cliaccount.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cliinfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/cliinfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clista.php" beforeDir="false" afterPath="$PROJECT_DIR$/clista.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/incageinfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/incageinfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/newacc.php" beforeDir="false" afterPath="$PROJECT_DIR$/newacc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oprinsta.php" beforeDir="false" afterPath="$PROJECT_DIR$/oprinsta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oproutsta.php" beforeDir="false" afterPath="$PROJECT_DIR$/oproutsta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outcageinfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/outcageinfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/showcage.php" beforeDir="false" afterPath="$PROJECT_DIR$/showcage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/signin.php" beforeDir="false" afterPath="$PROJECT_DIR$/signin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/supaccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/supaccount.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/supinfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/supinfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/supsta.php" beforeDir="false" afterPath="$PROJECT_DIR$/supsta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trans.php" beforeDir="false" afterPath="$PROJECT_DIR$/trans.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/updateacc.php" beforeDir="false" afterPath="$PROJECT_DIR$/updateacc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/updatecli.php" beforeDir="false" afterPath="$PROJECT_DIR$/updatecli.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/updatesup.php" beforeDir="false" afterPath="$PROJECT_DIR$/updatesup.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/updateuser.php" beforeDir="false" afterPath="$PROJECT_DIR$/updateuser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userinfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/userinfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/Controller/Db.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/Controller/Db.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/accdetail.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/accdetail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/accinsta.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/accinsta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/accountdetail.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/accountdetail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/accoutsta.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/accoutsta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/accrank.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/accrank.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/allacc.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/allacc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/cagealert.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/cagealert.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/cagechange.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/cagechange.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/cagecount.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/cagecount.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/子节点文件/cagein.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/cagein.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/cageinback.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/cageinback.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/cagelack.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/cagelack.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/cageout.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/cageout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/cageoutback.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/cageoutback.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/chooseacc.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/chooseacc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/cliaccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/cliaccount.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/cliinfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/cliinfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/clista.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/clista.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/incageinfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/incageinfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/oprinsta.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/oprinsta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/oproutsta.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/oproutsta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/outcageinfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/outcageinfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/showcage.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/showcage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/signin.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/signin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/supaccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/supaccount.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/supinfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/supinfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/supsta.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/supsta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/updateacc.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/updateacc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/updatecli.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/updatecli.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/updatepinfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/updatepinfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/updatesup.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/updatesup.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/updateuser.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/updateuser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/userinfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/userinfo.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -90,37 +16,60 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="SetOperation.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Controller/SetOperation.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Controller/UserController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CageController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Controller/CageController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1846">
+              <caret line="23" column="9" lean-forward="true" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cagecount.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cagecount.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="227" column="27" lean-forward="true" selection-start-line="227" selection-start-column="27" selection-end-line="227" selection-end-column="27" />
+              <folding>
+                <element signature="n#style#0;n#input#0;n#td#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="cagetrans.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cagetrans.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="286" column="22" lean-forward="true" selection-start-line="280" selection-start-column="19" selection-end-line="286" selection-end-column="22" />
-              <folding>
-                <element signature="n#style#0;n#input#0;n#td#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="460">
+              <caret line="277" column="40" lean-forward="true" selection-start-line="277" selection-start-column="20" selection-end-line="277" selection-end-column="40" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cagechange.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cagechange.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="79" column="50" lean-forward="true" selection-start-line="68" selection-start-column="16" selection-end-line="79" selection-end-column="50" />
-            </state>
-          </provider>
+      <file leaf-file-name="SetController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Controller/SetController.php">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="chooseacc.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chooseacc.html">
+      <file leaf-file-name="CenterOperation.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Controller/CenterOperation.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-16">
-              <caret line="78" column="17" lean-forward="true" selection-start-line="78" selection-start-column="17" selection-end-line="78" selection-end-column="17" />
-              <folding>
-                <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#1;n#td#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="18">
+              <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -134,56 +83,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CenterOperation.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Controller/CenterOperation.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="supaccount.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/supaccount.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="330" selection-start-line="330" selection-end-line="330" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controller/Controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" column="38" lean-forward="true" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
+            <state relative-caret-position="252">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="allacc.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/allacc.php">
+      <file leaf-file-name="CageOperation.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Controller/CageOperation.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1739">
-              <caret line="43" column="41" lean-forward="true" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CDb.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Controller/CDb.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="27" lean-forward="true" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Db.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Controller/Db.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="13" column="26" lean-forward="true" selection-end-line="37" />
+            <state relative-caret-position="-4404">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
             </state>
           </provider>
         </entry>
@@ -199,7 +112,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>\&lt;thead\&gt;\n                            \&lt;tr\&gt;\n                                \&lt;th</find>
       <find>单价</find>
       <find>经办人</find>
       <find>info</find>
@@ -229,9 +141,9 @@
       <find>Detail Admin</find>
       <find>transC</find>
       <find>onn,utf8</find>
+      <find>采购配件</find>
     </findStrings>
     <replaceStrings>
-      <replace>cliname</replace>
       <replace>客户</replace>
       <replace>outC</replace>
       <replace>client</replace>
@@ -261,6 +173,7 @@
       <replace>销售员</replace>
       <replace>售后配件库管理系统</replace>
       <replace>onn,'utf8'</replace>
+      <replace>确认采购</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -276,9 +189,7 @@
         <option value="$PROJECT_DIR$/accdetail.php" />
         <option value="$PROJECT_DIR$/accinfo.php" />
         <option value="$PROJECT_DIR$/cagealert.php" />
-        <option value="$PROJECT_DIR$/cagecount.php" />
         <option value="$PROJECT_DIR$/cagein.php" />
-        <option value="$PROJECT_DIR$/cagelack.php" />
         <option value="$PROJECT_DIR$/cageout.php" />
         <option value="$PROJECT_DIR$/cageover.php" />
         <option value="$PROJECT_DIR$/chooseacc.php" />
@@ -324,6 +235,8 @@
         <option value="$PROJECT_DIR$/Controller/Controller.php" />
         <option value="$PROJECT_DIR$/test.html" />
         <option value="$PROJECT_DIR$/Controller/CDb.php" />
+        <option value="$PROJECT_DIR$/cagelack.php" />
+        <option value="$PROJECT_DIR$/cagecount.php" />
       </list>
     </option>
   </component>
@@ -452,20 +365,22 @@
       <workItem from="1525576461921" duration="49724000" />
       <workItem from="1525743913979" duration="5517000" />
       <workItem from="1525868069133" duration="4000" />
-      <workItem from="1525868094005" duration="7591000" />
+      <workItem from="1525868094005" duration="13464000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="204859000" />
+    <option name="totallyTimeSpent" value="210732000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="12" />
+      <window_info anchor="bottom" id="PHP-CGI Server" order="1" />
       <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="2" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="5" visible="true" weight="0.32948583" />
+      <window_info anchor="bottom" id="Version Control" order="5" weight="0.32948583" />
       <window_info anchor="bottom" id="Run" order="8" />
       <window_info anchor="bottom" id="Terminal" order="4" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.15119047" />
@@ -477,7 +392,6 @@
       <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
-      <window_info anchor="bottom" id="PHP-CGI Server" order="1" />
       <window_info anchor="right" id="Commander" order="1" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="6" />
@@ -496,35 +410,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cagechange.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1296">
-          <caret line="72" column="35" lean-forward="true" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accinsta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="70" column="33" selection-start-line="70" selection-start-column="33" selection-end-line="70" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/atest.html" />
-    <entry file="file://$PROJECT_DIR$/Controller/CageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="4" selection-start-column="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accoutsta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="65" column="33" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Controller/CageOperation.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="936">
@@ -591,18 +476,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/SetOperation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1326" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/atest.html" />
     <entry file="file://$PROJECT_DIR$/buyman.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -650,13 +523,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
           <caret line="65" column="33" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/showcage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="830">
-          <caret line="240" column="39" selection-start-line="240" selection-start-column="39" selection-end-line="240" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -731,20 +597,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/CageOperation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="16" column="49" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/CageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2826">
-          <caret line="162" column="19" lean-forward="true" selection-start-line="162" selection-start-column="19" selection-end-line="162" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newcli.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1596">
@@ -777,31 +629,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="38" lean-forward="true" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cagetrans.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="286" column="22" lean-forward="true" selection-start-line="280" selection-start-column="19" selection-end-line="286" selection-end-column="22" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/CenterController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="10" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -816,10 +643,84 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/supaccount.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="328" column="9" lean-forward="true" selection-start-line="328" selection-start-column="9" selection-end-line="329" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/showcage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4320">
+          <caret line="240" column="39" selection-start-line="240" selection-start-column="39" selection-end-line="240" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sidebar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-576" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cagelack.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37">
+          <caret line="127" column="28" selection-start-line="127" selection-start-column="28" selection-end-line="127" selection-end-column="28" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cageover.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-931">
+          <folding>
+            <element signature="n#style#0;n#input#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Controller/CDb.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="27" lean-forward="true" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+        <state relative-caret-position="216">
+          <caret line="12" column="27" lean-forward="true" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controller/SetOperation.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controller/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controller/SetController.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controller/Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controller/CageOperation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4404">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controller/CenterController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="10" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -830,10 +731,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/supaccount.php">
+    <entry file="file://$PROJECT_DIR$/Controller/CageController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="330" selection-start-line="330" selection-end-line="330" />
+        <state relative-caret-position="-1846">
+          <caret line="23" column="9" lean-forward="true" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cagetrans.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="277" column="40" lean-forward="true" selection-start-line="277" selection-start-column="20" selection-end-line="277" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cagecount.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="227" column="27" lean-forward="true" selection-start-line="227" selection-start-column="27" selection-end-line="227" selection-end-column="27" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#td#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

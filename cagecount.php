@@ -82,10 +82,11 @@
 
 
                     </div>
+                    <div class="pull-right">
                     <span style="margin-top: 40px;margin-left: 50px;" id="sum" class="label label-success pull-right"><i class="icon-money" ></i>盈亏：0</span>
                     <span style="margin-top: 40px;margin-left: 30px;" id="aldcnt" class="label label-info pull-right"><i class="icon-tag" ></i>已盘种数：0</span>
                     <span style="margin-top: 40px;" id="sumcnt" class="label label-info pull-right"><i class="icon-tags" ></i>配件总数：<?php echo $row['count(*)'];?></span>
-
+                    </div>
                 </div>
                 <a style="margin-bottom: 20px;" onclick="deleteRows()" class="btn-flat info ">
                     清空
@@ -224,7 +225,7 @@
        function addacc() {
 
            var id = document.getElementById('id').value;
-
+           id = $.trim(id);
            var list = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0].rows;
            var size = list.length;
            var tr;

@@ -130,7 +130,7 @@
                 </div>
                 <div class="pagination pull-right">
                     <a style="margin-bottom: 20px;" onclick="subcheck()" class="btn-flat success ">
-                        采购配件
+                        确认采购
 
                     </a>
                 </div>
