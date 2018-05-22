@@ -157,7 +157,7 @@ order by opedate desc";
                                                 case "IN": {echo "采购进货"; break;}
                                                 case "IB": {echo "采购退货"; break;}
                                                 case "OT": {echo "配件销售"; break;}
-                                                case "Ob": {echo "客户退货"; break;}
+                                                case "OB": {echo "客户退货"; break;}
                                                 case "SO": {echo "配件报旧"; break;}
                                                 case "SF": {echo "配件报修"; break;}
                                                 case "SD": {echo "配件报损"; break;}
