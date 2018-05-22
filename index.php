@@ -292,8 +292,8 @@ from
                         },  
                     colors: ["#a7b5c5", "#30a0eb"],
                     xaxis: {
-                        ticks: [[1, "JAN"], [2, "FEB"], [3, "MAR"], [4,"APR"], [5,"MAY"], [6,"JUN"], 
-                               [7,"JUL"], [8,"AUG"], [9,"SEP"], [10,"OCT"], [11,"NOV"], [12,"DEC"]],
+                        ticks: [[1, "一月"], [2, "二月"], [3, "三月"], [4,"四月"], [5,"五月"], [6,"六月"],
+                               [7,"七月"], [8,"八月"], [9,"九月"], [10,"十月"], [11,"十一月"], [12,"十二月"]],
                         font: {
                             size: 12,
                             family: "Open Sans, Arial",
@@ -335,7 +335,7 @@ from
                         var month = item.series.xaxis.ticks[item.dataIndex].label;
 
                         showTooltip(item.pageX, item.pageY,
-                                    item.series.label + " of " + month + ": " + y);
+                            month + item.series.label + "单据量: " + y);
                     }
                 }
                 else {

@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="838d622e-7e90-48de-90d2-92358ac6e760" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/accdetail.php" beforeDir="false" afterPath="$PROJECT_DIR$/accdetail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accinsta.php" beforeDir="false" afterPath="$PROJECT_DIR$/accinsta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accoutsta.php" beforeDir="false" afterPath="$PROJECT_DIR$/accoutsta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cagechange.php" beforeDir="false" afterPath="$PROJECT_DIR$/cagechange.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oprinsta.php" beforeDir="false" afterPath="$PROJECT_DIR$/oprinsta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oproutsta.php" beforeDir="false" afterPath="$PROJECT_DIR$/oproutsta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/accdetail.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/accdetail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/accinsta.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/accinsta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/accoutsta.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/accoutsta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/cagechange.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/cagechange.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/oprinsta.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/oprinsta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/子节点文件/oproutsta.php" beforeDir="false" afterPath="$PROJECT_DIR$/子节点文件/oproutsta.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,18 +13,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="cagecount.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cagecount.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="84" column="44" lean-forward="true" selection-start-line="84" selection-start-column="20" selection-end-line="84" selection-end-column="44" />
-              <folding>
-                <element signature="n#style#0;n#input#0;n#td#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="cagecount.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/子节点文件/cagecount.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -53,6 +30,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="546">
               <caret line="318" column="27" lean-forward="true" selection-start-line="318" selection-start-column="27" selection-end-line="318" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="576">
+              <caret line="337" column="57" lean-forward="true" selection-start-line="337" selection-start-column="57" selection-end-line="337" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -79,7 +65,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cagechange.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cagechange.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cagechange.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="553">
@@ -135,7 +121,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>info</find>
       <find>客户</find>
       <find>case \&quot;IB\&quot;\: \{echo \&quot;采购进货\&quot;\; break\;\}\n</find>
       <find>case &quot;IB&quot;: {echo &quot;采购退货&quot;; break;}</find>
@@ -165,6 +150,7 @@
       <find>采购配件</find>
       <find>Ob</find>
       <find>&quot;Ob&quot;</find>
+      <find>of</find>
     </findStrings>
     <replaceStrings>
       <replace>outC</replace>
@@ -238,7 +224,6 @@
         <option value="$PROJECT_DIR$/showcage.php" />
         <option value="$PROJECT_DIR$/cageinback.php" />
         <option value="$PROJECT_DIR$/cageoutback.php" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/newcli.php" />
         <option value="$PROJECT_DIR$/trans.php" />
         <option value="/private/var/folders/q8/0zmc9grn2djd27tct73x_hbr0000gn/T/fz3temp-2/accrank.php" />
@@ -260,6 +245,7 @@
         <option value="$PROJECT_DIR$/Controller/CenterOperation.php" />
         <option value="$PROJECT_DIR$/子节点文件/cagechange.php" />
         <option value="$PROJECT_DIR$/cagechange.php" />
+        <option value="$PROJECT_DIR$/index.php" />
       </list>
     </option>
   </component>
@@ -393,15 +379,16 @@
       <workItem from="1525576461921" duration="49724000" />
       <workItem from="1525743913979" duration="5517000" />
       <workItem from="1525868069133" duration="4000" />
-      <workItem from="1525868094005" duration="17111000" />
+      <workItem from="1525868094005" duration="17360000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="214379000" />
+    <option name="totallyTimeSpent" value="214628000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="12" />
       <window_info anchor="bottom" id="PHP-CGI Server" order="1" />
@@ -565,13 +552,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
           <caret line="95" column="83" selection-start-line="95" selection-start-column="83" selection-end-line="95" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="641">
-          <caret line="89" lean-forward="true" selection-start-line="89" selection-end-line="89" />
         </state>
       </provider>
     </entry>
@@ -801,6 +781,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="553">
           <caret line="169" column="80" lean-forward="true" selection-start-line="169" selection-start-column="80" selection-end-line="169" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="337" column="57" lean-forward="true" selection-start-line="337" selection-start-column="57" selection-end-line="337" selection-end-column="57" />
         </state>
       </provider>
     </entry>
